@@ -29,7 +29,7 @@ export default function taqrirList() {
 
       {contentData.map((item) => (
         <Link
-          to={`/taqrirView?index=${item.id}&from=${identifier}`}
+          to={`/taqrirView?index=${item.id}&itemtitle=${item.title}&from=${identifier}`}
           key={item.id}
           className="content-list"
         >
