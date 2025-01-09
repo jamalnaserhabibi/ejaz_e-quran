@@ -85,6 +85,14 @@ export default function NavBar() {
               >
                 {t("dros")}
               </Nav.Link>
+              <span className="line">|</span>
+              <Nav.Link
+                as={Link}
+                to="/taqrirList?identifier=about"
+                onClick={handleNavLinkClick}
+              >
+                {t("about")}
+              </Nav.Link>
 
               <div className="lang">
                 <GrLanguage style={{ color: "white", marginRight: "30px", fontSize: "20px" }} />

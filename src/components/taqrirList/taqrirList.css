@@ -53,6 +53,18 @@
 .taqrirList .content-list .text h5 {
   margin: 5px;
 }
+.taqrirList .about-us {
+  padding: 20px;
+}
+.taqrirList .about-us h1 {
+  text-align: center;
+  color: var(--primary);
+}
+.taqrirList .about-us p {
+  text-align: justify;
+  padding: 20px;
+  line-height: 2;
+}
 
 @media (max-width: 768px) {
   .taqrirList .main {

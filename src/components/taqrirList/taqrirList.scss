@@ -62,7 +62,19 @@
             }
           }
     }
-    
+    .about-us{
+      // border: 1px solid red;
+      padding: 20px;
+      h1{
+        text-align: center;
+        color: var(--primary);
+      }
+      p{
+        text-align: justify;
+        padding: 20px;
+        line-height: 2;
+      }
+    }
    
   }
   @media (max-width: 768px) {
