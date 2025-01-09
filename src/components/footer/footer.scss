@@ -1,0 +1,55 @@
+.footerClass{
+    color: white;
+    background:linear-gradient(to left,#228b22, #086e08);
+    border-radius: 50px 50px 0 0 ;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 20px;
+    font-family: "Amiri";
+}
+.footerCards{
+  flex-direction: row-reverse;
+ 
+}
+.links{
+   a{
+    text-decoration: none;
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    position: relative;
+       }
+       a::before {
+        content: "";
+        position: absolute;
+        bottom: 0; 
+        right: 0;
+        width: 100px; 
+        height: .6px; 
+        background-color: rgba(255, 255, 255, 0.577);
+        transition: 0.3s ease; 
+      }
+      a:hover::before {
+        width: 120px; 
+    }
+    p a:hover{
+        color:rgb(213, 213, 213) !important;
+    }
+   h5{
+    text-align: right;
+    color: yellow;
+    font-weight: bolder;
+   }
+   .first p, .second p, .third p ,.fourth p     {
+    text-align: right;
+    margin-right: 10px;
+    white-space: nowrap;
+   }
+  
+}
+
+@media (max-width: 768px) {
+
+    .mobile-two-column > div {
+      flex: 0 0 50%;
+      max-width: 50%;
+    }
+  }

@@ -1,0 +1,126 @@
+.bookdownload {
+  width: 100%;
+  font-family: "Lalezar";
+  height: auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background-repeat: repeat;
+  background-size: contain;
+  background-position: top;
+}
+.bookdownload .main {
+  margin-bottom: 10px;
+  display: flex;
+  width: 100%;
+  height: 15vh;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: var(--gold_light);
+}
+.bookdownload .titleOfTaqrir {
+  color: var(--primary);
+  font-size: 35px;
+}
+.bookdownload .content {
+  margin: 20px;
+  margin-top: 10px;
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  color: rgb(13, 80, 0);
+  transition: 0.3s ease-in-out;
+  padding: 0 20px;
+}
+.bookdownload .content p {
+  text-align: justify;
+  font-size: 20px;
+}
+.bookdownload .content .info {
+  color: white;
+  width: 100%;
+  background-color: var(--primary);
+  border-radius: 20px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  margin: 20px 0;
+  text-decoration: none !important;
+  cursor: pointer;
+  transition: 0.1s ease-in-out;
+}
+.bookdownload .content .info span {
+  text-decoration: none !important;
+  color: white;
+}
+.bookdownload .content .info h3 {
+  font-size: 20px;
+}
+.bookdownload .content .info:hover {
+  opacity: 0.8;
+}
+.bookdownload .content .bookinfo {
+  border-radius: 25px 5px 25px 5px;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding: 10px;
+  justify-content: space-between;
+  margin: 5px;
+  transition: box-shadow 0.3s ease-in-out;
+}
+.bookdownload .content .bookinfo .textcard {
+  padding: 20px;
+  width: 70%;
+}
+.bookdownload .content .bookinfo .textcard h4 {
+  border-bottom: 1px rgba(0, 164, 30, 0.204) solid;
+}
+.bookdownload .content .bookinfo .textcard h4 span {
+  color: rgba(27, 130, 3, 0.988);
+}
+.bookdownload .content .bookinfo .imagecard {
+  padding: 20px;
+  width: 30%;
+}
+.bookdownload .content .bookinfo .imagecard img {
+  width: 80%;
+}
+
+@media (max-width: 768px) {
+  .bookdownload .main {
+    height: 8vh;
+  }
+  .bookdownload .content {
+    width: 100%;
+    align-items: start;
+  }
+  .bookdownload .content .info {
+    align-items: start;
+    flex-wrap: wrap;
+  }
+  .bookdownload .content .info h3 {
+    font-size: 15px;
+  }
+  .bookdownload .content .bookinfo {
+    flex-direction: column-reverse;
+  }
+  .bookdownload .content .bookinfo .textcard {
+    width: 100%;
+  }
+  .bookdownload .content .bookinfo .imagecard {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}/*# sourceMappingURL=bookdownload.css.map */

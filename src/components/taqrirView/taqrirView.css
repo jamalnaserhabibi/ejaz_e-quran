@@ -1,0 +1,76 @@
+.taqrirView {
+  width: 100%;
+  font-family: "Lalezar";
+  height: auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background-repeat: repeat;
+  background-size: contain;
+  background-position: top;
+}
+.taqrirView .main {
+  margin-bottom: 10px;
+  display: flex;
+  width: 100%;
+  height: 15vh;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: var(--gold_light);
+}
+.taqrirView .titleOfTaqrir {
+  color: var(--primary);
+  font-size: 35px;
+}
+.taqrirView .content {
+  margin: 20px;
+  margin-top: 10px;
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  color: rgb(13, 80, 0);
+  transition: 0.3s ease-in-out;
+  padding: 0 20px;
+}
+.taqrirView .content p {
+  text-align: justify;
+  font-size: 20px;
+}
+.taqrirView .content .info {
+  color: white;
+  width: 100%;
+  background-color: var(--primary);
+  border-radius: 20px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+.taqrirView .content .info h3 {
+  font-size: 20px;
+}
+
+@media (max-width: 768px) {
+  .taqrirView .main {
+    height: 8vh;
+  }
+  .taqrirView .content {
+    width: 100%;
+    align-items: start;
+  }
+  .taqrirView .content .info {
+    align-items: start;
+    flex-wrap: wrap;
+  }
+  .taqrirView .content .info h3 {
+    font-size: 15px;
+  }
+}/*# sourceMappingURL=taqrirView.css.map */

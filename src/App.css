@@ -1,0 +1,34 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Lateef:wght@200;300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@200;300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Lateef:wght@200;300;400;500;600;700;800&display=swap');
+#root{
+  /* background-color: var(--gold_white); */
+}
+:root {
+  --blue_dark: #125488;
+  --blue_light: #2a93d5;
+  --blue_med: #20c8ee;
+  --blue_white: #d1ebff;
+
+  --primary: green;
+  --gold_dark: #c6c6c6;
+  --gold_white: #c4c4c4;
+  --gold_light: #ffffff;
+  --gold_med: #cfcfcf;
+}
+
+::-webkit-scrollbar{
+  background-color: #ebecf1;
+  width: 0.4vw;
+  height: 0.4vw;
+}
+::-webkit-scrollbar-thumb{
+  background: rgba(0, 0, 0, 0.42);
+  border-radius: 10px;
+}
