@@ -25,7 +25,7 @@ export default function taqrirList() {
   return (
     <div className='taqrirList'>
       <div className="main"></div>
-      <h3>{identifier}</h3>
+      {/* <h3>{identifier}</h3> */}
 
       {contentData.map((item) => (
         <Link
