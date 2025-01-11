@@ -23,7 +23,7 @@ export default function Home() {
       <div className="mainContainer">
         <div
           style={{
-            backgroundImage: `linear-gradient(rgba(0,0,0,0.7),rgba(0, 0, 0,0.6), rgba(0, 0, 0,0.4)), url(${bg})`,
+            backgroundImage: `linear-gradient(rgba(0,0,0,0.8),rgba(0, 0, 0,0.4), rgba(0, 0, 0,0.2)), url(${bg})`,
           }}
           className="main"
         >
