@@ -42,7 +42,7 @@
 }
 .taqrirView .content p {
   text-align: justify;
-  font-size: 20px;
+  font-size: 17px;
 }
 .taqrirView .content .info {
   color: white;
@@ -65,7 +65,6 @@
   }
   .taqrirView .content {
     width: 100%;
-    align-items: start;
   }
   .taqrirView .content .info {
     align-items: start;

@@ -10,6 +10,9 @@
 #root{
   /* background-color: var(--gold_white); */
 }
+.taqrirList, .taqrirView, .hadithroz, .mainBooks ,.mainFeedbac, .bookdownload{
+  background:linear-gradient(rgba(0, 128, 0, 0.021),rgba(0, 128, 0, 0.101),rgba(0, 128, 0, 0.067));
+}
 :root {
   --blue_dark: #125488;
   --blue_light: #2a93d5;

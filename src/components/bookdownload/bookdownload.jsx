@@ -25,19 +25,20 @@ export default function Bookdownload() {
     <div className="bookdownload">
       <div className="main"></div>
         <h3 className="titleOfTaqrir">
-          دانلود کتاب ({booktitle})
+         {booktitle}
         </h3>
       <div className="content">
         <div className="bookinfo">
           <div className="textcard">
             {/* <h4>کتاب: <span>{bookid}</span></h4> */}
-            <h4>کتاب: <span>{booktitle}</span></h4>
+            <h4>نام کتاب: <span>{booktitle}</span></h4>
             <h4>جلد: <span>{vol}</span></h4>
             {/* <h4>تعداد جلد: <span>{numberofvol}</span></h4> */}
             <h4>نویسنده: <span>{write}</span></h4>
             <h4>ناشر: <span>{publish}</span></h4>
             <h4>سال انتشار: <span>{year}</span></h4>
             <h4>سایز: <span>{size}</span></h4>
+            <h4>فارمت: <span>pdf</span></h4>
             <h4>محتوا: <span>{content}</span></h4>
           </div>
           <div className="imagecard">

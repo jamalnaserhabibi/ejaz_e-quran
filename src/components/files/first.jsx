@@ -66,14 +66,14 @@ const TextPagination = ({ text, wordsPerPage }) => {
   };
 
   return (
-    <div>
-      <div style={{ marginBottom: '20px' }}>
+    <div className='textshow'>
+           <div style={{ marginBottom:'20px'}}>
         {textChunks[currentPage]}
       </div>
       <div style={{ display: 'flex',height:'3rem', alignItems: 'center',width:'100%', justifyContent: 'space-around' }}>
         <button onClick={goToPreviousPage} disabled={currentPage === 0}
          style={{
-          height:'100%',
+          height:'40px',
           padding: '0px 10px',
           backgroundColor: currentPage? 'green' : 'lightgray',
           color:  'white',
@@ -91,10 +91,10 @@ const TextPagination = ({ text, wordsPerPage }) => {
               key={index}
               onClick={() => goToPage(page)}
               style={{
-                height:'50px',
-                width:'50px',
+                height:'40px',
+                width:'40px',
                 padding: '0px 10px',
-                backgroundColor:  currentPage === page ? '#00800081' : 'white',
+                backgroundColor:  currentPage === page ? '#00800081' : '#0080000c',
                 border: currentPage === page ? '1px solid green' : '1px solid lightgray',
                 color: '#000',
                 borderRadius: '50%',
@@ -106,10 +106,11 @@ const TextPagination = ({ text, wordsPerPage }) => {
           )
         )}
         <button style={{
-          height:'100%',
+          // height:'100%',
           padding: '0px 10px',
           backgroundColor: !(currentPage === totalPages - 1) ? 'green' : 'lightgray',
-
+          height:'40px',
+          // width:'40px',
           color:  'white',
           border: '1px solid #ddd',
           borderRadius: '5px',

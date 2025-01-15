@@ -29,7 +29,7 @@ export default function Home() {
         >
           <div className="homeText">
             <div className="mainText">
-              <h1 className="hometitle">اعجاز قرآنکریم</h1>
+              <h1 className="hometitle">اعجاز قرآن کریم</h1>
             </div>
             <div className="mainText0">
               <img src={line} alt="" />
