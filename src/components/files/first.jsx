@@ -1,20 +1,123 @@
-import React from "react";
-const first = () => {
+// import React from "react";
+import React, { useState } from 'react';
+
+const TextPagination = ({ text, wordsPerPage }) => {
+  const [currentPage, setCurrentPage] = useState(0);
+
+  // Split the text into chunks
+  const textChunks = text.match(new RegExp(`(?:\\S+\\s+){1,${wordsPerPage}}`, 'g')) || [text];
+  const totalPages = textChunks.length;
+
+  // Function to generate pagination buttons with ellipsis
+  const generatePageNumbers = () => {
+    const pages = [];
+    const maxVisiblePages = 5; // Number of visible page buttons (including ellipsis)
+    const half = Math.floor(maxVisiblePages / 2);
+
+    if (totalPages <= maxVisiblePages) {
+      for (let i = 0; i < totalPages; i++) pages.push(i);
+    } else {
+      if (currentPage <= half) {
+        // Show first pages and ellipsis
+        for (let i = 0; i < maxVisiblePages - 2; i++) pages.push(i);
+        pages.push('ellipsis');
+        pages.push(totalPages - 1);
+      } else if (currentPage >= totalPages - half - 1) {
+        // Show last pages and ellipsis
+        pages.push(0);
+        pages.push('ellipsis');
+        for (let i = totalPages - (maxVisiblePages - 2); i < totalPages; i++) pages.push(i);
+      } else {
+        // Show ellipsis on both sides
+        pages.push(0);
+        pages.push('ellipsis');
+        for (let i = currentPage - half + 1; i <= currentPage + half - 1; i++) pages.push(i);
+        pages.push('ellipsis');
+        pages.push(totalPages - 1);
+      }
+    }
+
+    return pages;
+  };
+
+  // Navigation functions
+  const goToPage = (page) => {
+    if (typeof page === 'number') setCurrentPage(page);
+  };
+
+  const goToNextPage = () => {
+    if (currentPage < totalPages - 1) setCurrentPage(currentPage + 1);
+  };
+
+  const goToPreviousPage = () => {
+    if (currentPage > 0) setCurrentPage(currentPage - 1);
+  };
+
   return (
     <div>
-      <p style={{ textAlign: "center" }}>
-        {" "}
-        اَعْــــــــوُذُ بِاللّٰهِ مِنَ الشَّــــــــــــــــــيْطٰنِ
-        الرَّجِيْــــــــــــــــــمِ بِسْمِ اللّٰهِ الرَّحْـمٰنِ الرَّحِيْـمِ
-        <br />
-        اَللّٰـــــــــــــهُمَّ صَلِّ وَ سَــــــــــــــلِّمْ وَ بَارِكْ عَلٰي
-        سَــــــــــــــيِّدِنَا مُـحَــــــــــــــــمَّدٍ وَّ اٰلِـهٖ وَ
-        اَصْـحَـابِهٖ بِعَدَدِ كَلِـــــــــــــــمَاتِـكَ ط
-        <br />
-        سیرت أم المؤمنين عائشة رضی الله تعالی عنها
-        <br />
-      </p>
-      <p>
+      <div style={{ marginBottom: '20px' }}>
+        {textChunks[currentPage]}
+      </div>
+      <div style={{ display: 'flex',height:'3rem', alignItems: 'center',width:'100%', justifyContent: 'space-around' }}>
+        <button onClick={goToPreviousPage} disabled={currentPage === 0}
+         style={{
+          height:'100%',
+          padding: '0px 10px',
+          backgroundColor: currentPage? 'green' : 'lightgray',
+          color:  'white',
+          border: '1px solid #ddd',
+          borderRadius: '5px',
+          cursor: 'pointer',
+        }}>
+         قبلی
+        </button>
+        {generatePageNumbers().map((page, index) =>
+          page === 'ellipsis' ? (
+            <span key={index} style={{ padding: '5px' }}>...</span>
+          ) : (
+            <button
+              key={index}
+              onClick={() => goToPage(page)}
+              style={{
+                height:'100%',
+                padding: '0px 10px',
+                backgroundColor: currentPage === page ? 'green' : '#f8f9fa',
+                color: currentPage === page ? '#fff' : '#000',
+                border: '1px solid #ddd',
+                borderRadius: '5px',
+                cursor: 'pointer',
+              }}
+            >
+              {page + 1}
+            </button>
+          )
+        )}
+        <button style={{
+          height:'100%',
+          padding: '0px 10px',
+          backgroundColor: !(currentPage === totalPages - 1) ? 'green' : 'lightgray',
+
+          color:  'white',
+          border: '1px solid #ddd',
+          borderRadius: '5px',
+          cursor: 'pointer',
+        }} onClick={goToNextPage} disabled={currentPage === totalPages - 1}>
+          بعدی
+        </button>
+      </div>
+    </div>
+  );
+};
+
+const first = () => {
+  const largeText =
+    `
+    اَعْــــــــوُذُ بِاللّٰهِ مِنَ الشَّــــــــــــــــــيْطٰنِ
+         الرَّجِيْــــــــــــــــــمِ بِسْمِ اللّٰهِ الرَّحْـمٰنِ الرَّحِيْـمِ
+  اَللّٰـــــــــــــهُمَّ صَلِّ وَ سَــــــــــــــلِّمْ وَ بَارِكْ عَلٰي
+         سَــــــــــــــيِّدِنَا مُـحَــــــــــــــــمَّدٍ وَّ اٰلِـهٖ وَ
+         اَصْـحَـابِهٖ بِعَدَدِ كَلِـــــــــــــــمَاتِـكَ ط
+           سیرت أم المؤمنين عائشة رضی الله تعالی عنها
         تحقیق و بررسی شأن و منزلت اُمّنا و أُم الّمؤمنين حضرت بی بی عائشة
         الصدیقه رضی الله تعالی عنها بوده، که درین تحقیق مسائل ذیل را به بررسی
         میگیریم: 1. تولد و تربیت اُمّنا و أُم الّمؤمنين حضرت بی بی عائشة الصدیقه
@@ -1446,10 +1549,9 @@ const first = () => {
         بر مبنای همین آیات فوق علماء امت تماماً اجماع بر کافر بودن شخص دارند که
         بر ام المومنین حضرت عائشه (رض) تهمت و افک می بندند و ناسزا میگویند. مصنف
         شیخ احمد الافغانی الحمد لله والصلاة والسلام على رسول الله (صلى الله عليه
-        وسلم ) سندنا و شفيعنا و حبيبنا و حبيب رب العالمين .
-      </p>
-    </div>
-  );
+        وسلم ) سندنا و شفيعنا و حبيبنا و حبيب رب العالمين .`;
+
+  return <TextPagination text={largeText} wordsPerPage={200} />;
 };
 
 export default first;

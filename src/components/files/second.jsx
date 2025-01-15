@@ -1,15 +1,123 @@
-import React from "react";
-const first = () => {
+import React, { useState } from 'react';
+
+const TextPagination = ({ text, wordsPerPage }) => {
+  const [currentPage, setCurrentPage] = useState(0);
+
+  // Split the text into chunks
+  const textChunks = text.match(new RegExp(`(?:\\S+\\s+){1,${wordsPerPage}}`, 'g')) || [text];
+  const totalPages = textChunks.length;
+
+  // Function to generate pagination buttons with ellipsis
+  const generatePageNumbers = () => {
+    const pages = [];
+    const maxVisiblePages = 5; // Number of visible page buttons (including ellipsis)
+    const half = Math.floor(maxVisiblePages / 2);
+
+    if (totalPages <= maxVisiblePages) {
+      for (let i = 0; i < totalPages; i++) pages.push(i);
+    } else {
+      if (currentPage <= half) {
+        // Show first pages and ellipsis
+        for (let i = 0; i < maxVisiblePages - 2; i++) pages.push(i);
+        pages.push('ellipsis');
+        pages.push(totalPages - 1);
+      } else if (currentPage >= totalPages - half - 1) {
+        // Show last pages and ellipsis
+        pages.push(0);
+        pages.push('ellipsis');
+        for (let i = totalPages - (maxVisiblePages - 2); i < totalPages; i++) pages.push(i);
+      } else {
+        // Show ellipsis on both sides
+        pages.push(0);
+        pages.push('ellipsis');
+        for (let i = currentPage - half + 1; i <= currentPage + half - 1; i++) pages.push(i);
+        pages.push('ellipsis');
+        pages.push(totalPages - 1);
+      }
+    }
+
+    return pages;
+  };
+
+  // Navigation functions
+  const goToPage = (page) => {
+    if (typeof page === 'number') setCurrentPage(page);
+  };
+
+  const goToNextPage = () => {
+    if (currentPage < totalPages - 1) setCurrentPage(currentPage + 1);
+  };
+
+  const goToPreviousPage = () => {
+    if (currentPage > 0) setCurrentPage(currentPage - 1);
+  };
+
   return (
-    <div >
-<p style={{textAlign:'center'}}>
+    <div>
+      <div style={{ marginBottom: '20px' }}>
+        {textChunks[currentPage]}
+      </div>
+      <div style={{ display: 'flex',height:'3rem', alignItems: 'center',width:'100%', justifyContent: 'space-around' }}>
+        <button onClick={goToPreviousPage} disabled={currentPage === 0}
+         style={{
+          height:'100%',
+          padding: '0px 10px',
+          backgroundColor: currentPage? 'green' : 'lightgray',
+          color:  'white',
+          border: '1px solid #ddd',
+          borderRadius: '5px',
+          cursor: 'pointer',
+        }}>
+         قبلی
+        </button>
+        {generatePageNumbers().map((page, index) =>
+          page === 'ellipsis' ? (
+            <span key={index} style={{ padding: '5px' }}>...</span>
+          ) : (
+            <button
+              key={index}
+              onClick={() => goToPage(page)}
+              style={{
+                height:'100%',
+                padding: '0px 10px',
+                backgroundColor: currentPage === page ? 'green' : '#f8f9fa',
+                color: currentPage === page ? '#fff' : '#000',
+                border: '1px solid #ddd',
+                borderRadius: '5px',
+                cursor: 'pointer',
+              }}
+            >
+              {page + 1}
+            </button>
+          )
+        )}
+        <button style={{
+          height:'100%',
+          padding: '0px 10px',
+          backgroundColor: !(currentPage === totalPages - 1) ? 'green' : 'lightgray',
+
+          color:  'white',
+          border: '1px solid #ddd',
+          borderRadius: '5px',
+          cursor: 'pointer',
+        }} onClick={goToNextPage} disabled={currentPage === totalPages - 1}>
+          بعدی
+        </button>
+      </div>
+    </div>
+  );
+};
+
+
+const first = () => {
+  const largeText =
+  `
+  
     اَعْــــــــوُذُ بِاللّٰهِ مِنَ الشَّــــــــــــــــــيْطٰنِ الرَّجِيْــــــــــــــــــمِ
 بِسْمِ اللّٰهِ الرَّحْـمٰنِ الرَّحِيْـمِ
 <br />
 اَللّٰــــــــــــهُمَّ صَلِّ وَ سَــــــــــــــلِّمْ وَ بَارِكْ عَلٰي سَــــــــــــــيِّدِنَا مُـحَــــــــــــــــمَّدٍ وَّ اٰلِـهٖ وَ اَصْـحَـابِهٖ  بِعَدَدِ كَلِـــــــــــــــمَاتِـكَ
-<br />
-</p>
-<p>
+
 موضوع درس: 
 تجلیل مولود شریف رحمت للعالمین ، سیدنا و سندنا و شفیعنا محمد مصطفی رسول الله  صلی الله علیه وسلم را از منابع ذیل به بررسی میگیریم؛
 1)	تجلیل المولود الشریف  فی القرآن العظیم
@@ -183,9 +291,10 @@ const first = () => {
 
 
 در ذیل نام های بیشتر از ۳۰۰ کُتُب علماء سلف الصالحین است که در مورد مولود شریف رسول الله ﷺ نوشته اند و این دقیقا به این معنی است که تجلیل مولود شریف مسئله بسیار حاد و اساسی تمام ادوار تاریخ بوده و است و اشخاص جز نا فهم  و ناشکر خلاف تجلیل مولود شریف نمیباشد .
-</p>
-  </div>
-  );
+`
+
+return <TextPagination text={largeText} wordsPerPage={200} />;
+ 
 };
 
 export default first;
