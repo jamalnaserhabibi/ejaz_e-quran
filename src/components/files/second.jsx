@@ -1,12 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 
 const TextPagination = ({ text, wordsPerPage }) => {
-  const [currentPage, setCurrentPage] = useState(0);
+    const [currentPage1, setCurrentPage1] = useState(() => {
+      const savedPage = localStorage.getItem('currentPage1');
+      return savedPage !== null && !isNaN(savedPage) ? Number(savedPage) : 0;
+    });
 
   // Split the text into chunks
   const textChunks = text.match(new RegExp(`(?:\\S+\\s+){1,${wordsPerPage}}`, 'g')) || [text];
   const totalPages = textChunks.length;
 
+    useEffect(() => {
+      const savedPage = localStorage.getItem('currentPage1');
+      if (savedPage !== null && !isNaN(savedPage)) {
+        setCurrentPage1(Number(savedPage));
+      }
+    }, []);
+
+      useEffect(() => {
+        localStorage.setItem('currentPage1', currentPage1);
+      }, [currentPage1]);
   // Function to generate pagination buttons with ellipsis
   const generatePageNumbers = () => {
     const pages = [];
@@ -16,12 +29,12 @@ const TextPagination = ({ text, wordsPerPage }) => {
     if (totalPages <= maxVisiblePages) {
       for (let i = 0; i < totalPages; i++) pages.push(i);
     } else {
-      if (currentPage <= half) {
+      if (currentPage1 <= half) {
         // Show first pages and ellipsis
         for (let i = 0; i < maxVisiblePages - 2; i++) pages.push(i);
         pages.push('ellipsis');
         pages.push(totalPages - 1);
-      } else if (currentPage >= totalPages - half - 1) {
+      } else if (currentPage1 >= totalPages - half - 1) {
         // Show last pages and ellipsis
         pages.push(0);
         pages.push('ellipsis');
@@ -30,7 +43,7 @@ const TextPagination = ({ text, wordsPerPage }) => {
         // Show ellipsis on both sides
         pages.push(0);
         pages.push('ellipsis');
-        for (let i = currentPage - half + 1; i <= currentPage + half - 1; i++) pages.push(i);
+        for (let i = currentPage1 - half + 1; i <= currentPage1 + half - 1; i++) pages.push(i);
         pages.push('ellipsis');
         pages.push(totalPages - 1);
       }
@@ -41,28 +54,28 @@ const TextPagination = ({ text, wordsPerPage }) => {
 
   // Navigation functions
   const goToPage = (page) => {
-    if (typeof page === 'number') setCurrentPage(page);
+    if (typeof page === 'number') setCurrentPage1(page);
   };
 
   const goToNextPage = () => {
-    if (currentPage < totalPages - 1) setCurrentPage(currentPage + 1);
+    if (currentPage1 < totalPages - 1) setCurrentPage1(currentPage1 + 1);
   };
 
   const goToPreviousPage = () => {
-    if (currentPage > 0) setCurrentPage(currentPage - 1);
+    if (currentPage1 > 0) setCurrentPage1(currentPage1 - 1);
   };
 
   return (
     <div>
       <div style={{ marginBottom: '20px' }}>
-        {textChunks[currentPage]}
+        {textChunks[currentPage1]}
       </div>
       <div style={{ display: 'flex',height:'3rem', alignItems: 'center',width:'100%', justifyContent: 'space-around' }}>
-        <button onClick={goToPreviousPage} disabled={currentPage === 0}
+        <button onClick={goToPreviousPage} disabled={currentPage1 === 0}
          style={{
           height:'100%',
           padding: '0px 10px',
-          backgroundColor: currentPage? 'green' : 'lightgray',
+          backgroundColor: currentPage1? 'green' : 'lightgray',
           color:  'white',
           border: '1px solid #ddd',
           borderRadius: '5px',
@@ -80,8 +93,8 @@ const TextPagination = ({ text, wordsPerPage }) => {
               style={{
                 height:'100%',
                 padding: '0px 10px',
-                backgroundColor: currentPage === page ? 'green' : '#f8f9fa',
-                color: currentPage === page ? '#fff' : '#000',
+                backgroundColor: currentPage1 === page ? 'green' : '#f8f9fa',
+                color: currentPage1 === page ? '#fff' : '#000',
                 border: '1px solid #ddd',
                 borderRadius: '5px',
                 cursor: 'pointer',
@@ -94,13 +107,13 @@ const TextPagination = ({ text, wordsPerPage }) => {
         <button style={{
           height:'100%',
           padding: '0px 10px',
-          backgroundColor: !(currentPage === totalPages - 1) ? 'green' : 'lightgray',
+          backgroundColor: !(currentPage1 === totalPages - 1) ? 'green' : 'lightgray',
 
           color:  'white',
           border: '1px solid #ddd',
           borderRadius: '5px',
           cursor: 'pointer',
-        }} onClick={goToNextPage} disabled={currentPage === totalPages - 1}>
+        }} onClick={goToNextPage} disabled={currentPage1 === totalPages - 1}>
           بعدی
         </button>
       </div>

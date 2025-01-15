@@ -1,13 +1,25 @@
-// import React from "react";
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 
 const TextPagination = ({ text, wordsPerPage }) => {
-  const [currentPage, setCurrentPage] = useState(0);
+    const [currentPage, setCurrentPage] = useState(() => {
+      const savedPage = localStorage.getItem('currentPage');
+      return savedPage !== null && !isNaN(savedPage) ? Number(savedPage) : 0;
+    });
 
   // Split the text into chunks
   const textChunks = text.match(new RegExp(`(?:\\S+\\s+){1,${wordsPerPage}}`, 'g')) || [text];
   const totalPages = textChunks.length;
 
+    useEffect(() => {
+      const savedPage = localStorage.getItem('currentPage');
+      if (savedPage !== null && !isNaN(savedPage)) {
+        setCurrentPage(Number(savedPage));
+      }
+    }, []);
+
+      useEffect(() => {
+        localStorage.setItem('currentPage', currentPage);
+      }, [currentPage]);
   // Function to generate pagination buttons with ellipsis
   const generatePageNumbers = () => {
     const pages = [];
@@ -108,6 +120,9 @@ const TextPagination = ({ text, wordsPerPage }) => {
     </div>
   );
 };
+
+
+// export default TextPagination;
 
 const first = () => {
   const largeText =
