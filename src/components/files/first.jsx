@@ -91,12 +91,13 @@ const TextPagination = ({ text, wordsPerPage }) => {
               key={index}
               onClick={() => goToPage(page)}
               style={{
-                height:'100%',
+                height:'50px',
+                width:'50px',
                 padding: '0px 10px',
-                backgroundColor: currentPage === page ? 'green' : '#f8f9fa',
-                color: currentPage === page ? '#fff' : '#000',
-                border: '1px solid #ddd',
-                borderRadius: '5px',
+                backgroundColor:  currentPage === page ? '#00800081' : 'white',
+                border: currentPage === page ? '1px solid green' : '1px solid lightgray',
+                color: '#000',
+                borderRadius: '50%',
                 cursor: 'pointer',
               }}
             >
