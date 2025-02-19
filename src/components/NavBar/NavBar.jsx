@@ -8,7 +8,7 @@ import Navbar from "react-bootstrap/Navbar";
 import { Divide as Hamburger } from "hamburger-react";
 import "./NavBar.css";
 import { useTranslation } from "react-i18next";
-
+import logo from '../../assets/Golden.png';
 export default function NavBar() {
   const location = useLocation();
   const { t, i18n } = useTranslation();
@@ -40,7 +40,7 @@ export default function NavBar() {
       <Navbar expanded={isOpen} expand="lg" className={hidenav}>
         <Container>
           <Navbar.Brand className="navLogo" href="#home">
-            لوگو
+            <img src={logo} alt="" />
           </Navbar.Brand>
           <Hamburger toggled={isOpen} toggle={setIsOpen} />
           <Navbar.Collapse in={isOpen} id="basic-navbar-nav">

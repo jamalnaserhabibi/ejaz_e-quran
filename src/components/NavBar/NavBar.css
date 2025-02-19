@@ -57,13 +57,11 @@
   font-size: 22px;
 }
 .nav_main .navbar .navLogo {
-  color: white;
-  font-family: "Reem Kufi Fun", "sans-serif";
-  font-size: 20px;
-  border: 1px solid white;
-  border-radius: 20%;
   padding: 0px 10px;
   margin-left: 50px;
+}
+.nav_main .navbar .navLogo img {
+  width: 50px;
 }
 .nav_main .navbar .nav-link {
   padding: 5px;
