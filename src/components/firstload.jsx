@@ -1,5 +1,6 @@
 import Home from "./Home/Home";
 import Hadithroz from "./hadithroz/hadithroz";
+import Topics_card from "./Topics_card/Topics_card";
 import Books from "./‌books/books";
 import Feedback from "./feedback/feedback";
 // import Sampl from "./sampl";
@@ -8,6 +9,7 @@ export default function FirstLoads() {
   return (
     <>
       <Home />
+      <Topics_card/>
       <Hadithroz/>
       <Books/>
       <Feedback/>

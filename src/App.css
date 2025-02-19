@@ -10,8 +10,13 @@
 #root{
   /* background-color: var(--gold_white); */
 }
-.taqrirList, .taqrirView, .hadithroz, .mainBooks ,.mainFeedbac, .bookdownload{
-  background:linear-gradient(rgba(0, 128, 0, 0.021),rgba(0, 128, 0, 0.101),rgba(0, 128, 0, 0.067));
+.taqrirList, .taqrirView, .hadithroz, .mainBooks ,.mainFeedbac, .bookdownload,.topics_card{
+  background:linear-gradient(
+    rgba(0, 128, 0, 0.0),
+    rgba(0, 128, 0, 0.100),
+    rgba(0, 128, 0, 0.150),
+    rgba(0, 128, 0, 0.200),
+    rgba(0, 128, 0, 0.0));
 }
 :root {
   --blue_dark: #125488;

@@ -1,0 +1,68 @@
+.topics_card {
+  .contents {
+    background-image: url(../../assets/flower.png);
+    background-size: 300px;
+    margin: 20px;
+    padding: 50px 20px;
+    background-position: right top;
+    margin-top: 40px;
+    background-repeat: no-repeat;
+    .topicsTitle {
+      h1 {
+        color: var(--primary);
+        font-family: "lateef";
+        font-size: 50px;
+        position: relative;
+        text-align: right;
+        // margin-top: -30px;
+      }
+      h1::after {
+        content: "";
+        position: absolute;
+        height: 4px;
+        border-radius: 30px;
+        width: 50px;
+        background-color: var(--primary);
+        bottom: -5px;
+        right: 0;
+      }
+    }
+    .elements {
+      // border: 1px solid red;
+      margin: 0 20px;
+      display: flex;
+      justify-content: space-evenly;
+      div {
+        border-radius: 20px;
+        width: 300px;
+        height: 300px;
+        margin: 10px 0;
+        border:2px solid var(--primary);
+        transform:1s;
+
+      }
+      div::before{
+        content:'';
+        border-radius: 18px;
+        position:absolute;
+        height:0%;
+        width:100%;
+        top:0;
+        // left:50%;
+        z-index:-1;
+        background-image:linear-gradient(94deg, rgba(0, 100, 0, 0.9), rgba(34, 139, 34, 0.6));
+        transition:.5s;
+      }
+      div:hover::before{
+        height:100%;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .contents {
+    .elements {
+    }
+  }
+}

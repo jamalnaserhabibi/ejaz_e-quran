@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.box {
+  width: 300px;
+  height: 300px;
+  border: 1px solid red;
+  transition: background 0.3s ease-out;
+  position: relative;
+  overflow: hidden;
+}
+.box:hover {
+  background: radial-gradient(circle at var(--x) var(--y), rgba(255, 0, 0, 0.5), rgba(255, 0, 0, 0));
+}/*# sourceMappingURL=hovereffect.css.map */
