@@ -64,6 +64,7 @@
           font-family: "Amiri", serif;
           width: auto;
           line-height: 2;
+          font-size: 30px;
 
         }
         p {
@@ -140,7 +141,15 @@
       .homeText {
         margin-top: -150px;
         .hometitle {
+          font-size: 50px;
           white-space: nowrap;
+        }
+        .mainText0 {
+          margin: 1rem 0;
+          img {
+          width: 200px;
+
+          }
         }
         .DesText {
         display: flex;
@@ -149,15 +158,18 @@
           .Homeslider{
           }
           h2{
+            margin: 3rem 0;
             // border: 1px solid red;
+            font-size: 25px;
 
           }
           p {
             margin: 0 20px;
             padding: 0 20px;
-            // font-size: 17px;
+            font-size: 17px;
           }
         }
+        
       }
     }
     // .homeBoxes {

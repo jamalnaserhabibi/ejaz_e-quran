@@ -54,6 +54,7 @@
   font-family: "Amiri", serif;
   width: auto;
   line-height: 2;
+  font-size: 30px;
 }
 .mainContainer .main .homeText .DesText p {
   padding: 0 60px;
@@ -87,15 +88,27 @@
     margin-top: -150px;
   }
   .mainContainer .main .homeText .hometitle {
+    font-size: 50px;
     white-space: nowrap;
+  }
+  .mainContainer .main .homeText .mainText0 {
+    margin: 1rem 0;
+  }
+  .mainContainer .main .homeText .mainText0 img {
+    width: 200px;
   }
   .mainContainer .main .homeText .DesText {
     display: flex;
     justify-content: center;
     width: 130%;
   }
+  .mainContainer .main .homeText .DesText h2 {
+    margin: 3rem 0;
+    font-size: 25px;
+  }
   .mainContainer .main .homeText .DesText p {
     margin: 0 20px;
     padding: 0 20px;
+    font-size: 17px;
   }
 }/*# sourceMappingURL=Home.css.map */
