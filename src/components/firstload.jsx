@@ -1,6 +1,6 @@
 import Home from "./Home/Home";
 import Hadithroz from "./hadithroz/hadithroz";
-import Topics_card from "./Topics_card/Topics_card";
+import Topics_card from "./topics_card/topics_card";
 import Books from "./‌books/books";
 import Feedback from "./feedback/feedback";
 // import Sampl from "./sampl";
