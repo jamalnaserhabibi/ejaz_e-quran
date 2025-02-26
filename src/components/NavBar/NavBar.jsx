@@ -95,7 +95,7 @@ export default function NavBar() {
               </Nav.Link>
 
               <div className="lang">
-                <GrLanguage style={{ color: "white", marginRight: "30px", fontSize: "20px" }} />
+                <GrLanguage style={{ color: "white", fontSize: "20px" }} />
                 <select onChange={(e) => changeLang(e.target.value)} defaultValue="dari">
                   <option value="da">دری</option>
                   <option value="ps">پشتو</option>
@@ -103,6 +103,7 @@ export default function NavBar() {
                   <option value="ur">اردو</option>
                 </select>
               </div>
+              
               <span style={{ height: "40px" }} className="space"></span>
             </Nav>
           </Navbar.Collapse>
