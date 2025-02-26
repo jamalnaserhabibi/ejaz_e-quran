@@ -106,7 +106,7 @@ export default function Book() {
 
   return (
     <div className="mainBooks">
-      <h1 data-aos="fade-up">کتاب ها</h1>
+      <h1 data-aos="fade-up">  کتاب ها و رساله ها</h1>
       <div data-aos="fade-up" className="bookContainer">
         <Slider {...settings}>
           {books.map((book) => (
