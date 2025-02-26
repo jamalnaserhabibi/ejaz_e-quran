@@ -73,8 +73,8 @@ const TextPagination = ({ text, wordsPerPage }) => {
 
     return (
         <div className='textshow'>
-            <div style={{ marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <input
+            <div style={{marginBottom: '20px', display: 'flex', alignItems: 'center',justifyContent:'center', gap: '10px' }}>
+            <input
                     type="text"
                     placeholder="جستجو..."
                     value={searchQuery}

@@ -1,18 +1,22 @@
 import React, { useState, useEffect } from 'react';
+import { FaSearch } from 'react-icons/fa'; 
 const TextPagination = ({ text, wordsPerPage }) => {
     const [currentPage, setCurrentPage] = useState(() => {
         const savedPage = localStorage.getItem('currentPage');
-        return savedPage !== null && !isNaN(savedPage) ? Number(savedPage) : 1;
+        return savedPage !== null && !isNaN(savedPage) ? Number(savedPage) : 0;
     });
 
-    // Split the text into chunks
+    const [searchQuery, setSearchQuery] = useState('');
+    const [searchResults, setSearchResults] = useState([]);
+    const [currentMatchIndex, setCurrentMatchIndex] = useState(0);
+
     const textChunks = text.split(/\s+/).reduce((acc, word, index) => {
         const chunkIndex = Math.floor(index / wordsPerPage);
         if (!acc[chunkIndex]) acc[chunkIndex] = [];
         acc[chunkIndex].push(word);
         return acc;
     }, []).map(chunk => chunk.join(' '));
-    
+
     const totalPages = textChunks.length;
 
     useEffect(() => {
@@ -26,58 +30,150 @@ const TextPagination = ({ text, wordsPerPage }) => {
         localStorage.setItem('currentPage', currentPage);
     }, [currentPage]);
 
-    // Navigation functions
-    const goToPage = (page) => {
-        if (typeof page === 'number') setCurrentPage(page);
+    useEffect(() => {
+        if (searchQuery) {
+            const regex = new RegExp(searchQuery, 'gi');
+            let matches = [];
+
+            textChunks.forEach((chunk, pageIndex) => {
+                [...chunk.matchAll(regex)].forEach(match => {
+                    matches.push({ pageIndex, match });
+                });
+            });
+
+            setSearchResults(matches);
+            setCurrentMatchIndex(0);
+            if (matches.length > 0) {
+                setCurrentPage(matches[0].pageIndex);
+            }
+        } else {
+            setSearchResults([]);
+        }
+    }, [searchQuery]);
+
+    const goToMatch = (index) => {
+        if (index >= 0 && index < searchResults.length) {
+            setCurrentMatchIndex(index);
+            setCurrentPage(searchResults[index].pageIndex);
+        }
     };
 
-    const goToNextPage = () => {
-        if (currentPage < totalPages - 1) setCurrentPage(currentPage + 1);
-    };
+    const highlightText = (text, query) => {
+        if (!query) return text;
 
-    const goToPreviousPage = () => {
-        if (currentPage > 0) setCurrentPage(currentPage - 1);
+        const regex = new RegExp(`(${query})`, 'gi');
+        return text.split(regex).map((part, index) =>
+            regex.test(part) ? (
+                <span key={index} style={{ backgroundColor: 'yellow' }}>{part}</span>
+            ) : (
+                part
+            )
+        );
     };
 
     return (
         <div className='textshow'>
-            <div style={{ marginBottom: '20px', whiteSpace: 'pre-line' }}>
-                {textChunks[currentPage]}
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
-                <button onClick={goToPreviousPage} disabled={currentPage === 0}
+            <div style={{marginBottom: '20px', display: 'flex', alignItems: 'center',justifyContent:'center', gap: '10px' }}>
+                <input
+                    type="text"
+                    placeholder="جستجو..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
                     style={{
-                        height: '40px',
-                        padding: '0px 10px',
+                        width:'60%',
+                        borderRadius: '5px',
+                        color: 'var(--primary)',
+                        border: '1px solid var(--primary)',
+                        borderRadius: '30px',
+                        transition: '0.3s ease-in-out',
+                        padding: '0 20px',
+                        backgroundColor: 'transparent',
+                        outline: 'none',
+                    }}
+                />
+                 <FaSearch style={{
+                    color: 'green',
+                    marginRight:'-45px',
+                    marginLeft:'45',
+                 }}/>
+                {searchQuery && (
+                    <span style={{ fontSize: '14px', color: '#333' }}>
+                        {searchResults.length} مورد پیدا شد                    </span>
+                )}
+                {searchQuery && searchResults.length > 0 && (
+                    <div style={{ display: 'flex', gap: '5px' }}>
+                        <button
+                            onClick={() => goToMatch(currentMatchIndex - 1)}
+                            disabled={currentMatchIndex === 0}
+                            style={{
+                                padding: '5px 10px',
+                                backgroundColor: 'green',
+                                color: '#fff',
+                                border: 'none',
+                                borderRadius: '5px',
+                                cursor: 'pointer',
+                            }}
+                        >
+                            قبلی
+                        </button>
+                        <button
+                            onClick={() => goToMatch(currentMatchIndex + 1)}
+                            disabled={currentMatchIndex === searchResults.length - 1}
+                            style={{
+                                padding: '5px 10px',
+                                backgroundColor: 'green',
+                                color: '#fff',
+                                border: 'none',
+                                borderRadius: '5px',
+                                cursor: 'pointer',
+                            }}
+                        >
+                            بعدی
+                        </button>
+                    </div>
+                )}
+            </div>
+
+            <div style={{ marginBottom: '20px', whiteSpace: 'pre-line' }}>
+                {highlightText(textChunks[currentPage], searchQuery)}
+            </div>
+
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <button
+                    onClick={() => setCurrentPage(currentPage - 1)}
+                    disabled={currentPage === 0}
+                    style={{
+                        padding: '5px 10px',
                         backgroundColor: currentPage ? 'green' : 'lightgray',
                         color: 'white',
                         border: '1px solid #ddd',
                         borderRadius: '5px',
                         cursor: 'pointer',
- 
-                    }}>
+                    }}
+                >
                     قبلی
                 </button>
-                
+
                 <select
                     value={currentPage}
-                    onChange={(e) => goToPage(Number(e.target.value))}
+                    onChange={(e) => setCurrentPage(Number(e.target.value))}
                     style={{
                         padding: '0px 15px',
                         borderRadius: '5px',
                         border: 'none',
                         cursor: 'pointer',
-                        appearance: 'none', 
-                        backgroundColor:' rgba(0, 128, 0, 0.200)'
-                        // width:'5rem',
+                        appearance: 'none',
+                        backgroundColor: 'rgba(0, 128, 0, 0.200)',
                     }}
                 >
                     {Array.from({ length: totalPages }, (_, i) => (
                         <option key={i} value={i}>{`صفحه ${i + 1}`}</option>
                     ))}
                 </select>
-                
-                <button onClick={goToNextPage} disabled={currentPage === totalPages - 1}
+
+                <button
+                    onClick={() => setCurrentPage(currentPage + 1)}
+                    disabled={currentPage === totalPages - 1}
                     style={{
                         padding: '0px 10px',
                         backgroundColor: !(currentPage === totalPages - 1) ? 'green' : 'lightgray',
@@ -86,14 +182,15 @@ const TextPagination = ({ text, wordsPerPage }) => {
                         border: '1px solid #ddd',
                         borderRadius: '5px',
                         cursor: 'pointer',
- 
-                    }}>
-                بعدی
+                    }}
+                >
+                    بعدی
                 </button>
             </div>
         </div>
     );
 };
+
 
 const first = () => {
   const largeText =
