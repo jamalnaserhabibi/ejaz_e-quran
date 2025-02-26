@@ -1,134 +1,199 @@
-import React, { useState,useEffect } from 'react';
-
+import React, { useState, useEffect } from 'react';
+import { FaSearch } from 'react-icons/fa'; 
 const TextPagination = ({ text, wordsPerPage }) => {
     const [currentPage, setCurrentPage] = useState(() => {
-      const savedPage = localStorage.getItem('currentPage');
-      return savedPage !== null && !isNaN(savedPage) ? Number(savedPage) : 0;
+        const savedPage = localStorage.getItem('currentPage');
+        return savedPage !== null && !isNaN(savedPage) ? Number(savedPage) : 0;
     });
 
-  // Split the text into chunks
-  const textChunks = text.match(new RegExp(`(?:\\S+\\s+){1,${wordsPerPage}}`, 'g')) || [text];
-  const totalPages = textChunks.length;
+    const [searchQuery, setSearchQuery] = useState('');
+    const [searchResults, setSearchResults] = useState([]);
+    const [currentMatchIndex, setCurrentMatchIndex] = useState(0);
+
+    const textChunks = text.split(/\s+/).reduce((acc, word, index) => {
+        const chunkIndex = Math.floor(index / wordsPerPage);
+        if (!acc[chunkIndex]) acc[chunkIndex] = [];
+        acc[chunkIndex].push(word);
+        return acc;
+    }, []).map(chunk => chunk.join(' '));
+
+    const totalPages = textChunks.length;
 
     useEffect(() => {
-      const savedPage = localStorage.getItem('currentPage');
-      if (savedPage !== null && !isNaN(savedPage)) {
-        setCurrentPage(Number(savedPage));
-      }
+        const savedPage = localStorage.getItem('currentPage');
+        if (savedPage !== null && !isNaN(savedPage)) {
+            setCurrentPage(Number(savedPage));
+        }
     }, []);
 
-      useEffect(() => {
+    useEffect(() => {
         localStorage.setItem('currentPage', currentPage);
-      }, [currentPage]);
-  // Function to generate pagination buttons with ellipsis
-  const generatePageNumbers = () => {
-    const pages = [];
-    const maxVisiblePages = 5; // Number of visible page buttons (including ellipsis)
-    const half = Math.floor(maxVisiblePages / 2);
+    }, [currentPage]);
 
-    if (totalPages <= maxVisiblePages) {
-      for (let i = 0; i < totalPages; i++) pages.push(i);
-    } else {
-      if (currentPage <= half) {
-        // Show first pages and ellipsis
-        for (let i = 0; i < maxVisiblePages - 2; i++) pages.push(i);
-        pages.push('ellipsis');
-        pages.push(totalPages - 1);
-      } else if (currentPage >= totalPages - half - 1) {
-        // Show last pages and ellipsis
-        pages.push(0);
-        pages.push('ellipsis');
-        for (let i = totalPages - (maxVisiblePages - 2); i < totalPages; i++) pages.push(i);
-      } else {
-        // Show ellipsis on both sides
-        pages.push(0);
-        pages.push('ellipsis');
-        for (let i = currentPage - half + 1; i <= currentPage + half - 1; i++) pages.push(i);
-        pages.push('ellipsis');
-        pages.push(totalPages - 1);
-      }
-    }
+    useEffect(() => {
+        if (searchQuery) {
+            const regex = new RegExp(searchQuery, 'gi');
+            let matches = [];
 
-    return pages;
-  };
+            textChunks.forEach((chunk, pageIndex) => {
+                [...chunk.matchAll(regex)].forEach(match => {
+                    matches.push({ pageIndex, match });
+                });
+            });
 
-  // Navigation functions
-  const goToPage = (page) => {
-    if (typeof page === 'number') setCurrentPage(page);
-  };
+            setSearchResults(matches);
+            setCurrentMatchIndex(0);
+            if (matches.length > 0) {
+                setCurrentPage(matches[0].pageIndex);
+            }
+        } else {
+            setSearchResults([]);
+        }
+    }, [searchQuery]);
 
-  const goToNextPage = () => {
-    if (currentPage < totalPages - 1) setCurrentPage(currentPage + 1);
-  };
+    const goToMatch = (index) => {
+        if (index >= 0 && index < searchResults.length) {
+            setCurrentMatchIndex(index);
+            setCurrentPage(searchResults[index].pageIndex);
+        }
+    };
 
-  const goToPreviousPage = () => {
-    if (currentPage > 0) setCurrentPage(currentPage - 1);
-  };
+    const highlightText = (text, query) => {
+        if (!query) return text;
 
-  return (
-    <div className='textshow'>
-           <div style={{ marginBottom:'20px'}}>
-        {textChunks[currentPage]}
-      </div>
-      <div style={{ display: 'flex',height:'3rem', alignItems: 'center',width:'100%', justifyContent: 'space-around' }}>
-        <button onClick={goToPreviousPage} disabled={currentPage === 0}
-         style={{
-          height:'40px',
-          padding: '0px 10px',
-          backgroundColor: currentPage? 'green' : 'lightgray',
-          color:  'white',
-          border: '1px solid #ddd',
-          borderRadius: '5px',
-          cursor: 'pointer',
-        }}>
-         قبلی
-        </button>
-        {generatePageNumbers().map((page, index) =>
-          page === 'ellipsis' ? (
-            <span key={index} style={{ padding: '5px' }}>...</span>
-          ) : (
-            <button
-              key={index}
-              onClick={() => goToPage(page)}
-              style={{
-                height:'40px',
-                width:'40px',
-                padding: '0px 10px',
-                backgroundColor:  currentPage === page ? '#00800081' : '#0080000c',
-                border: currentPage === page ? '1px solid green' : '1px solid lightgray',
-                color: '#000',
-                borderRadius: '50%',
-                cursor: 'pointer',
-              }}
-            >
-              {page + 1}
-            </button>
-          )
-        )}
-        <button style={{
-          // height:'100%',
-          padding: '0px 10px',
-          backgroundColor: !(currentPage === totalPages - 1) ? 'green' : 'lightgray',
-          height:'40px',
-          // width:'40px',
-          color:  'white',
-          border: '1px solid #ddd',
-          borderRadius: '5px',
-          cursor: 'pointer',
-        }} onClick={goToNextPage} disabled={currentPage === totalPages - 1}>
-          بعدی
-        </button>
-      </div>
-    </div>
-  );
+        const regex = new RegExp(`(${query})`, 'gi');
+        return text.split(regex).map((part, index) =>
+            regex.test(part) ? (
+                <span key={index} style={{ backgroundColor: 'yellow' }}>{part}</span>
+            ) : (
+                part
+            )
+        );
+    };
+
+    return (
+        <div className='textshow'>
+            <div style={{ marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <input
+                    type="text"
+                    placeholder="جستجو..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    style={{
+                        width:'60%',
+                        borderRadius: '5px',
+                        color: 'var(--primary)',
+                        border: '1px solid var(--primary)',
+                        borderRadius: '30px',
+                        transition: '0.3s ease-in-out',
+                        padding: '0 20px',
+                        backgroundColor: 'transparent',
+                        outline: 'none',
+                    }}
+                />
+                 <FaSearch style={{
+                    color: 'green',
+                    marginRight:'-45px',
+                    marginLeft:'45',
+                 }}/>
+                {searchQuery && (
+                    <span style={{ fontSize: '14px', color: '#333' }}>
+                        {searchResults.length} مورد پیدا شد                    </span>
+                )}
+                {searchQuery && searchResults.length > 0 && (
+                    <div style={{ display: 'flex', gap: '5px' }}>
+                        <button
+                            onClick={() => goToMatch(currentMatchIndex - 1)}
+                            disabled={currentMatchIndex === 0}
+                            style={{
+                                padding: '5px 10px',
+                                backgroundColor: 'green',
+                                color: '#fff',
+                                border: 'none',
+                                borderRadius: '5px',
+                                cursor: 'pointer',
+                            }}
+                        >
+                            قبلی
+                        </button>
+                        <button
+                            onClick={() => goToMatch(currentMatchIndex + 1)}
+                            disabled={currentMatchIndex === searchResults.length - 1}
+                            style={{
+                                padding: '5px 10px',
+                                backgroundColor: 'green',
+                                color: '#fff',
+                                border: 'none',
+                                borderRadius: '5px',
+                                cursor: 'pointer',
+                            }}
+                        >
+                            بعدی
+                        </button>
+                    </div>
+                )}
+            </div>
+
+            <div style={{ marginBottom: '20px', whiteSpace: 'pre-line' }}>
+                {highlightText(textChunks[currentPage], searchQuery)}
+            </div>
+
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <button
+                    onClick={() => setCurrentPage(currentPage - 1)}
+                    disabled={currentPage === 0}
+                    style={{
+                        padding: '5px 10px',
+                        backgroundColor: currentPage ? 'green' : 'lightgray',
+                        color: 'white',
+                        border: '1px solid #ddd',
+                        borderRadius: '5px',
+                        cursor: 'pointer',
+                    }}
+                >
+                    قبلی
+                </button>
+
+                <select
+                    value={currentPage}
+                    onChange={(e) => setCurrentPage(Number(e.target.value))}
+                    style={{
+                        padding: '0px 15px',
+                        borderRadius: '5px',
+                        border: 'none',
+                        cursor: 'pointer',
+                        appearance: 'none',
+                        backgroundColor: 'rgba(0, 128, 0, 0.200)',
+                    }}
+                >
+                    {Array.from({ length: totalPages }, (_, i) => (
+                        <option key={i} value={i}>{`صفحه ${i + 1}`}</option>
+                    ))}
+                </select>
+
+                <button
+                    onClick={() => setCurrentPage(currentPage + 1)}
+                    disabled={currentPage === totalPages - 1}
+                    style={{
+                        padding: '0px 10px',
+                        backgroundColor: !(currentPage === totalPages - 1) ? 'green' : 'lightgray',
+                        height: '40px',
+                        color: 'white',
+                        border: '1px solid #ddd',
+                        borderRadius: '5px',
+                        cursor: 'pointer',
+                    }}
+                >
+                    بعدی
+                </button>
+            </div>
+        </div>
+    );
 };
 
+const First = () => {
 
-// export default TextPagination;
-
-const first = () => {
-  const largeText =
-    `
+    const largeText =  `
     اَعْــــــــوُذُ بِاللّٰهِ مِنَ الشَّــــــــــــــــــيْطٰنِ
          الرَّجِيْــــــــــــــــــمِ بِسْمِ اللّٰهِ الرَّحْـمٰنِ الرَّحِيْـمِ
   اَللّٰـــــــــــــهُمَّ صَلِّ وَ سَــــــــــــــلِّمْ وَ بَارِكْ عَلٰي
@@ -1567,8 +1632,8 @@ const first = () => {
         بر ام المومنین حضرت عائشه (رض) تهمت و افک می بندند و ناسزا میگویند. مصنف
         شیخ احمد الافغانی الحمد لله والصلاة والسلام على رسول الله (صلى الله عليه
         وسلم ) سندنا و شفيعنا و حبيبنا و حبيب رب العالمين .`;
-
-  return <TextPagination text={largeText} wordsPerPage={200} />;
+ 
+    return <TextPagination text={largeText} wordsPerPage={200} />;
 };
 
-export default first;
+export default First;

@@ -23,6 +23,33 @@
   text-align: center;
   color: var(--gold_light);
 }
+.taqrirList .search-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.taqrirList .search-container input {
+  width: 50%;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+  border-radius: 30px;
+  transition: 0.3s ease-in-out;
+  padding: 0 20px;
+  height: 50px;
+  background-color: transparent;
+  outline: none;
+}
+.taqrirList .search-container .icon {
+  position: relative;
+  left: 35px;
+  bottom: 9px;
+  color: var(--primary);
+}
 .taqrirList .content-list {
   width: 80%;
   text-decoration: none;

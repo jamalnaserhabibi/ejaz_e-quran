@@ -5,6 +5,7 @@
 }
 
 .lang {
+  margin-right: 25px;
   display: flex;
   justify-content: right;
   align-items: center;
@@ -56,11 +57,13 @@
     display: flex;
     justify-content: space-around;
     font-family: "Lalezar", "sans-serif";
+    
   }
 
   .navbar {
       font-size: 22px;
       .navLogo {
+        margin-left: 25px;
       img{
         width: 50px;
       }

@@ -5,6 +5,7 @@
 }
 
 .lang {
+  margin-right: 25px;
   display: flex;
   justify-content: right;
   align-items: center;
@@ -53,6 +54,7 @@
   font-size: 22px;
 }
 .nav_main .navbar .navLogo {
+  margin-left: 25px;
   padding: 5px 10px;
 }
 .nav_main .navbar .navLogo img {

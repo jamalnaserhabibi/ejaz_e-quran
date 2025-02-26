@@ -30,11 +30,11 @@ export default function TaqrirView() {
       <First />
         }
         </p>
-        <div className="info">
+        {/* <div className="info">
           <h3>کابل</h3>
           <h3>سال 1403</h3>
           <h3>مدرسه تعلیم قرآن و حدیث شریف</h3>
-        </div>
+        </div> */}
       </div>
     </div>
   );

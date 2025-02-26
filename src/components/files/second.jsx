@@ -1,127 +1,99 @@
-import React, { useState,useEffect } from 'react';
-
+import React, { useState, useEffect } from 'react';
 const TextPagination = ({ text, wordsPerPage }) => {
-    const [currentPage1, setCurrentPage1] = useState(() => {
-      const savedPage = localStorage.getItem('currentPage1');
-      return savedPage !== null && !isNaN(savedPage) ? Number(savedPage) : 0;
+    const [currentPage, setCurrentPage] = useState(() => {
+        const savedPage = localStorage.getItem('currentPage');
+        return savedPage !== null && !isNaN(savedPage) ? Number(savedPage) : 1;
     });
 
-  // Split the text into chunks
-  const textChunks = text.match(new RegExp(`(?:\\S+\\s+){1,${wordsPerPage}}`, 'g')) || [text];
-  const totalPages = textChunks.length;
+    // Split the text into chunks
+    const textChunks = text.split(/\s+/).reduce((acc, word, index) => {
+        const chunkIndex = Math.floor(index / wordsPerPage);
+        if (!acc[chunkIndex]) acc[chunkIndex] = [];
+        acc[chunkIndex].push(word);
+        return acc;
+    }, []).map(chunk => chunk.join(' '));
+    
+    const totalPages = textChunks.length;
 
     useEffect(() => {
-      const savedPage = localStorage.getItem('currentPage1');
-      if (savedPage !== null && !isNaN(savedPage)) {
-        setCurrentPage1(Number(savedPage));
-      }
+        const savedPage = localStorage.getItem('currentPage');
+        if (savedPage !== null && !isNaN(savedPage)) {
+            setCurrentPage(Number(savedPage));
+        }
     }, []);
 
-      useEffect(() => {
-        localStorage.setItem('currentPage1', currentPage1);
-      }, [currentPage1]);
-  // Function to generate pagination buttons with ellipsis
-  const generatePageNumbers = () => {
-    const pages = [];
-    const maxVisiblePages = 5; // Number of visible page buttons (including ellipsis)
-    const half = Math.floor(maxVisiblePages / 2);
+    useEffect(() => {
+        localStorage.setItem('currentPage', currentPage);
+    }, [currentPage]);
 
-    if (totalPages <= maxVisiblePages) {
-      for (let i = 0; i < totalPages; i++) pages.push(i);
-    } else {
-      if (currentPage1 <= half) {
-        // Show first pages and ellipsis
-        for (let i = 0; i < maxVisiblePages - 2; i++) pages.push(i);
-        pages.push('ellipsis');
-        pages.push(totalPages - 1);
-      } else if (currentPage1 >= totalPages - half - 1) {
-        // Show last pages and ellipsis
-        pages.push(0);
-        pages.push('ellipsis');
-        for (let i = totalPages - (maxVisiblePages - 2); i < totalPages; i++) pages.push(i);
-      } else {
-        // Show ellipsis on both sides
-        pages.push(0);
-        pages.push('ellipsis');
-        for (let i = currentPage1 - half + 1; i <= currentPage1 + half - 1; i++) pages.push(i);
-        pages.push('ellipsis');
-        pages.push(totalPages - 1);
-      }
-    }
+    // Navigation functions
+    const goToPage = (page) => {
+        if (typeof page === 'number') setCurrentPage(page);
+    };
 
-    return pages;
-  };
+    const goToNextPage = () => {
+        if (currentPage < totalPages - 1) setCurrentPage(currentPage + 1);
+    };
 
-  // Navigation functions
-  const goToPage = (page) => {
-    if (typeof page === 'number') setCurrentPage1(page);
-  };
+    const goToPreviousPage = () => {
+        if (currentPage > 0) setCurrentPage(currentPage - 1);
+    };
 
-  const goToNextPage = () => {
-    if (currentPage1 < totalPages - 1) setCurrentPage1(currentPage1 + 1);
-  };
-
-  const goToPreviousPage = () => {
-    if (currentPage1 > 0) setCurrentPage1(currentPage1 - 1);
-  };
-
-  return (
-    <div className='textshow'>
-      <div style={{ marginBottom:'20px'}}>
-        {textChunks[currentPage1]}
-      </div>
-      <div style={{ display: 'flex',height:'3rem', alignItems: 'center',width:'100%', justifyContent: 'space-around' }}>
-        <button onClick={goToPreviousPage} disabled={currentPage1 === 0}
-         style={{
-          height:'40px',
-          padding: '0px 10px',
-          backgroundColor: currentPage1? 'green' : 'lightgray',
-          color:  'white',
-          border: '1px solid #ddd',
-          borderRadius: '5px',
-          cursor: 'pointer',
-        }}>
-         قبلی
-        </button>
-        {generatePageNumbers().map((page, index) =>
-          page === 'ellipsis' ? (
-            <span key={index} style={{ padding: '5px' }}>...</span>
-          ) : (
-            <button
-              key={index}
-              onClick={() => goToPage(page)}
-              style={{
-                height:'40px',
-                width:'40px',
-                padding: '0px 10px',
-                backgroundColor:  currentPage1 === page ? '#00800081' : '#0080000c',
-                border: currentPage1 === page ? '1px solid green' : '1px solid lightgray',
-                color: '#000',
-                borderRadius: '50%',
-                cursor: 'pointer',
-              }}
-            >
-              {page + 1}
-            </button>
-          )
-        )}
-        <button style={{
-          height:'40px',
-          padding: '0px 10px',
-          backgroundColor: !(currentPage1 === totalPages - 1) ? 'green' : 'lightgray',
-
-          color:  'white',
-          border: '1px solid #ddd',
-          borderRadius: '5px',
-          cursor: 'pointer',
-        }} onClick={goToNextPage} disabled={currentPage1 === totalPages - 1}>
-          بعدی
-        </button>
-      </div>
-    </div>
-  );
+    return (
+        <div className='textshow'>
+            <div style={{ marginBottom: '20px', whiteSpace: 'pre-line' }}>
+                {textChunks[currentPage]}
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
+                <button onClick={goToPreviousPage} disabled={currentPage === 0}
+                    style={{
+                        height: '40px',
+                        padding: '0px 10px',
+                        backgroundColor: currentPage ? 'green' : 'lightgray',
+                        color: 'white',
+                        border: '1px solid #ddd',
+                        borderRadius: '5px',
+                        cursor: 'pointer',
+ 
+                    }}>
+                    قبلی
+                </button>
+                
+                <select
+                    value={currentPage}
+                    onChange={(e) => goToPage(Number(e.target.value))}
+                    style={{
+                        padding: '0px 15px',
+                        borderRadius: '5px',
+                        border: 'none',
+                        cursor: 'pointer',
+                        appearance: 'none', 
+                        backgroundColor:' rgba(0, 128, 0, 0.200)'
+                        // width:'5rem',
+                    }}
+                >
+                    {Array.from({ length: totalPages }, (_, i) => (
+                        <option key={i} value={i}>{`صفحه ${i + 1}`}</option>
+                    ))}
+                </select>
+                
+                <button onClick={goToNextPage} disabled={currentPage === totalPages - 1}
+                    style={{
+                        padding: '0px 10px',
+                        backgroundColor: !(currentPage === totalPages - 1) ? 'green' : 'lightgray',
+                        height: '40px',
+                        color: 'white',
+                        border: '1px solid #ddd',
+                        borderRadius: '5px',
+                        cursor: 'pointer',
+ 
+                    }}>
+                بعدی
+                </button>
+            </div>
+        </div>
+    );
 };
-
 
 const first = () => {
   const largeText =
@@ -306,9 +278,8 @@ const first = () => {
 
 در ذیل نام های بیشتر از ۳۰۰ کُتُب علماء سلف الصالحین است که در مورد مولود شریف رسول الله ﷺ نوشته اند و این دقیقا به این معنی است که تجلیل مولود شریف مسئله بسیار حاد و اساسی تمام ادوار تاریخ بوده و است و اشخاص جز نا فهم  و ناشکر خلاف تجلیل مولود شریف نمیباشد .
 `
-
 return <TextPagination text={largeText} wordsPerPage={200} />;
- 
 };
+
 
 export default first;

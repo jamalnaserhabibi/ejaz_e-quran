@@ -45,6 +45,7 @@ export default function NavBar() {
           <Hamburger toggled={isOpen} toggle={setIsOpen} />
           <Navbar.Collapse in={isOpen} id="basic-navbar-nav">
             <Nav className="navButton ms-auto">
+              
               <span style={{ height: "20px" }} className="space"></span>
               <Nav.Link
                 as={Link}
@@ -93,6 +94,7 @@ export default function NavBar() {
               >
                 {t("about")}
               </Nav.Link>
+        
 
               <div className="lang">
                 <GrLanguage style={{ color: "white", fontSize: "20px" }} />
