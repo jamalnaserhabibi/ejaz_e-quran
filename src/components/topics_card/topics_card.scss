@@ -7,62 +7,131 @@
     background-position: right top;
     margin-top: 40px;
     background-repeat: no-repeat;
+    text-align: center;
+
     .topicsTitle {
       h1 {
         color: var(--primary);
         font-family: "lateef";
         font-size: 50px;
-        position: relative;
         text-align: right;
-        // margin-top: -30px;
+        position: relative;
+        margin-bottom: 40px;
       }
       h1::after {
         content: "";
         position: absolute;
         height: 4px;
-        border-radius: 30px;
         width: 50px;
         background-color: var(--primary);
-        bottom: -5px;
+        bottom: -10px;
         right: 0;
+        border-radius: 30px;
       }
     }
+    .desc{
+      text-align: right;
+      font-family: "lateef";
+      font-size: 24px;
+      // color: var(--primary);
+      margin-bottom: 40px;
+    }
     .elements {
-      // border: 1px solid red;
-      margin: 0 20px;
-      display: flex;
-      justify-content: space-evenly;
-      div {
-        border-radius: 20px;
-        width: 300px;
-        height: 300px;
-        margin: 10px 0;
-        border:2px solid var(--primary);
-        transform:1s;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      padding: 20px;
 
-      }
-      div::before{
-        content:'';
-        border-radius: 18px;
-        position:absolute;
-        height:0%;
-        width:100%;
-        top:0;
-        // left:50%;
-        z-index:-1;
-        background-image:linear-gradient(94deg, rgba(0, 100, 0, 0.9), rgba(34, 139, 34, 0.6));
-        transition:.5s;
-      }
-      div:hover::before{
-        height:100%;
+      .element-card {
+        font-family: "lateef";
+        border-radius: 20px;
+        padding: 40px;
+        text-align: center;
+        font-size: 24px;
+        color: var(--primary);
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+        background: rgba(255, 255, 255, 0.1); /* Glass morphism background */
+        backdrop-filter: blur(10px); /* Glass morphism effect */
+        border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border */
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Soft shadow */
+        transition: all 0.5s ease;
+
+        .icon-wrapper {
+          margin-bottom: 20px;
+          transition: transform 0.5s ease;
+        }
+
+        .text {
+          font-weight: bold;
+          transition: color 0.5s ease;
+        }
+
+        /* Gradient Overlay on Hover */
+        &::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(135deg, rgba(0, 100, 0, 0.8), rgba(34, 139, 34, 0.6));
+          opacity: 0;
+          transition: opacity 0.5s ease;
+          z-index: -1;
+        }
+
+        /* Hover Effects */
+        &:hover {
+          transform: translateY(-10px);
+          box-shadow: 0 8px 30px rgba(0, 100, 0, 0.3);
+
+          &::before {
+            opacity: 1;
+          }
+
+          .icon-wrapper {
+            transform: scale(1.1);
+          }
+
+          .text {
+            color: white;
+          }
+
+          .icon {
+            color: white !important;
+          }
+        }
+
+        /* Glowing Border Effect */
+        &::after {
+          content: "";
+          position: absolute;
+          top: -2px;
+          left: -2px;
+          right: -2px;
+          bottom: -2px;
+          border-radius: 20px;
+          border: 2px solid rgba(255, 255, 255, 0.3);
+          z-index: -1;
+          opacity: 0;
+          transition: opacity 0.5s ease;
+        }
+
+        &:hover::after {
+          opacity: 1;
+        }
       }
     }
   }
-}
 
-@media (max-width: 768px) {
-  .contents {
-    .elements {
+  @media (max-width: 768px) {
+    .contents {
+      padding: 30px 10px;
+      .topicsTitle h1 {
+        font-size: 40px;
+      }
     }
   }
 }

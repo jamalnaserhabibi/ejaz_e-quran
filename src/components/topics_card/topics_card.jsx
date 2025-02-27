@@ -1,31 +1,63 @@
 import "./topics_card.css";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-
-// Initialize AOS
+import { FaBook, FaLightbulb, FaSearch, FaMicrophoneAlt } from 'react-icons/fa'; // Updated icons
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import { useTranslation } from 'react-i18next';
 AOS.init();
-export default function hadithroz() {
-  
+
+export default function HadithRoz() {
+    const { t, i18n } = useTranslation();
+  const topics = [
+    { 
+      text: t("tafsirquran"), 
+      effect: "fade-right", 
+      icon: <FaBook size={70} className="icon" />, 
+      link: "/taqrirList?identifier=tafsirQuranBelQuran" 
+    },
+    { 
+      text:  t("halmoama"),
+      effect: "fade-right", 
+      icon: <FaLightbulb size={70} className="icon" />, 
+      link: "/taqrirList?identifier=halmoamaHaiQuran" 
+    },
+    { 
+      text:  t("mesdaq"), 
+      effect: "fade-left", 
+      icon: <FaSearch size={70} className="icon" />, 
+      link: "/taqrirList?identifier=mesdaqHadith" 
+    },
+    { 
+      text:  t("dros"), 
+      effect: "fade-left", 
+      icon: <FaMicrophoneAlt size={70} className="icon" />, 
+      link: "/taqrirList?identifier=DrosWaSokhanraniHa" 
+    }
+  ];
+
   return (
     <div className="topics_card">
-      <div  className="contents">
+      <div className="contents">
         <div data-aos="fade-up" className="topicsTitle">
           <h1>موضوعات که مارا متفاوت میسازد!</h1>
         </div>
+        <div data-aos="fade-left" className="desc">
+            <p> موارد ذیل تنها موارد است که تنها ما از  قرآن در دسترس داریم و جواب گوی تمام سوالات است که هنوز لاینحل مانده است موارد ذیل تنها موارد است که تنها ما از  قرآن در دسترس داریم و جواب گوی تمام سوالات است که هنوز لاینحل مانده است موارد ذیل تنها موارد است که تنها ما از  قرآن در دسترس داریم و جواب گوی تمام سوالات است که هنوز لاینحل مانده است </p>
+            <p>با رفتن به صفحه مربوط بیشتر بدانید!</p>
+          </div>
         <div className="elements">
-          <div data-aos="fade-up" data-aos-delay="100">
-          تفسیرالقرآن بالقرآن والحدیث
-          </div>
-          <div data-aos="fade-up" data-aos-delay="200" >
-          حل معما های قرآنکریم
-          </div>
-          <div data-aos="fade-up" data-aos-delay="300" >
-          مصداق احادیث
-          </div>
-          <div data-aos="fade-up" data-aos-delay="400" >         
-دروس و سخنرانی ها
-
-          </div>
+          {topics.map((topic, index) => (
+            <Link 
+              key={index} 
+              to={topic.link} 
+              style={{ textDecoration: "none" }} 
+            >
+              <div data-aos={topic.effect} className="element-card">
+                <div className="icon-wrapper">{topic.icon}</div>
+                <div className="text">{topic.text}</div>
+              </div>
+            </Link>
+          ))}
         </div>
       </div>
     </div>

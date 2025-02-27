@@ -6,48 +6,115 @@
   background-position: right top;
   margin-top: 40px;
   background-repeat: no-repeat;
+  text-align: center;
 }
 .topics_card .contents .topicsTitle h1 {
   color: var(--primary);
   font-family: "lateef";
   font-size: 50px;
-  position: relative;
   text-align: right;
+  position: relative;
+  margin-bottom: 40px;
 }
 .topics_card .contents .topicsTitle h1::after {
   content: "";
   position: absolute;
   height: 4px;
-  border-radius: 30px;
   width: 50px;
   background-color: var(--primary);
-  bottom: -5px;
+  bottom: -10px;
   right: 0;
+  border-radius: 30px;
+}
+.topics_card .contents .desc {
+  text-align: right;
+  font-family: "lateef";
+  font-size: 24px;
+  margin-bottom: 40px;
 }
 .topics_card .contents .elements {
-  margin: 0 20px;
-  display: flex;
-  justify-content: space-evenly;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  padding: 20px;
 }
-.topics_card .contents .elements div {
+.topics_card .contents .elements .element-card {
+  font-family: "lateef";
   border-radius: 20px;
-  width: 300px;
-  height: 300px;
-  margin: 10px 0;
-  border: 2px solid var(--primary);
-  transform: 1s;
+  padding: 40px;
+  text-align: center;
+  font-size: 24px;
+  color: var(--primary);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.1); /* Glass morphism background */
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px); /* Glass morphism effect */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  transition: all 0.5s ease;
+  /* Gradient Overlay on Hover */
+  /* Hover Effects */
+  /* Glowing Border Effect */
 }
-.topics_card .contents .elements div::before {
+.topics_card .contents .elements .element-card .icon-wrapper {
+  margin-bottom: 20px;
+  transition: transform 0.5s ease;
+}
+.topics_card .contents .elements .element-card .text {
+  font-weight: bold;
+  transition: color 0.5s ease;
+}
+.topics_card .contents .elements .element-card::before {
   content: "";
-  border-radius: 18px;
   position: absolute;
-  height: 0%;
-  width: 100%;
   top: 0;
-  z-index: -1;
-  background-image: linear-gradient(94deg, rgba(0, 100, 0, 0.9), rgba(34, 139, 34, 0.6));
-  transition: 0.5s;
-}
-.topics_card .contents .elements div:hover::before {
+  left: 0;
+  width: 100%;
   height: 100%;
+  background: linear-gradient(135deg, rgba(0, 100, 0, 0.8), rgba(34, 139, 34, 0.6));
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: -1;
+}
+.topics_card .contents .elements .element-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 30px rgba(0, 100, 0, 0.3);
+}
+.topics_card .contents .elements .element-card:hover::before {
+  opacity: 1;
+}
+.topics_card .contents .elements .element-card:hover .icon-wrapper {
+  transform: scale(1.1);
+}
+.topics_card .contents .elements .element-card:hover .text {
+  color: white;
+}
+.topics_card .contents .elements .element-card:hover .icon {
+  color: white !important;
+}
+.topics_card .contents .elements .element-card::after {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.topics_card .contents .elements .element-card:hover::after {
+  opacity: 1;
+}
+@media (max-width: 768px) {
+  .topics_card .contents {
+    padding: 30px 10px;
+  }
+  .topics_card .contents .topicsTitle h1 {
+    font-size: 40px;
+  }
 }/*# sourceMappingURL=topics_card.css.map */
