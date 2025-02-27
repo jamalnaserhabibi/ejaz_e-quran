@@ -11,25 +11,25 @@ export default function HadithRoz() {
   const topics = [
     { 
       text: t("tafsirquran"), 
-      effect: "fade-right", 
+      effect: "fade-up", 
       icon: <FaBook size={70} className="icon" />, 
       link: "/taqrirList?identifier=tafsirQuranBelQuran" 
     },
     { 
       text:  t("halmoama"),
-      effect: "fade-right", 
+      effect: "fade-down", 
       icon: <FaLightbulb size={70} className="icon" />, 
       link: "/taqrirList?identifier=halmoamaHaiQuran" 
     },
     { 
       text:  t("mesdaq"), 
-      effect: "fade-left", 
+      effect: "fade-up", 
       icon: <FaSearch size={70} className="icon" />, 
       link: "/taqrirList?identifier=mesdaqHadith" 
     },
     { 
       text:  t("dros"), 
-      effect: "fade-left", 
+      effect: "fade-down", 
       icon: <FaMicrophoneAlt size={70} className="icon" />, 
       link: "/taqrirList?identifier=DrosWaSokhanraniHa" 
     }

@@ -38,9 +38,10 @@
 
 .nav_main {
   border-radius: 40px;
+  width: 100%;
   z-index: 100;
   position: fixed;
-  left: 50%;
+  left: 45%;
   transform: translateX(-50%);
   background: linear-gradient(to top, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.05));
 }
@@ -146,6 +147,58 @@
     margin-left: 0px;
   }
 }
+/* Ensure the dropdown title color doesn't change on hover */
+.custom-dropdown .dropdown-toggle {
+  color: white !important; /* Set the default color */
+}
+
+.custom-dropdown .dropdown-toggle::after {
+  display: none !important;
+}
+
+.custom-dropdown .dropdown-toggle:hover {
+  color: white !important; /* Ensure the color stays the same on hover */
+}
+
+/* Ensure the dropdown menu stays open on hover */
+.custom-dropdown:hover .dropdown-menu {
+  display: block !important;
+}
+
+/* Underline the active item */
+.nav-link.active,
+.dropdown-item.active {
+  border-bottom: 2px solid var(--gold_med) !important;
+  color: var(--gold_med) !important;
+}
+
+/* Hover effect for dropdown items */
+.dropdown-item:hover {
+  background-color: transparent !important;
+  color: var(--gold_med) !important;
+}
+
+/* Ensure the dropdown menu aligns properly */
+.dropdown-menu {
+  background-color: var(--primary) !important;
+  border: none !important;
+  border-radius: 10px !important;
+  display: none; /* Hide by default */
+  margin-top: 0; /* Remove gap between dropdown toggle and menu */
+}
+
+/* Show dropdown menu on hover */
+.navDropdown:hover .dropdown-menu {
+  display: block !important;
+}
+
+/* Dropdown item styling */
+.dropdown-item {
+  color: white !important;
+  text-align: right !important;
+  padding: 10px 20px !important;
+}
+
 @media (min-width: 992px) {
   .lang {
     height: 40px;
@@ -159,6 +212,9 @@
     color: rgba(0, 128, 0, 0.625);
     display: flex !important;
     align-items: center;
+  }
+  .navbar .navbar-collapse .navButton .line {
+    padding: 0 15px;
   }
   .navbar .space {
     display: none;

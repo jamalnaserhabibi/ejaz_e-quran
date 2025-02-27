@@ -35,13 +35,14 @@
 }
 .nav_main {
   border-radius: 40px;
-
+  // border: 1px solid red;
+  width: 100%;
   z-index: 100;
   position: fixed;
   // width: 100%;
   // height: 100vh;
   // top: 10px;
-  left: 50%;
+  left:45%;
   // border-radius: 50px;
   transform: translateX(-50%);
   // background-color: rgba(0, 128, 0, 0.212);
@@ -71,7 +72,6 @@
       // margin-left: 60px;
     }
     .nav-link {
-
       padding: 5px;
       white-space: nowrap;
       position: relative;
@@ -170,6 +170,55 @@
     }
   }
 }
+/* Ensure the dropdown title color doesn't change on hover */
+.custom-dropdown .dropdown-toggle {
+  color: white !important; /* Set the default color */
+}
+.custom-dropdown .dropdown-toggle::after {
+  display: none !important;
+}
+.custom-dropdown .dropdown-toggle:hover {
+  color: white !important; /* Ensure the color stays the same on hover */
+}
+
+/* Ensure the dropdown menu stays open on hover */
+.custom-dropdown:hover .dropdown-menu {
+  display: block !important;
+}
+
+/* Underline the active item */
+.nav-link.active,
+.dropdown-item.active {
+  border-bottom: 2px solid var(--gold_med) !important;
+  color: var(--gold_med) !important;
+}
+
+/* Hover effect for dropdown items */
+.dropdown-item:hover {
+  background-color: transparent !important;
+  color: var(--gold_med) !important;
+}
+
+/* Ensure the dropdown menu aligns properly */
+.dropdown-menu {
+  background-color: var(--primary) !important;
+  border: none !important;
+  border-radius: 10px !important;
+  display: none; /* Hide by default */
+  margin-top: 0; /* Remove gap between dropdown toggle and menu */
+}
+
+/* Show dropdown menu on hover */
+.navDropdown:hover .dropdown-menu {
+  display: block !important;
+}
+
+/* Dropdown item styling */
+.dropdown-item {
+  color: white !important;
+  text-align: right !important;
+  padding: 10px 20px !important;
+}
 @media (min-width: 992px) {
   .lang {
     height: 40px;
@@ -201,11 +250,9 @@
        color: rgba(0, 128, 0, 0.625);
         display: flex !important;
         align-items: center;
-        // .line{
-        //   width: 10px;
-        //   height: 10px;
-        //   background-color: red;
-        // }
+        .line{
+       padding: 0 15px;
+        }
       }
     }
     .space {

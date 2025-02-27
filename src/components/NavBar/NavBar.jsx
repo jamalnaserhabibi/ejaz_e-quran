@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
+import NavDropdown from "react-bootstrap/NavDropdown";
 import { Link } from "react-router-dom";
 import { GrLanguage } from "react-icons/gr";
 import { useLocation } from "react-router-dom";
@@ -9,11 +10,14 @@ import { Divide as Hamburger } from "hamburger-react";
 import "./NavBar.css";
 import { useTranslation } from "react-i18next";
 import logo from '../../assets/Golden.png';
+
 export default function NavBar() {
   const location = useLocation();
   const { t, i18n } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const [hidenav, sethidenav] = useState("navbar");
+  const [dropdownOpen1, setDropdownOpen1] = useState(false); // State for first dropdown
+  const [dropdownOpen2, setDropdownOpen2] = useState(false); // State for second dropdown
 
   const scrollTop = () => {
     if (window.scrollY >= 20) {
@@ -35,6 +39,11 @@ export default function NavBar() {
 
   const navmainClass = location.pathname !== "/" ? "nav_main nav_main_color" : "nav_main";
 
+  // Function to check if a path is active
+  const isActive = (path) => {
+    return location.pathname === path || location.search.includes(path.split("?")[1]);
+  };
+
   return (
     <div className={navmainClass}>
       <Navbar expanded={isOpen} expand="lg" className={hidenav}>
@@ -45,56 +54,158 @@ export default function NavBar() {
           <Hamburger toggled={isOpen} toggle={setIsOpen} />
           <Navbar.Collapse in={isOpen} id="basic-navbar-nav">
             <Nav className="navButton ms-auto">
-              
               <span style={{ height: "20px" }} className="space"></span>
               <Nav.Link
                 as={Link}
                 to="/"
                 onClick={handleNavLinkClick}
+                className={isActive("/") ? "active" : ""}
               >
                 {t("home")}
               </Nav.Link>
               <span className="line">|</span>
-              <Nav.Link
-                as={Link}
-                to="/taqrirList?identifier=tafsirQuranBelQuran"
-                onClick={handleNavLinkClick}
+
+              {/* First NavDropdown for "topics" */}
+              <NavDropdown
+                title={t("topics")}
+                id="basic-nav-dropdown-1" // Unique ID for the first dropdown
+                show={dropdownOpen1} // Control visibility for the first dropdown
+                onMouseEnter={() => setDropdownOpen1(true)} // Open on hover
+                onMouseLeave={() => setDropdownOpen1(false)} // Close on hover out
+                className="custom-dropdown"
               >
-                {t("tafsirquran")}
-              </Nav.Link>
+                <NavDropdown.Item
+                  as={Link}
+                  to="/taqrirList?identifier=tafsirQuranBelQuran"
+                  className={isActive("/taqrirList?identifier=tafsirQuranBelQuran") ? "active" : ""}
+                  onClick={handleNavLinkClick}
+                >
+                  {t("tafsirquran")}
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  as={Link}
+                  to="/taqrirList?identifier=halmoamaHaiQuran"
+                  className={isActive("/taqrirList?identifier=halmoamaHaiQuran") ? "active" : ""}
+                  onClick={handleNavLinkClick}
+                >
+                  {t("halmoama")}
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  as={Link}
+                  to="/taqrirList?identifier=mesdaqHadith"
+                  className={isActive("/taqrirList?identifier=mesdaqHadith") ? "active" : ""}
+                  onClick={handleNavLinkClick}
+                >
+                  {t("mesdaq")}
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  as={Link}
+                  to="/taqrirList?identifier=DrosWaSokhanraniHa"
+                  className={isActive("/taqrirList?identifier=DrosWaSokhanraniHa") ? "active" : ""}
+                  onClick={handleNavLinkClick}
+                >
+                  {t("dros")}
+                </NavDropdown.Item>
+              </NavDropdown>
+
+              <span className="line">|</span>
+
+              {/* Second NavDropdown for "topics" */}
+              <NavDropdown
+                title={t("about")}
+                id="basic-nav-dropdown-2" // Unique ID for the second dropdown
+                show={dropdownOpen2} // Control visibility for the second dropdown
+                onMouseEnter={() => setDropdownOpen2(true)} // Open on hover
+                onMouseLeave={() => setDropdownOpen2(false)} // Close on hover out
+                className="custom-dropdown"
+              >
+                <NavDropdown.Item
+                  as={Link}
+                  to="/taqrirList?identifier=tafsirQuranBelQuran"
+                  className={isActive("/taqrirList?identifier=tafsirQuranBelQuran") ? "active" : ""}
+                  onClick={handleNavLinkClick}
+                >
+                  {t("whoWeAre")}
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  as={Link}
+                  to="/taqrirList?identifier=halmoamaHaiQuran"
+                  className={isActive("/taqrirList?identifier=halmoamaHaiQuran") ? "active" : ""}
+                  onClick={handleNavLinkClick}
+                >
+                  {t("establish")}
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  as={Link}
+                  to="/taqrirList?identifier=mesdaqHadith"
+                  className={isActive("/taqrirList?identifier=mesdaqHadith") ? "active" : ""}
+                  onClick={handleNavLinkClick}
+                >
+                  {t("Mission&Vission")}
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  as={Link}
+                  to="/taqrirList?identifier=DrosWaSokhanraniHa"
+                  className={isActive("/taqrirList?identifier=DrosWaSokhanraniHa") ? "active" : ""}
+                  onClick={handleNavLinkClick}
+                >
+                  {t("values")}
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  as={Link}
+                  to="/taqrirList?identifier=DrosWaSokhanraniHa"
+                  className={isActive("/taqrirList?identifier=DrosWaSokhanraniHa") ? "active" : ""}
+                  onClick={handleNavLinkClick}
+                >
+                  {t("ozoEmtiyaz")}
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  as={Link}
+                  to="/taqrirList?identifier=DrosWaSokhanraniHa"
+                  className={isActive("/taqrirList?identifier=DrosWaSokhanraniHa") ? "active" : ""}
+                  onClick={handleNavLinkClick}
+                >
+                  {t("invite")}
+                </NavDropdown.Item>
+              </NavDropdown>
+
+              
               <span className="line">|</span>
               <Nav.Link
                 as={Link}
-                to="/taqrirList?identifier=halmoamaHaiQuran"
+                to="/taqrirList?identifier=about"
                 onClick={handleNavLinkClick}
+                className={isActive("/taqrirList?identifier=about") ? "active" : ""}
               >
-                {t("halmoama")}
-              </Nav.Link>
-              <span className="line">|</span>
-              <Nav.Link
-                as={Link}
-                to="/taqrirList?identifier=mesdaqHadith"
-                onClick={handleNavLinkClick}
-              >
-                {t("mesdaq")}
-              </Nav.Link>
-              <span className="line">|</span>
-              <Nav.Link
-                as={Link}
-                to="/taqrirList?identifier=DrosWaSokhanraniHa"
-                onClick={handleNavLinkClick}
-              >
-                {t("dros")}
+               سمپل 
               </Nav.Link>
               <span className="line">|</span>
               <Nav.Link
                 as={Link}
                 to="/taqrirList?identifier=about"
                 onClick={handleNavLinkClick}
+                className={isActive("/taqrirList?identifier=about") ? "active" : ""}
               >
-                {t("about")}
+               مثال
               </Nav.Link>
-        
+              <span className="line">|</span>
+              <Nav.Link
+                as={Link}
+                to="/taqrirList?identifier=about"
+                onClick={handleNavLinkClick}
+                className={isActive("/taqrirList?identifier=about") ? "active" : ""}
+              >
+                چیزی دیگر
+              </Nav.Link>
+              <span className="line">|</span>
+              <Nav.Link
+                as={Link}
+                to="/taqrirList?identifier=about"
+                onClick={handleNavLinkClick}
+                className={isActive("/taqrirList?identifier=about") ? "active" : ""}
+              >
+                نمونه
+              </Nav.Link>
 
               <div className="lang">
                 <GrLanguage style={{ color: "white", fontSize: "20px" }} />
