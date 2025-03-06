@@ -210,13 +210,12 @@ export default function NavBar() {
               <div className="lang">
                 <GrLanguage style={{ color: "white", fontSize: "20px" }} />
                 <select onChange={(e) => changeLang(e.target.value)} defaultValue="dari">
-                  <option value="da">دری</option>
-                  <option value="ps">پشتو</option>
-                  <option value="ar">العربية</option>
-                  <option value="ur">اردو</option>
+                  <option value="da"> دری </option>
+                  <option value="ps"> پشتو </option>
+                  <option value="ar"> العربية </option>
+                  <option value="ur"> اردو </option>
                 </select>
               </div>
-              
               <span style={{ height: "40px" }} className="space"></span>
             </Nav>
           </Navbar.Collapse>
