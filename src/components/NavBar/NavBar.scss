@@ -128,10 +128,19 @@
     // height: 100vh;
   }
 }
+.nav_main_color .dropdown-item {
+  color: var(--primary) !important; /* Change this to the desired text color */
+}
+
+/* Ensure the dropdown text color changes on hover */
+.nav_main_color .dropdown-item:hover {
+  color: rgba(0, 128, 0, 0.545)  !important; /* Change this to the desired hover text color */
+}
 .nav_main_color{
   background-color: var(--primary);
       box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 20px;
   border-radius:  0 0 30px 30px;
+  
 }
 
 @media (max-width: 768px) {
@@ -139,6 +148,14 @@
   .navbar-opened {
     backdrop-filter: blur(20px);
     // background-color:rgba(0, 128, 0, 0.635); /* Red background when navbar is opened on mobile */
+  }
+  .nav_main_color .dropdown-item {
+    color:  white !important; /* Change this to the desired text color */
+  }
+  
+  /* Ensure the dropdown text color changes on hover */
+  .nav_main_color .dropdown-item:hover {
+    color: rgba(255, 255, 255, 0.545)  !important; /* Change this to the desired hover text color */
   }
   
   .nav_main {

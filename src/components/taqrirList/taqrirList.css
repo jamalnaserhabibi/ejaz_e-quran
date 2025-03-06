@@ -44,6 +44,9 @@
   background-color: transparent;
   outline: none;
 }
+.taqrirList .search-container input:hover {
+  width: 55%;
+}
 .taqrirList .search-container .icon {
   position: relative;
   left: 35px;
