@@ -46,7 +46,7 @@ export default function NavBar() {
 
   return (
     <div className={navmainClass}>
-      <Navbar expanded={isOpen} expand="lg" className={hidenav}>
+      <Navbar expanded={isOpen} expand="lg" className={`${hidenav} ${isOpen ? "navbar-opened" : ""}`} >
         <Container>
           <Navbar.Brand className="navLogo" href="#home">
             <img src={logo} alt="" />

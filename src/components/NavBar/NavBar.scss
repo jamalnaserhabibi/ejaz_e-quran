@@ -31,7 +31,7 @@
 }
 .nav_main_heightt {
   height: 100vh;
-  
+
 }
 .nav_main {
   border-radius:  0 0 40px 40px;
@@ -135,6 +135,12 @@
 }
 
 @media (max-width: 768px) {
+  
+  .navbar-opened {
+    backdrop-filter: blur(20px);
+    // background-color:rgba(0, 128, 0, 0.635); /* Red background when navbar is opened on mobile */
+  }
+  
   .nav_main {
     border-radius:  0 0 20px 20px;
 
@@ -164,7 +170,12 @@
       flex-direction: row-reverse;
     }
     .navbar {
-
+      
+      .nav-link{
+        // margin-right: 40px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.267);
+        justify-content: right;
+      }
       font-size: 20px;
       // display: block;
       // backdrop-filter: blur(20px);
@@ -208,7 +219,7 @@
 
 /* Ensure the dropdown menu aligns properly */
 .dropdown-menu {
-  background-color: var(--primary) !important;
+  background-color: rgba(255, 255, 255, 0.208) !important;
   border: none !important;
   border-radius: 10px !important;
   display: none; /* Hide by default */
@@ -227,6 +238,15 @@
   padding: 10px 20px !important;
 }
 @media (min-width: 992px) {
+  .dropdown-menu {
+    backdrop-filter: blur(50px);
+
+    // background-color: rgba(0, 128, 0, 0.682) !important;
+    border: none !important;
+    border-radius: 10px !important;
+    display: none; /* Hide by default */
+    margin-top: 0; /* Remove gap between dropdown toggle and menu */
+  }
   .lang {
     height: 40px;
     border-radius: 20px;

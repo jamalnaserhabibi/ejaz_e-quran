@@ -3,7 +3,7 @@ import { FaSearch } from 'react-icons/fa';
 const TextPagination = ({ text, wordsPerPage }) => {
     const [currentPage, setCurrentPage] = useState(() => {
         const savedPage = localStorage.getItem('currentPage');
-        return savedPage !== null && !isNaN(savedPage) ? Number(savedPage) : 1;
+        return savedPage !== null && !isNaN(savedPage) ? Number(savedPage) : 0;
     });
 
     const [searchQuery, setSearchQuery] = useState('');
