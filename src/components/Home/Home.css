@@ -34,8 +34,8 @@
   font-family: "Lalezar", serif;
   font-weight: 500;
   font-size: 70px;
-  background: linear-gradient(0deg, #ffffff, #00ff1e); /* Green gradient */
-  -webkit-background-clip: text; /* Clip background to text */
+  background: linear-gradient(0deg, #ffffff, #00ff1e);
+  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent; /* Make text transparent */
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
   text-align: center; /* Center the text */
