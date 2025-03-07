@@ -8,6 +8,7 @@ import { useLocation } from "react-router-dom";
 import Navbar from "react-bootstrap/Navbar";
 import { Divide as Hamburger } from "hamburger-react";
 import "./NavBar.css";
+import { HashLink } from 'react-router-hash-link';
 import { useTranslation } from "react-i18next";
 import logo from '../../assets/Golden.png';
 
@@ -171,14 +172,27 @@ export default function NavBar() {
 
               
               <span className="line">|</span>
-              <Nav.Link
-                as={Link}
-                to="/taqrirList?identifier=about"
-                onClick={handleNavLinkClick}
-                className={isActive("/taqrirList?identifier=about") ? "active" : ""}
-              >
-               سمپل 
-              </Nav.Link>
+
+              <HashLink
+  to="/#hadithroz"
+  smooth
+  onClick={handleNavLinkClick}
+  className={`nav-link ${isActive("/taqrirList?identifier=about") ? "active" : ""}`}
+>
+  
+  مصداق حدیث شریف
+</HashLink>
+<span className="line">|</span>
+              <HashLink
+  to="/#mainBooks"
+  smooth
+  onClick={handleNavLinkClick}
+  className={`nav-link ${isActive("/taqrirList?identifier=about") ? "active" : ""}`}
+>
+کتاب ها و رساله ها
+</HashLink>
+
+              
               <span className="line">|</span>
               <Nav.Link
                 as={Link}
@@ -186,26 +200,10 @@ export default function NavBar() {
                 onClick={handleNavLinkClick}
                 className={isActive("/taqrirList?identifier=about") ? "active" : ""}
               >
-               مثال
+                پرسش و پاسخ
               </Nav.Link>
               <span className="line">|</span>
-              <Nav.Link
-                as={Link}
-                to="/taqrirList?identifier=about"
-                onClick={handleNavLinkClick}
-                className={isActive("/taqrirList?identifier=about") ? "active" : ""}
-              >
-                چیزی دیگر
-              </Nav.Link>
-              <span className="line">|</span>
-              <Nav.Link
-                as={Link}
-                to="/taqrirList?identifier=about"
-                onClick={handleNavLinkClick}
-                className={isActive("/taqrirList?identifier=about") ? "active" : ""}
-              >
-                نمونه
-              </Nav.Link>
+             
 
               <div className="lang">
                 <GrLanguage style={{ color: "white", fontSize: "20px" }} />

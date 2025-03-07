@@ -8,7 +8,7 @@ import 'aos/dist/aos.css';
 AOS.init();
 export default function hadithroz() {
   return (
-    <div className="hadithroz">
+    <div className="hadithroz" id="hadithroz">
       <div className="contents">
         <div  className="elements">
           <div data-aos="fade-up" className="pic">
