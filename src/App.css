@@ -10,7 +10,7 @@
 #root{
   /* background-color: var(--gold_white); */
 }
-.taqrirList, .taqrirView, .hadithroz, .mainBooks ,.mainFeedbac, .bookdownload,.topics_card{
+.taqrirList, .taqrirView, .hadithroz, .mainBooks ,.mainFeedbac, .bookdownload,.topics_card, .whoweare{
   background:linear-gradient(
     rgba(0, 128, 0, 0.0),
     rgba(0, 128, 0, 0.100),

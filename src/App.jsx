@@ -10,6 +10,12 @@ import TaqrirList from "./components/taqrirList/taqrirList";
 import TaqrirView from "./components/taqrirView/taqrirView";
 import Bookdownload from "./components/bookdownload/bookdownload";
 import Footer from "./components/footer/footer";
+import Who_we_are from "./components/about_us/who_we_are";
+import Mission_Vission from "./components/about_us/mission_vission";
+import Pishina_tasis from "./components/about_us/pishina_tasis";
+import Values from "./components/about_us/values";
+import Wojoh_emtiyaz from "./components/about_us/wojoi_emtyaz";
+import Invite_to_action from "./components/about_us/invite_to_action";
 import "./App.css";
 import { BrowserRouter } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
@@ -25,6 +31,12 @@ export default function App() {
           {/* <Route path="/quran" element={<Quran />} /> */}
           <Route path="/taqrirList" element={<TaqrirList />} />
           <Route path="/taqrirView" element={<TaqrirView />} />
+          <Route path="/who_we_are" element={<Who_we_are />} />
+          <Route path="/pishina_Tasis" element={<Pishina_tasis />} />
+          <Route path="/mission_Vission" element={<Mission_Vission />} />
+          <Route path="/wojoh_emtiyaz" element={<Wojoh_emtiyaz />} />
+          <Route path="/values" element={<Values />} />
+          <Route path="/invite_to_action" element={<Invite_to_action />} />
           <Route path="/bookdownload" element={<Bookdownload />} />
         </Routes>
         <Footer/>

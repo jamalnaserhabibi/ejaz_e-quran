@@ -204,7 +204,7 @@
   border: none !important;
   border-radius: 10px !important;
   display: none; /* Hide by default */
-  margin-top: 0; /* Remove gap between dropdown toggle and menu */
+  top: 50px !important;
 }
 
 /* Show dropdown menu on hover */
@@ -226,7 +226,6 @@
     border: none !important;
     border-radius: 10px !important;
     display: none; /* Hide by default */
-    margin-top: 0; /* Remove gap between dropdown toggle and menu */
   }
   .lang {
     height: 40px;

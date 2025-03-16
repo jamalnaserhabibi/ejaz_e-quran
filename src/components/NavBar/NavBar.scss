@@ -240,7 +240,8 @@
   border: none !important;
   border-radius: 10px !important;
   display: none; /* Hide by default */
-  margin-top: 0; /* Remove gap between dropdown toggle and menu */
+  // margin-top: 0 !important;
+  top: 50px !important;
 }
 
 /* Show dropdown menu on hover */
@@ -257,12 +258,10 @@
 @media (min-width: 992px) {
   .dropdown-menu {
     backdrop-filter: blur(50px);
-
     // background-color: rgba(0, 128, 0, 0.682) !important;
     border: none !important;
     border-radius: 10px !important;
     display: none; /* Hide by default */
-    margin-top: 0; /* Remove gap between dropdown toggle and menu */
   }
   .lang {
     height: 40px;

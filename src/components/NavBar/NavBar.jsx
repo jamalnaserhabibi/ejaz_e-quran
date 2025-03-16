@@ -122,7 +122,7 @@ export default function NavBar() {
               >
                 <NavDropdown.Item
                   as={Link}
-                  to="/taqrirList?identifier=tafsirQuranBelQuran"
+                  to="/who_we_are"
                   className={isActive("/taqrirList?identifier=tafsirQuranBelQuran") ? "active" : ""}
                   onClick={handleNavLinkClick}
                 >
@@ -130,7 +130,7 @@ export default function NavBar() {
                 </NavDropdown.Item>
                 <NavDropdown.Item
                   as={Link}
-                  to="/taqrirList?identifier=halmoamaHaiQuran"
+                  to="/pishina_Tasis"
                   className={isActive("/taqrirList?identifier=halmoamaHaiQuran") ? "active" : ""}
                   onClick={handleNavLinkClick}
                 >
@@ -138,7 +138,7 @@ export default function NavBar() {
                 </NavDropdown.Item>
                 <NavDropdown.Item
                   as={Link}
-                  to="/taqrirList?identifier=mesdaqHadith"
+                  to="/mission_Vission"
                   className={isActive("/taqrirList?identifier=mesdaqHadith") ? "active" : ""}
                   onClick={handleNavLinkClick}
                 >
@@ -146,7 +146,7 @@ export default function NavBar() {
                 </NavDropdown.Item>
                 <NavDropdown.Item
                   as={Link}
-                  to="/taqrirList?identifier=DrosWaSokhanraniHa"
+                  to="/values"
                   className={isActive("/taqrirList?identifier=DrosWaSokhanraniHa") ? "active" : ""}
                   onClick={handleNavLinkClick}
                 >
@@ -154,7 +154,7 @@ export default function NavBar() {
                 </NavDropdown.Item>
                 <NavDropdown.Item
                   as={Link}
-                  to="/taqrirList?identifier=DrosWaSokhanraniHa"
+                  to="/Wojoh_emtiyaz"
                   className={isActive("/taqrirList?identifier=DrosWaSokhanraniHa") ? "active" : ""}
                   onClick={handleNavLinkClick}
                 >
@@ -162,7 +162,7 @@ export default function NavBar() {
                 </NavDropdown.Item>
                 <NavDropdown.Item
                   as={Link}
-                  to="/taqrirList?identifier=DrosWaSokhanraniHa"
+                  to="/invite_to_action"
                   className={isActive("/taqrirList?identifier=DrosWaSokhanraniHa") ? "active" : ""}
                   onClick={handleNavLinkClick}
                 >
@@ -196,7 +196,7 @@ export default function NavBar() {
               <span className="line">|</span>
               <Nav.Link
                 as={Link}
-                to="/taqrirList?identifier=about"
+                to="/"
                 onClick={handleNavLinkClick}
                 className={isActive("/taqrirList?identifier=about") ? "active" : ""}
               >
