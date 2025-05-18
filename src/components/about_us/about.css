@@ -40,13 +40,6 @@
   transition: 0.3s ease-in-out;
   padding: 0 20px;
 }
-.taqrirView .main .content ul {
-  border: 1px solid red;
-  width: 97%;
-}
-.taqrirView .main .content ul li {
-  text-align: right;
-}
 .taqrirView .main .content p {
   text-align: justify;
   font-size: 17px;
