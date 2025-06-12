@@ -38,7 +38,6 @@ export default function TaqrirList() {
         setLoading(false);
       });
   }, []);
-
   const handleSearch = (e) => {
     const query = e.target.value;
     setSearchQuery(query);
@@ -88,7 +87,7 @@ const toggleDropdown = async (id) => {
           <div className="loading-animation">
             <FaSpinner className="spinner-icon" />
           </div>
-          <p className="loading-subtext">لطفاً کمی صبر کنید</p>
+          <p className="loading-subtext">لطفاً کمی صبر کنید!</p>
         </div>
       ) : error ? (
         <div className="error-message">
