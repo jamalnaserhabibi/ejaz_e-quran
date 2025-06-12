@@ -7,7 +7,6 @@ import "aos/dist/aos.css";
 import { FaSearch, FaSpinner } from "react-icons/fa";
 import axios from "axios";
 
-// Initialize AOS
 AOS.init();
 
 export default function TaqrirList() {
@@ -20,11 +19,12 @@ export default function TaqrirList() {
   const [filteredContent, setFilteredContent] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [openDropdowns, setOpenDropdowns] = useState({});
+  const [childrenData, setChildrenData] = useState({});
 
-  // Fetch content from API
   useEffect(() => {
     axios
-      .get("https://ejazquran.space/api/v1/tafsirs")
+      .get("https://ejazquran.space/api/v1/categories")
       .then((response) => {
         if (response.data.status === "success") {
           setContentData(response.data.data);
@@ -33,7 +33,7 @@ export default function TaqrirList() {
         }
         setLoading(false);
       })
-      .catch((err) => {
+      .catch(() => {
         setError("Error loading content. Please try again later.");
         setLoading(false);
       });
@@ -42,7 +42,6 @@ export default function TaqrirList() {
   const handleSearch = (e) => {
     const query = e.target.value;
     setSearchQuery(query);
-
     const filtered = contentData.filter((item) =>
       item.title.toLowerCase().includes(query.toLowerCase())
     );
@@ -50,6 +49,25 @@ export default function TaqrirList() {
   };
 
   const displayContent = searchQuery ? filteredContent : contentData;
+
+const toggleDropdown = async (id) => {
+  setOpenDropdowns((prev) => ({ ...prev, [id]: !prev[id] }));
+
+  if (!childrenData[id]) {
+    try {
+      const res = await axios.get(`https://ejazquran.space/api/v1/category/${id}`);
+       
+      if (res.data.status === "success") {
+        setChildrenData((prev) => ({
+          ...prev,
+          [id]: res.data.data.tafsirs || []
+        }));
+      }
+    } catch (err) {
+      console.error("Failed to fetch children for category", id);
+    }
+  }
+};
 
   return (
     <div className="taqrirList">
@@ -70,42 +88,53 @@ export default function TaqrirList() {
           <div className="loading-animation">
             <FaSpinner className="spinner-icon" />
           </div>
-          {/* <p className="loading-text">در حال بارگذاری محتوا...</p> */}
           <p className="loading-subtext">لطفاً کمی صبر کنید</p>
         </div>
       ) : error ? (
         <div className="error-message">
           <h3>خطا در بارگذاری</h3>
           <p>{error}</p>
-          <button 
-            className="retry-button"
-            onClick={() => window.location.reload()}
-          >
+          <button className="retry-button" onClick={() => window.location.reload()}>
             تلاش مجدد
           </button>
         </div>
       ) : identifier === "tafsirQuranBelQuran" ? (
         displayContent.length > 0 ? (
-          displayContent.map((item) =>
-            item.tafsirs?.map((tafsir) => (
-              <Link
-              to={`/taqrirView?index=${item.id}&itemId=${tafsir.id}&itemtitle=${tafsir.name}`}                key={tafsir.id}
-                className="content-list"
+          displayContent.map((item) => (
+            <div key={item.id} className="content-list">
+              <div
+                className="content"
+                data-aos="fade-up"
+                onClick={() => toggleDropdown(item.id)}
               >
-                <div className="content" data-aos="fade-up">
-                  <img src={flowercontent} alt="" />
-                  <div className="text">
-                    <h5>{tafsir.name}</h5>
-                  </div>
-                  <img
-                    style={{ transform: "rotate(180deg)" }}
-                    src={flowercontent}
-                    alt=""
-                  />
+                <img src={flowercontent} alt="" />
+                <div className="text">
+                  <h5>{item.title}</h5>
                 </div>
-              </Link>
-            ))
-          )
+                <img
+                  style={{ transform: "rotate(180deg)" }}
+                  src={flowercontent}
+                  alt=""
+                />
+              </div>
+
+              {/* Dropdown children */}
+              {openDropdowns[item.id] && (
+  <div className="child-dropdown">
+    {childrenData[item.id]?.map((child,index) => (
+      <Link
+        key={child.id}
+        to={`/taqrirView?index=${item.id}&itemId=${child.id}&itemtitle=${child.name}`}
+        className="contentchild childdd"
+        data-aos="fade-up"
+      >
+        <span>{index + 1}. {child.name}</span>
+      </Link>
+    ))}
+  </div>
+)}
+            </div>
+          ))
         ) : (
           <div className="no-results">
             <p>نتیجه‌ای یافت نشد</p>

@@ -23,47 +23,45 @@ export default function TaqrirView() {
 
   // Fetch content based on the IDs
   useEffect(() => {
-    const fetchContent = async () => {
-      try {
-        setLoading(true);
-        const response = await axios.get(`https://ejazquran.space/api/v1/tafsirs`);
-        
-        if (response.data.status === "success") {
-          // Find the specific tafsir by ID
-          const tafsirCategory = response.data.data.find(t => t.id === parseInt(tafsirId));
-          
-          if (tafsirCategory) {
-            // Find the specific tafsir item by ID or by name
-            const tafsirItem = itemId 
-              ? tafsirCategory.tafsirs.find(t => t.id === parseInt(itemId))
-              : tafsirCategory.tafsirs.find(t => t.name === itemtitle);
-            
-            if (tafsirItem) {
-              setContent(tafsirItem.content || "");
-            } else {
-              setError("محتوا یافت نشد");
-            }
-          } else {
-            setError("دسته بندی تفسیر یافت نشد");
-          }
-        } else {
-          setError("خطا در بارگذاری محتوا");
-        }
-      } catch (err) {
-        setError("خطا در اتصال به سرور");
-        console.error("Error fetching tafsir:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
+  const fetchContent = async () => {
+    try {
+      setLoading(true);
 
-    if (tafsirId) {
-      fetchContent();
-    } else {
-      setError("آی دی تفسیر نامعتبر است");
+      if (!itemId) {
+        setError("آی دی مورد یافت نشد");
+        return;
+      }
+
+      const response = await axios.post(
+        `https://ejazquran.space/api/v1/tafsir/${itemId}`,
+        { include_content: true }
+      );
+
+      if (response.data.status === "success") {
+        const tafsirItem = response.data.data;
+        if (tafsirItem && tafsirItem.content) {
+          setContent(tafsirItem.content);
+        } else {
+          setError("محتوا یافت نشد");
+        }
+      } else {
+        setError("خطا در بارگذاری محتوا");
+      }
+    } catch (err) {
+      setError("خطا در اتصال به سرور");
+      console.error("Error fetching tafsir:", err);
+    } finally {
       setLoading(false);
     }
-  }, [tafsirId, itemId, itemtitle]);
+  };
+
+  if (itemId) {
+    fetchContent();
+  } else {
+    setError("آی دی تفسیر نامعتبر است");
+    setLoading(false);
+  }
+}, [itemId]);
 
   // Split content into pages
   const textChunks = content ? content.split(/\s+/).reduce((acc, word, index) => {

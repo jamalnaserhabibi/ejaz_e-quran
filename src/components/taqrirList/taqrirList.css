@@ -57,6 +57,24 @@
   width: 80%;
   text-decoration: none;
 }
+.taqrirList .content-list .child-dropdown {
+  padding: 0 30px;
+  margin-top: 10px;
+}
+.taqrirList .content-list .child-dropdown .childdd {
+  margin: 5px 0;
+  padding: 10px 20px;
+  border-radius: 20px;
+  color: var(--primary);
+  background-color: #fdfdfd;
+  transition: all 0.3s;
+  text-decoration: none;
+  display: block;
+}
+.taqrirList .content-list .child-dropdown .childdd:hover {
+  background-color: var(--primary);
+  color: white;
+}
 .taqrirList .content-list .content {
   margin: 20px;
   margin-top: 10px;
@@ -75,6 +93,22 @@
   cursor: pointer;
 }
 .taqrirList .content-list .content img {
+  width: 50px;
+}
+.taqrirList .content-list .contentchild {
+  margin: 20px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+  border-radius: 30px;
+  transition: 0.3s ease-in-out;
+  padding: 0 20px;
+}
+.taqrirList .content-list .contentchild img {
   width: 50px;
 }
 .taqrirList .content-list .text {
@@ -128,7 +162,8 @@
 
 .spinner-icon {
   font-size: 3rem;
-  color: #4a6f28; /* Green color that matches Islamic themes */
+  color: #4a6f28;
+  /* Green color that matches Islamic themes */
   animation: spin 1s linear infinite;
 }
 
