@@ -109,10 +109,46 @@ export default function NavBar() {
                 </NavDropdown.Item>
               </NavDropdown>
 
-              <span className="line">|</span>
+   
 
               {/* Second NavDropdown for "topics" */}
-              <NavDropdown
+          
+
+
+              <span className="line">|</span>
+
+              <HashLink
+                to="/#hadithroz"
+                smooth
+                onClick={handleNavLinkClick}
+                className={`nav-link ${isActive("/taqrirList?identifier=about") ? "active" : ""}`}
+              >
+
+                مصداق حدیث شریف
+              </HashLink>
+              <span className="line">|</span>
+              <HashLink
+                to="/#mainBooks"
+                smooth
+                onClick={handleNavLinkClick}
+                className={`nav-link ${isActive("/taqrirList?identifier=about") ? "active" : ""}`}
+              >
+                کتاب ها و رساله ها
+              </HashLink>
+
+
+              <span className="line">|</span>
+              <Nav.Link
+                as={Link}
+                to="/"
+                onClick={handleNavLinkClick}
+                className={isActive("/taqrirList?identifier=about") ? "active" : ""}
+              >
+                پرسش و پاسخ
+              </Nav.Link>
+              <span className="line">|</span>
+
+    <NavDropdown
                 title={t("about")}
                 id="basic-nav-dropdown-2" // Unique ID for the second dropdown
                 show={dropdownOpen2} // Control visibility for the second dropdown
@@ -169,42 +205,6 @@ export default function NavBar() {
                   {t("invite")}
                 </NavDropdown.Item>
               </NavDropdown>
-
-              
-              <span className="line">|</span>
-
-              <HashLink
-  to="/#hadithroz"
-  smooth
-  onClick={handleNavLinkClick}
-  className={`nav-link ${isActive("/taqrirList?identifier=about") ? "active" : ""}`}
->
-  
-  مصداق حدیث شریف
-</HashLink>
-<span className="line">|</span>
-              <HashLink
-  to="/#mainBooks"
-  smooth
-  onClick={handleNavLinkClick}
-  className={`nav-link ${isActive("/taqrirList?identifier=about") ? "active" : ""}`}
->
-کتاب ها و رساله ها
-</HashLink>
-
-              
-              <span className="line">|</span>
-              <Nav.Link
-                as={Link}
-                to="/"
-                onClick={handleNavLinkClick}
-                className={isActive("/taqrirList?identifier=about") ? "active" : ""}
-              >
-                پرسش و پاسخ
-              </Nav.Link>
-              <span className="line">|</span>
-             
-
               <div className="lang">
                 <GrLanguage style={{ color: "white", fontSize: "20px" }} />
                 <select onChange={(e) => changeLang(e.target.value)} defaultValue="dari">
