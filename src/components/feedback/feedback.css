@@ -9,11 +9,11 @@
 .mainFeedback {
   width: 100%;
   background: linear-gradient(to top, rgba(36, 200, 36, 0.357), rgba(255, 255, 255, 0.082), rgba(255, 255, 255, 0.068));
-  height: 80vh;
+  height: 85vh;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  margin-bottom: -50px;
+  margin-bottom: -35px;
   padding: 20px 0px;
 }
 .mainFeedback .flowerdiv {
@@ -54,7 +54,7 @@
 }
 .mainFeedback .formContainer {
   position: relative;
-  top: -450px;
+  top: -540px;
   width: 100%;
   display: flex;
   justify-content: center;

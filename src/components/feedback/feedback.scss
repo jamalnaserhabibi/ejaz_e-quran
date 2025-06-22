@@ -8,6 +8,7 @@
   }
 }
 .mainFeedback {
+ 
   width: 100%;
   background: linear-gradient(
     to top,
@@ -15,11 +16,11 @@
     rgba(255, 255, 255, 0.082),
     rgba(255, 255, 255, 0.068)
   );
-  height: 80vh;
+  height: 85vh;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  margin-bottom: -50px;
+  margin-bottom: -35px;
   padding: 20px 0px;
   .flowerdiv {
     padding-top: 140px;
@@ -64,7 +65,7 @@
   }
   .formContainer {
     position: relative;
-    top: -450px;
+    top: -540px;
     width: 100%;
     // height: 200px;
     display: flex;
@@ -77,6 +78,7 @@
     //   }
     // }
     padding: 10px;
+    
     form{
       width: 80%;
       button{
