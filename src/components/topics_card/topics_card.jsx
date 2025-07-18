@@ -1,7 +1,7 @@
 import "./topics_card.css";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { FaBook, FaLightbulb, FaSearch, FaMicrophoneAlt } from 'react-icons/fa'; // Updated icons
+import { FaBook, FaSun, FaSearch, FaMicrophoneAlt } from 'react-icons/fa'; // Updated icons
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import { useTranslation } from 'react-i18next';
 AOS.init();
@@ -18,7 +18,7 @@ export default function HadithRoz() {
     { 
       text:  t("halmoama"),
       effect: "fade-down", 
-      icon: <FaLightbulb size={70} className="icon" />, 
+      icon: <FaSun size={70} className="icon" />, 
       link: "/taqrirList?identifier=halmoamaHaiQuran" 
     },
     { 

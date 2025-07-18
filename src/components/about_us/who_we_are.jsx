@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaCalculator, FaPenFancy, FaBook, FaLightbulb, FaStar } from 'react-icons/fa';
+import { FaCalculator, FaPenFancy, FaBook, FaSun, FaStar } from 'react-icons/fa';
 import "./whoweare.css"; 
 
 export default function WhoWeAre() {
@@ -12,7 +12,7 @@ export default function WhoWeAre() {
           <p>
             به ویب سایت اعجاز قرآن خوش آمدید!
             <br />
-             اعجاز قرآن نایاب ترین مباحث قرآنی منجمله اعجاز آن را که تا حال از آن سخن بمیان نیامده است، در دسترین جهانیان بخصوص امت مسلمه قرار می‌دهد.
+             اعجاز قرآن نایاب ترین مباحث قرآنی منجمله اعجاز آن را که تا حال از آن سخن بمیان نیامده است، در دسترس جهانیان بخصوص امت مسلمه قرار می‌دهد.
             ویب سایت اعجاز قرآن فرصتی طلایی برای دسترسی به مباحث نایاب اعجاز قرآنی است که شامل:
           </p>
           <div className="features">
@@ -29,12 +29,12 @@ export default function WhoWeAre() {
               <span>علوم باطنی</span>
             </div>
             <div className="feature">
-              <FaLightbulb className="icon" />
+              <FaSun className="icon" />
               <span>علوم لدنی</span>
             </div>
             <div className="feature">
               <FaStar className="icon" />
-              <span>اشاری قرآن کریم</span>
+              <span>   علوم  اشاری قرآن کریم   </span>
             </div>
           </div>
         </div>
