@@ -1,62 +1,55 @@
 import "./bookdownload.css";
-
-import dalayel from "../../assets//books/dalayel.png";
-import ziwar from "../../assets/books/ziwar.png";
-import aqida from "../../assets/books/aqida.png"; 
-import hazarhadith from "../../assets/books/hazarhadith.png"; 
-import tafsir from "../../assets/books/tafsir.png"; 
-
-
 import { useLocation } from "react-router-dom";
+
 export default function Bookdownload() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
-  const bookid = queryParams.get("bookid") || ".";
-  const vol = queryParams.get("vol") || ".";
-  const numberofvol = queryParams.get("numberofvol") || ".";
-  const write = queryParams.get("write") || ".";
-  const publish = queryParams.get("publish") || ".";
-  const year = queryParams.get("year") || ".";
-  const size = queryParams.get("size") || ".";
-  const content = queryParams.get("content") || ".";
-  const booktitle = queryParams.get("booktitle") || ".";
+  
+  // Provide default values for all parameters
+  const bookData = {
+    id: queryParams.get("bookid") || "1",
+    title: queryParams.get("booktitle") || "Unknown Book",
+    vol: queryParams.get("vol") || "1",
+    numberofvol: queryParams.get("numberofvol") || "1",
+    write: queryParams.get("write") || "Unknown Author",
+    publish: queryParams.get("publish") || "Unknown Publisher",
+    year: queryParams.get("year") || "Unknown Year",
+    size: queryParams.get("size") || "Unknown Size",
+    content: queryParams.get("content") || "No description available",
+  };
 
   return (
     <div className="bookdownload">
       <div className="main"></div>
-        <h3 className="titleOfTaqrir">
-         {booktitle}
-        </h3>
+      <h3 className="titleOfTaqrir">{bookData.title}</h3>
       <div className="content">
         <div className="bookinfo">
           <div className="textcard">
-            {/* <h4>کتاب: <span>{bookid}</span></h4> */}
-            <h4>نام کتاب: <span>{booktitle}</span></h4>
-            <h4>جلد: <span>{vol}</span></h4>
-            {/* <h4>تعداد جلد: <span>{numberofvol}</span></h4> */}
-            <h4>نویسنده: <span>{write}</span></h4>
-            <h4>ناشر: <span>{publish}</span></h4>
-            <h4>سال انتشار: <span>{year}</span></h4>
-            <h4>سایز: <span>{size}</span></h4>
+            <h4>نام کتاب: <span>{bookData.title}</span></h4>
+            <h4>جلد: <span>{bookData.vol}</span></h4>
+            <h4>نویسنده: <span>{bookData.write}</span></h4>
+            <h4>ناشر: <span>{bookData.publish}</span></h4>
+            <h4>سال انتشار: <span>{bookData.year}</span></h4>
+            <h4>سایز: <span>{bookData.size}</span></h4>
             <h4>فارمت: <span>pdf</span></h4>
-            <h4>محتوا: <span>{content}</span></h4>
+            <h4>محتوا: <span>{bookData.content}</span></h4>
           </div>
           <div className="imagecard">
-            {
-            booktitle === "دلایل خیرات" ? (<img src={dalayel} alt="" />) : 
-            booktitle === "هزار حدیث" ? (<img src={hazarhadith} alt="" />):
-            booktitle === "زیور بهشتی" ? (<img src={ziwar} alt="" />) : 
-            booktitle === "تفسیر کابلی" ? (<img src={tafsir} alt="" />) : 
-            booktitle === "عقیده طحاوی" ? (<img src={aqida} alt="" />) : null}
+            {/* You can add a default image or handle dynamically if needed */}
+            <div className="book-image-placeholder"></div>
           </div>
         </div>
 
-        {[...Array(parseInt(numberofvol)).keys()].map((volIndex) => (
-          <a key={volIndex} className="info" href={`/books/${booktitle}_vol${volIndex + 1}.pdf`} download={`${booktitle}_vol${volIndex + 1}.pdf`}>
+        {[...Array(parseInt(bookData.numberofvol)).keys()].map((volIndex) => (
+          <a 
+            key={volIndex} 
+            className="info" 
+            href={`/books/${bookData.title.replace(/\s+/g, '_')}_vol${volIndex + 1}.pdf`} 
+            download={`${bookData.title.replace(/\s+/g, '_')}_vol${volIndex + 1}.pdf`}
+          >
             دانلود جلد {volIndex + 1}
           </a>
         ))}
-
       </div>
     </div>
   );

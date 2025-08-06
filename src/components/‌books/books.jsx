@@ -9,13 +9,14 @@ import tafsir from "../../assets/books/tafsir3d.png";
 
 // import "../../assets/dalayel.png";
 import { Link } from 'react-router-dom';
+import { useState ,useEffect} from "react";
 
 import Aos from "aos";
 // import { ParallaxProvider, Parallax } from "react-scroll-parallax";
 Aos.init();
 
 export default function Book() {
-
+const [resalla, setResalla] = useState([]);
   const books = 
   [
     { 
@@ -103,21 +104,38 @@ export default function Book() {
       },
     ],
   };
+useEffect(() => {
+    const fetchDocuments = async () => {
+      try {
+        const response = await fetch('https://ejazquran.space/api/v1/resalla-documents');
+        if (!response.ok) throw new Error('Failed to fetch documents');
+        const data = await response.json();
+        console.log('datadatadata',data)
+        setResalla(data);
+        // setFilteredDocs(data);
+      } catch (err) {
+        // setError(err.message);
+      } finally {
+        // setLoading(false);
+      }
+    };
 
+    fetchDocuments();
+  }, []);
   return (
     <div className="mainBooks" id="mainBooks">
-      <h1 data-aos="fade-up">  کتاب ها و رساله ها</h1>
+      <h1 data-aos="fade-up">     رساله ها</h1>
       <div data-aos="fade-up" className="bookContainer">
         <Slider {...settings}>
-          {books.map((book) => (
+          {resalla.map((book) => (
             <div key={book.id} className="book">
-            <Link
-              to={`/bookdownload?bookid=${book.id}&booktitle=${book.title}&write=${book.write}&publish=${book.publish}&year=${book.year}&size=${book.size}&content=${book.content}&numberofvol=${book.numberofvol}&vol=${book.vol}`}
-              className="booklink"
-            >
-                <img className="bookCover" src={book.bimage} alt="" />
-                <h3>{book.title}</h3>
-            </Link>
+          <Link
+          to={`/bookdownload?bookid=${book.id}&booktitle=${book.name}&write=${book.author || "..."}&publish=${book.publisher || "..."}&year=${book.published_year || "..."}&size=${book.size || "..."}&content=${book.description || "..."}&numberofvol=${book.volumes_count || 1}&vol=1`}
+          className="booklink"
+        >
+          <img className="bookCover" src={book.cover_url} alt="" />
+          <h3>{book.name}</h3>
+        </Link>
               </div>
           ))}
         </Slider>

@@ -34,7 +34,7 @@
   font-family: "Lalezar", serif;
   font-weight: 500;
   font-size: 70px;
-  background: linear-gradient(0deg, #ffffff, #00ff1e);
+  background: linear-gradient(0deg, #ffffff, #f55a05e3);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent; /* Make text transparent */
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
@@ -43,7 +43,7 @@
   padding: 20px 0; /* Add some padding for spacing */
 }
 .mainContainer .main .homeText .mainText0 img {
-  width: 300px;
+  width: 30px;
   margin: 15px 0;
 }
 .mainContainer .main .homeText .DesText {

@@ -4,7 +4,9 @@ import bg from "../../assets/c.jpg";
 import line from "../../assets/linegreen.png";
 import Carousel from "react-bootstrap/Carousel";
 import ToTop from '../toTop/toTop'
+import { useState ,useEffect} from "react";
 export default function Home() {
+  const [slider, setSlider] = useState([]);
   const ayatTexts = [
     "وَنَزَّلْنَا عَلَيْكَ الْكِتَابَ تِبْيَانًا لِكُلِّ شَيْءٍ وَهُدًى وَرَحْمَةً وَبُشْرَىٰ لِلْمُسْلِمِينَ",
     "وَمَا أَرْسَلْنَاكَ إِلَّا رَحْمَةً لِّلْعَالَمِينَ",
@@ -18,6 +20,25 @@ export default function Home() {
     "به ربى پناه مى برد كه مدبر امر او و مربى او است ، و در تمامى حوائجش از كوچك و بزرگ به او رجوع مى كند، در اين هنگام هم كه چنين شرى متوجه او شده و بقاى او را تهديد مى كند", // best fit
     "و خداى سبحان رب مردم، و ملك آنان، و اله ايشان است، همچنان كه در كلام خويش اين سه صفت خود را جمع كرده فرموده : (ذلكم الله ربكم له الملك لا اله الا هو فانى تصرفون ))",
   ];
+
+  useEffect(() => {
+    const fetchSliders = async () => {
+      try {
+        const response = await fetch('https://ejazquran.space/api/v1/sliders');
+        if (!response.ok) throw new Error('Failed to fetch documents');
+        const data = await response.json();
+        setSlider(data.data);
+        console.log('sliders',data)
+        // setFilteredDocs(data);
+      } catch (err) {
+        // setError(err.message);
+      } finally {
+        // setLoading(false);
+      }
+    };
+
+    fetchSliders();
+  }, []);
   return (
     <>
       <div className="mainContainer">
@@ -32,14 +53,15 @@ export default function Home() {
               <h1 className="hometitle">اعجاز قرآن کریم</h1>
             </div>
             <div className="mainText0">
-              <img src={line} alt="" />
+              {/* <img src={line} alt="" /> */}
             </div>
             <div className="DesText">
               <Carousel className="Homeslider"  interval={3000} slide={true}>
-                {ayatTexts.map((ayat, index) => (
+                {slider.map((ayat, index) => (
                   <Carousel.Item key={index}>
-                    <h2 className="ayat">{ayat}</h2>
-                    <p>{paragraphTexts[index]}</p>
+                    <h2 className="ayat">{ayat.title}</h2>
+                    <h2 className="ayat">{ayat.subtitle}</h2>
+                    {/* <p>{paragraphTexts[index]}</p> */}
                   </Carousel.Item>
                 ))}
               </Carousel>

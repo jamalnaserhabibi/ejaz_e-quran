@@ -1,17 +1,27 @@
 import "./feedback.css";
 import "aos/dist/aos.css";
+import "react-toastify/dist/ReactToastify.css";
 import flower from "../../assets/bgflowe.png";
-
+import axios from 'axios';
 import { TextField } from "@mui/material";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useState } from "react";
 import Aos from "aos";
+import { ToastContainer, toast } from 'react-toastify';
 
 Aos.init();
 
 export default function Feedback() {
   const [captchaToken, setCaptchaToken] = useState(null);
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [formData, setFormData] = useState({ 
+    name: "", 
+    email: "", 
+    add: "", 
+    message: "" 
+  });
+  const [loading, setLoading] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleChange = (e) => {
     setFormData((prev) => ({
@@ -20,30 +30,91 @@ export default function Feedback() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!captchaToken) {
-      alert("لطفاً ثابت کنید که ربات نیستید.");
+      toast.error("لطفاً ثابت کنید که ربات نیستید.", {
+        position: "top-right",
+        rtl: true,
+      });
       return;
     }
 
-    console.log("Form Submitted:");
-    console.log("Name:", formData.name);
-    console.log("Email:", formData.email);
-    console.log("Add:", formData.Add);
-    console.log("Message:", formData.message);
-    console.log("Captcha Token:", captchaToken);
+    setLoading(true);
+    setError(null);
 
-    alert("تشکر از پیام تان!");
+    try {
+      const apiData = {
+        full_name: formData.name,
+        email: formData.email,
+        address: formData.add,
+        message: formData.message,
+        recaptcha_token: captchaToken
+      };
 
-    // Clear form
-    setFormData({ name: "", email: "", message: "" });
-    setCaptchaToken(null);
+      const response = await axios.post('https://ejazquran.space/api/v1/comments', apiData, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.status === 201) {
+        setSubmitSuccess(true);
+        setFormData({ name: "", email: "", add: "", message: "" });
+        setCaptchaToken(null);
+        
+        toast.success("پیام شما با موفقیت ارسال شد!", {
+          position: "top-right",
+          rtl: true,
+        });
+      }
+    } catch (err) {
+      if (err.response) {
+        if (err.response.status === 422) {
+          const errors = err.response.data.errors;
+          const errorMessage = Object.values(errors).flat().join('\n');
+          setError(errorMessage);
+          toast.error("لطفاً اطلاعات را به درستی وارد کنید", {
+            position: "top-right",
+            rtl: true,
+          });
+        } else {
+          const errorMsg = err.response.data.message || 'خطایی رخ داده است';
+          setError(errorMsg);
+          toast.error(errorMsg, {
+            position: "top-right",
+            rtl: true,
+          });
+        }
+      } else {
+        setError('اتصال به سرور برقرار نشد');
+        toast.error('اتصال به سرور برقرار نشد', {
+          position: "top-right",
+          rtl: true,
+        });
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div className="mainFeedback">
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={true}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+      
       <h1 data-aos="fade-up">نظریات شما</h1>
 
       <div className="flowerdiv">
@@ -51,75 +122,82 @@ export default function Feedback() {
       </div>
 
       <div className="formContainer">
-        <form onSubmit={handleSubmit}>
-          <TextField
-            required
-            id="name"
-            value={formData.name}
-            onChange={handleChange}
-            label="نام کامل"
-            variant="standard"
-            fullWidth
-            margin="normal"
-            InputLabelProps={{ sx: { textAlign: "right", right: 0 } }}
-            inputProps={{ style: { textAlign: "right" } }}
-          />
-
-          <TextField
-            required
-            id="email"
-            value={formData.email}
-            onChange={handleChange}
-            label="ایمیل"
-            type="email"
-            variant="standard"
-            fullWidth
-            margin="normal"
-            InputLabelProps={{ sx: { textAlign: "right", right: 0 } }}
-            inputProps={{ style: { textAlign: "right" } }}
-          />
-          <TextField
-            required
-            id="add"
-            value={formData.add}
-            onChange={handleChange}
-            label="آدرس"
-            type="text"
-            variant="standard"
-            fullWidth
-            margin="normal"
-            InputLabelProps={{ sx: { textAlign: "right", right: 0 } }}
-            inputProps={{ style: { textAlign: "right" } }}
-          />
-
-          <TextField
-            required
-            id="message"
-            value={formData.message}
-            onChange={handleChange}
-            label="پیام"
-            variant="standard"
-            fullWidth
-            margin="normal"
-            multiline
-            rows={3}
-            InputLabelProps={{ sx: { textAlign: "right", right: 0 } }}
-            inputProps={{ style: { textAlign: "right" } }}
-          />
-
-          {/* reCAPTCHA checkbox */}
-          <div style={{ margin: "",position:'absolute',left:'10%', direction: "ltr" }}>
-            <ReCAPTCHA
-              sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
-              onChange={(token) => setCaptchaToken(token)}
-              hl="fa"
+          <form onSubmit={handleSubmit}>
+            <TextField
+              required
+              id="name"
+              value={formData.name}
+              onChange={handleChange}
+              label="نام کامل"
+              variant="standard"
+              fullWidth
+              margin="normal"
+              InputLabelProps={{ sx: { textAlign: "right", right: 0 } }}
+              inputProps={{ style: { textAlign: "right" } }}
             />
-          </div>
 
-          <button type="submit" disabled={!captchaToken}>
-            ارسال
-          </button>
-        </form>
+            <TextField
+              required
+              id="email"
+              value={formData.email}
+              onChange={handleChange}
+              label="ایمیل"
+              type="email"
+              variant="standard"
+              fullWidth
+              margin="normal"
+              InputLabelProps={{ sx: { textAlign: "right", right: 0 } }}
+              inputProps={{ style: { textAlign: "right" } }}
+            />
+
+            <TextField
+              id="add"
+              value={formData.add}
+              onChange={handleChange}
+              label="آدرس"
+              type="text"
+              variant="standard"
+              fullWidth
+              margin="normal"
+              InputLabelProps={{ sx: { textAlign: "right", right: 0 } }}
+              inputProps={{ style: { textAlign: "right" } }}
+            />
+
+            <TextField
+              required
+              id="message"
+              value={formData.message}
+              onChange={handleChange}
+              label="پیام"
+              variant="standard"
+              fullWidth
+              margin="normal"
+              multiline
+              rows={3}
+              InputLabelProps={{ sx: { textAlign: "right", right: 0 } }}
+              inputProps={{ style: { textAlign: "right" } }}
+            />
+
+            <div style={{ margin: "", position: 'absolute', left: '10%', direction: "ltr" }}>
+              <ReCAPTCHA
+                sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
+                onChange={(token) => setCaptchaToken(token)}
+                hl="fa"
+              />
+            </div>
+
+            {error && (
+              <div className="error-message">
+                {error.split('\n').map((line, i) => (
+                  <p key={i}>{line}</p>
+                ))}
+              </div>
+            )}
+
+            <button type="submit" disabled={!captchaToken || loading}>
+              {loading ? 'در حال ارسال...' : 'ارسال'}
+            </button>
+          </form>
       </div>
     </div>
   );
