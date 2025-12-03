@@ -32,18 +32,14 @@
 }
 .mainContainer .main .homeText .hometitle {
   font-family: "Lalezar", serif;
-  font-weight: 500;
-  font-size: 70px;
-  background: linear-gradient(0deg, #ffffff, #13fe59e3);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent; /* Make text transparent */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
-  text-align: center; /* Center the text */
-  margin: 0; /* Remove default margin */
-  padding: 20px 0; /* Add some padding for spacing */
+  font-size: 80px;
+  font-weight: 400;
+  text-align: center;
+  color: var(--primary); /* Your gold-orange */
+  text-shadow: 0 0 2px #ffffff, 0 3px 6px rgba(255, 255, 255, 0.6); /* Strong contrast shadow */
 }
 .mainContainer .main .homeText .mainText0 img {
-  width: 30px;
+  width: 300px;
   margin: 15px 0;
 }
 .mainContainer .main .homeText .DesText {

@@ -136,6 +136,7 @@ export default function NavBar() {
                 کتاب ها و رساله ها
               </HashLink>
 
+              <span className="line">|</span>
 
               {/* <span className="line">|</span>
               <Nav.Link

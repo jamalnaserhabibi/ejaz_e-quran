@@ -190,7 +190,7 @@ export default function TaqrirView() {
             disabled={currentPage === 0}
             style={{
               padding: '10px 15px',
-              backgroundColor: currentPage ? 'green' : 'lightgray',
+              backgroundColor: currentPage ? '#9a6121' : 'lightgray',
               color: 'white',
               border: '1px solid #ddd',
               borderRadius: '5px',
@@ -217,8 +217,9 @@ export default function TaqrirView() {
               borderRadius: '5px',
               border: 'none',
               cursor: 'pointer',
+              color:'white',
               appearance: 'none',
-              backgroundColor: 'rgba(0, 128, 0, 0.200)',
+              backgroundColor: '#9a6121',
             }}
           >
             بعدی

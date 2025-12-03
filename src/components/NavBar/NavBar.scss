@@ -134,7 +134,7 @@
 
 /* Ensure the dropdown text color changes on hover */
 .nav_main_color .dropdown-item:hover {
-  color: rgba(0, 128, 0, 0.545)  !important; /* Change this to the desired hover text color */
+  color: #ec8106e0  !important; 
 }
 .nav_main_color{
   background-color: var(--primary);
@@ -290,7 +290,7 @@
     }
     .navbar-collapse {
       .navButton {
-       color: rgba(0, 128, 0, 0.625);
+       color: var(--primary);
         display: flex !important;
         align-items: center;
         .line{

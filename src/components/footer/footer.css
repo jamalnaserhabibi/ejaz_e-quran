@@ -35,8 +35,9 @@
 }
 .links h5 {
   text-align: right;
-  color: yellow;
+  color: var(--primary);
   font-weight: bolder;
+  text-shadow: 0 0 1px #ffffff, 0 0 2px #ffffff;
 }
 .links .first p, .links .second p, .links .third p, .links .fourth p {
   text-align: right;
