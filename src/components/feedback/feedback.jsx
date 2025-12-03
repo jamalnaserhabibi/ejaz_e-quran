@@ -1,6 +1,8 @@
 import "./feedback.css";
 import "aos/dist/aos.css";
-import "react-toastify/dist/ReactToastify.css";
+ 
+import 'react-toastify/ReactToastify.css';
+
 import flower from "../../assets/bgflowe.png";
 import axios from 'axios';
 import { TextField } from "@mui/material";
