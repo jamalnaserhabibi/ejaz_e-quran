@@ -36,7 +36,7 @@
   font-weight: 400;
   text-align: center;
   color: var(--primary); /* Your gold-orange */
-  text-shadow: 0 0 2px #ffffff, 0 3px 6px rgba(255, 255, 255, 0.6); /* Strong contrast shadow */
+  text-shadow: 0 0 2px #ffffff, 0 3px 6px rgba(255, 255, 255, 0.6);
 }
 .mainContainer .main .homeText .mainText0 img {
   width: 300px;

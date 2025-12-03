@@ -8,7 +8,7 @@
 }
 .mainFeedback {
   width: 100%;
-  background: linear-gradient(to top, --primary rgba(255, 255, 255, 0.082), rgba(255, 255, 255, 0.068));
+  background: linear-gradient(to top, --primary, rgba(255, 255, 255, 0.082), rgba(255, 255, 255, 0.068));
   height: 85vh;
   background-repeat: no-repeat;
   background-size: cover;
