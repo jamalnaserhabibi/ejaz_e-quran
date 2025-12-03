@@ -137,7 +137,7 @@ export default function NavBar() {
               </HashLink>
 
 
-              <span className="line">|</span>
+              {/* <span className="line">|</span>
               <Nav.Link
                 as={Link}
                 to="/"
@@ -146,7 +146,7 @@ export default function NavBar() {
               >
                 پرسش و پاسخ
               </Nav.Link>
-              <span className="line">|</span>
+              <span className="line">|</span> */}
 
     <NavDropdown
                 title={t("about")}
