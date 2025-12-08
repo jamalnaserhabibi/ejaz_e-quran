@@ -117,7 +117,7 @@ export default function Feedback() {
         theme="light"
       />
       
-      <h1 data-aos="fade-up">نظریات شما</h1>
+      <h1 data-aos="fade-up">سوالات و نظریات شما</h1>
 
       <div className="flowerdiv">
         <img data-aos="fade-right" className="flowerimg" src={flower} alt="bg" />
