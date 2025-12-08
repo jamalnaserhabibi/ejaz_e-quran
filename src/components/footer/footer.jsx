@@ -147,7 +147,7 @@ export default function App() {
               color="light"
               floating
               className="m-1"
-              href="https://t.me/ejazualqruan"
+              href="https://t.me/ejazualquran"
               noRipple
             >
               <MDBIcon fab icon="telegram" />

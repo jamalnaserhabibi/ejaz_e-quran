@@ -1,4 +1,5 @@
 import "./taqrirView.css";
+import samplepic from "../../assets/background2.jpg";
 import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { FaSearch, FaSpinner } from "react-icons/fa";
@@ -11,10 +12,10 @@ export default function TaqrirView() {
   const itemId = queryParams.get("itemId"); // The specific tafsir item ID
   const itemtitle = queryParams.get("itemtitle") || "عنوان نامشخص";
 
-  const wordsPerPage = 350;
+  const wordsPerPage = 500;
 
   const [currentPage, setCurrentPage] = useState(0);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [currentMatchIndex, setCurrentMatchIndex] = useState(0);
   const [content, setContent] = useState("");
@@ -23,64 +24,69 @@ export default function TaqrirView() {
 
   // Fetch content based on the IDs
   useEffect(() => {
-  const fetchContent = async () => {
-    try {
-      setLoading(true);
+    const fetchContent = async () => {
+      try {
+        setLoading(true);
 
-      if (!itemId) {
-        setError("آی دی مورد یافت نشد");
-        return;
-      }
-
-      const response = await axios.post(
-        `https://ejazquran.space/api/v1/tafsir/${itemId}`,
-        { include_content: true }
-      );
-
-      if (response.data.status === "success") {
-        const tafsirItem = response.data.data;
-        if (tafsirItem && tafsirItem.content) {
-          setContent(tafsirItem.content);
-        } else {
-          setError("محتوا یافت نشد");
+        if (!itemId) {
+          setError("آی دی مورد یافت نشد");
+          return;
         }
-      } else {
-        setError("خطا در بارگذاری محتوا");
+
+        const response = await axios.post(
+          `https://ejazquran.space/api/v1/tafsir/${itemId}`,
+          { include_content: true }
+        );
+
+        if (response.data.status === "success") {
+          const tafsirItem = response.data.data;
+          if (tafsirItem && tafsirItem.content) {
+            setContent(tafsirItem.content);
+          } else {
+            setError("محتوا یافت نشد");
+          }
+        } else {
+          setError("خطا در بارگذاری محتوا");
+        }
+      } catch (err) {
+        setError("خطا در اتصال به سرور");
+        console.error("Error fetching tafsir:", err);
+      } finally {
+        setLoading(false);
       }
-    } catch (err) {
-      setError("خطا در اتصال به سرور");
-      console.error("Error fetching tafsir:", err);
-    } finally {
+    };
+
+    if (itemId) {
+      fetchContent();
+    } else {
+      setError("آی دی تفسیر نامعتبر است");
       setLoading(false);
     }
-  };
-
-  if (itemId) {
-    fetchContent();
-  } else {
-    setError("آی دی تفسیر نامعتبر است");
-    setLoading(false);
-  }
-}, [itemId]);
+  }, [itemId]);
 
   // Split content into pages
-  const textChunks = content ? content.split(/\s+/).reduce((acc, word, index) => {
-    const chunkIndex = Math.floor(index / wordsPerPage);
-    if (!acc[chunkIndex]) acc[chunkIndex] = [];
-    acc[chunkIndex].push(word);
-    return acc;
-  }, []).map(chunk => chunk.join(' ')) : [];
+  const textChunks = content
+    ? content
+        .split(/\s+/)
+        .reduce((acc, word, index) => {
+          const chunkIndex = Math.floor(index / wordsPerPage);
+          if (!acc[chunkIndex]) acc[chunkIndex] = [];
+          acc[chunkIndex].push(word);
+          return acc;
+        }, [])
+        .map((chunk) => chunk.join(" "))
+    : [];
 
   const totalPages = textChunks.length;
 
   // Search functionality
   useEffect(() => {
     if (searchQuery && content) {
-      const regex = new RegExp(searchQuery, 'gi');
+      const regex = new RegExp(searchQuery, "gi");
       let matches = [];
       textChunks.forEach((chunk, pageIndex) => {
         const chunkMatches = [...chunk.matchAll(regex)];
-        chunkMatches.forEach(match => {
+        chunkMatches.forEach((match) => {
           matches.push({ pageIndex, match });
         });
       });
@@ -103,11 +109,15 @@ export default function TaqrirView() {
 
   const highlightText = (text, query) => {
     if (!query) return text;
-    const regex = new RegExp(`(${query})`, 'gi');
+    const regex = new RegExp(`(${query})`, "gi");
     return text.split(regex).map((part, i) =>
-      regex.test(part)
-        ? <span key={i} style={{ backgroundColor: 'yellow' }}>{part}</span>
-        : part
+      regex.test(part) ? (
+        <span key={i} style={{ backgroundColor: "yellow" }}>
+          {part}
+        </span>
+      ) : (
+        part
+      )
     );
   };
 
@@ -125,9 +135,7 @@ export default function TaqrirView() {
       <div className="error-message">
         <h3>خطا</h3>
         <p>{error}</p>
-        <button onClick={() => window.location.reload()}>
-          تلاش مجدد
-        </button>
+        <button onClick={() => window.location.reload()}>تلاش مجدد</button>
       </div>
     );
   }
@@ -135,56 +143,69 @@ export default function TaqrirView() {
   return (
     <div className="taqrirView">
       <div className="main"></div>
-<div className="titleoftaqrir">
-
-        <div className="search-container" >
-        <input
-          type="text"
-          placeholder="جستجو..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-         
-          style={{
-            // width: '100%',
-            padding: '10px 20px',
-            // borderRadius: '30px',
-            border: '1px solid var(--primary)',
-            borderTop:'none',
-            borderLeft:'none',
-            borderRight:'none', 
-            backgroundColor: 'transparent',
-            outline: 'none',
-            color: 'var(--primary)',
-          }}
-        />
-        <FaSearch className="icon" />
-        {searchQuery && (
-          <span className="search-results-count">
-            {/* {searchResults.length} مورد یافت شد */}
-          </span>
-        )}
-        {searchQuery && searchResults.length > 0 && (
-          <div className="search-navigation">
-            <button style={{outline:'none',border:'none',color:'white',borderRadius:'5px'}}
-              onClick={() => goToMatch(currentMatchIndex - 1)}
-              disabled={currentMatchIndex === 0}
-            >
-              ►
-            </button>
-            <span>{currentMatchIndex + 1} از {searchResults.length}</span>
-            <button style={{outline:'none',border:'none',color:'white',borderRadius:'5px'}}
-              onClick={() => goToMatch(currentMatchIndex + 1)}
-              disabled={currentMatchIndex === searchResults.length - 1}
-            >
-              ◄
-            </button>
-          </div>
-        )}
+      <div className="titleoftaqrir">
+        <div className="search-container">
+          <input
+            type="text"
+            placeholder="جستجو..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            style={{
+              // width: '100%',
+              padding: "10px 20px",
+              // borderRadius: '30px',
+              border: "1px solid var(--primary)",
+              borderTop: "none",
+              borderLeft: "none",
+              borderRight: "none",
+              backgroundColor: "transparent",
+              outline: "none",
+              color: "var(--primary)",
+            }}
+          />
+          <FaSearch className="icon" />
+          {searchQuery && (
+            <span className="search-results-count">
+              {/* {searchResults.length} مورد یافت شد */}
+            </span>
+          )}
+          {searchQuery && searchResults.length > 0 && (
+            <div className="search-navigation">
+              <button
+                style={{
+                  outline: "none",
+                  border: "none",
+                  color: "white",
+                  borderRadius: "5px",
+                }}
+                onClick={() => goToMatch(currentMatchIndex - 1)}
+                disabled={currentMatchIndex === 0}
+              >
+                ►
+              </button>
+              <span>
+                {currentMatchIndex + 1} از {searchResults.length}
+              </span>
+              <button
+                style={{
+                  outline: "none",
+                  border: "none",
+                  color: "white",
+                  borderRadius: "5px",
+                }}
+                onClick={() => goToMatch(currentMatchIndex + 1)}
+                disabled={currentMatchIndex === searchResults.length - 1}
+              >
+                ◄
+              </button>
+            </div>
+          )}
+        </div>
+        <h3 className="titleOfTaqrir">{itemtitle}</h3>
       </div>
-      <h3 className="titleOfTaqrir">{itemtitle}</h3>
 
-</div>
       <div className="content">
+        <img src={samplepic} style={{width:"77%"}} alt="" />
         <p>{highlightText(textChunks[currentPage] || "", searchQuery)}</p>
       </div>
 
@@ -194,23 +215,26 @@ export default function TaqrirView() {
             onClick={() => setCurrentPage(currentPage - 1)}
             disabled={currentPage === 0}
             style={{
-              padding: '10px 15px',
-              backgroundColor: currentPage ? '#9a6121' : 'lightgray',
-              color: 'white',
-              border: '1px solid #ddd',
-              borderRadius: '5px',
-              cursor: 'pointer',
+              padding: "10px 15px",
+              backgroundColor: currentPage ? "#9a6121" : "lightgray",
+              color: "white",
+              border: "1px solid #ddd",
+              borderRadius: "5px",
+              cursor: "pointer",
             }}
           >
             قبلی
           </button>
 
-          <select className="page-selector"
+          <select
+            className="page-selector"
             value={currentPage}
             onChange={(e) => setCurrentPage(Number(e.target.value))}
           >
             {Array.from({ length: totalPages }, (_, i) => (
-              <option key={i} value={i}>صفحه {i + 1}</option>
+              <option key={i} value={i}>
+                صفحه {i + 1}
+              </option>
             ))}
           </select>
 
@@ -218,13 +242,13 @@ export default function TaqrirView() {
             onClick={() => setCurrentPage(currentPage + 1)}
             disabled={currentPage === totalPages - 1}
             style={{
-              padding: '10px 15px',
-              borderRadius: '5px',
-              border: 'none',
-              cursor: 'pointer',
-              color:'white',
-              appearance: 'none',
-              backgroundColor: '#9a6121',
+              padding: "10px 15px",
+              borderRadius: "5px",
+              border: "none",
+              cursor: "pointer",
+              color: "white",
+              appearance: "none",
+              backgroundColor: "#9a6121",
             }}
           >
             بعدی
