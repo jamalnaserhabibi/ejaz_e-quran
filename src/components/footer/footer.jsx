@@ -146,7 +146,18 @@ export default function App() {
       <MDBIcon fab icon="telegram" />
     </MDBBtn>
   </MDBTooltip>
-
+ <MDBTooltip tag="span" title="Email" placement="top">
+  <MDBBtn
+    outline
+    color="light"
+    floating
+    className="m-1"
+    href="mailto:shirshahshahed@gmail.com"
+    noRipple
+  >
+    <MDBIcon icon="envelope" />
+  </MDBBtn>
+</MDBTooltip>
   <MDBTooltip tag="span" title="WhatsApp" placement="top">
     <MDBBtn
       outline
@@ -159,6 +170,10 @@ export default function App() {
       <MDBIcon fab icon="whatsapp" />
     </MDBBtn>
   </MDBTooltip>
+
+ 
+
+
 </section>
 
 
