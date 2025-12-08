@@ -205,7 +205,7 @@ export default function TaqrirView() {
       </div>
 
       <div className="content">
-        <img src={samplepic} style={{width:"77%"}} alt="" />
+        <img src={samplepic} style={{width:"100%", height:"50vh", objectFit:'cover', borderRadius:"50px",padding:"10px 0"}} alt="" />
         <p>{highlightText(textChunks[currentPage] || "", searchQuery)}</p>
       </div>
 
