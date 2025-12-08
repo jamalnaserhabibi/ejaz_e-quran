@@ -118,7 +118,7 @@ export default function App() {
     color="light"
     floating
     className="m-1"
-    href="https://twitter.com/shirsha24033899"
+    href="https://twitter.com/@ejazulquran"
     target="_blank"
     rel="noopener noreferrer"
     noRipple
@@ -147,7 +147,7 @@ export default function App() {
               color="light"
               floating
               className="m-1"
-              href="https://t.me/Shirshahshahed"
+              href="https://t.me/ejazualqruan"
               noRipple
             >
               <MDBIcon fab icon="telegram" />

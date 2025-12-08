@@ -18,10 +18,8 @@
     background-size: cover;
     background-position: center;
     // background-attachment: fixed;
-    justify-content: center;
-    align-items: center;
+    // justify-content: center;
     // background-color: red;
-    text-align: center;
     color: var(--gold_light);
     // border-radius: 0 0 50px 50px;
     // box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 20px;
@@ -30,7 +28,14 @@
   }
   .titleOfTaqrir {
     color: var(--primary);
-    font-size: 35px;
+  }
+  .titleoftaqrir{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+
+    width: 77%;
+    text-align: right;
   }
   .content {
     margin: 20px;

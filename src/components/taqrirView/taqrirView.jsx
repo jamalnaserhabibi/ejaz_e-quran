@@ -135,9 +135,9 @@ export default function TaqrirView() {
   return (
     <div className="taqrirView">
       <div className="main"></div>
-      <h3 className="titleOfTaqrir">{itemtitle}</h3>
+<div className="titleoftaqrir">
 
-      <div className="search-container" style={{ marginBottom: '20px', display: 'flex', justifyContent: 'center', gap: '10px', alignItems: 'center', width:'70%' }}>
+        <div className="search-container" >
         <input
           type="text"
           placeholder="جستجو..."
@@ -145,10 +145,13 @@ export default function TaqrirView() {
           onChange={(e) => setSearchQuery(e.target.value)}
          
           style={{
-            width: '100%',
+            // width: '100%',
             padding: '10px 20px',
-            borderRadius: '30px',
+            // borderRadius: '30px',
             border: '1px solid var(--primary)',
+            borderTop:'none',
+            borderLeft:'none',
+            borderRight:'none', 
             backgroundColor: 'transparent',
             outline: 'none',
             color: 'var(--primary)',
@@ -157,28 +160,30 @@ export default function TaqrirView() {
         <FaSearch className="icon" />
         {searchQuery && (
           <span className="search-results-count">
-            {searchResults.length} مورد یافت شد
+            {/* {searchResults.length} مورد یافت شد */}
           </span>
         )}
         {searchQuery && searchResults.length > 0 && (
           <div className="search-navigation">
-            <button
+            <button style={{outline:'none',border:'none',color:'white',borderRadius:'5px'}}
               onClick={() => goToMatch(currentMatchIndex - 1)}
               disabled={currentMatchIndex === 0}
             >
-              قبلی
+              ►
             </button>
             <span>{currentMatchIndex + 1} از {searchResults.length}</span>
-            <button
+            <button style={{outline:'none',border:'none',color:'white',borderRadius:'5px'}}
               onClick={() => goToMatch(currentMatchIndex + 1)}
               disabled={currentMatchIndex === searchResults.length - 1}
             >
-              بعدی
+              ◄
             </button>
           </div>
         )}
       </div>
+      <h3 className="titleOfTaqrir">{itemtitle}</h3>
 
+</div>
       <div className="content">
         <p>{highlightText(textChunks[currentPage] || "", searchQuery)}</p>
       </div>

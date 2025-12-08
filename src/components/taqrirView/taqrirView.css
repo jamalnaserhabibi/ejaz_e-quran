@@ -17,14 +17,17 @@
   height: 15vh;
   background-size: cover;
   background-position: center;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
   color: var(--gold_light);
 }
 .taqrirView .titleOfTaqrir {
   color: var(--primary);
-  font-size: 35px;
+}
+.taqrirView .titleoftaqrir {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  width: 77%;
+  text-align: right;
 }
 .taqrirView .content {
   margin: 20px;
