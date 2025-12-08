@@ -56,7 +56,7 @@ export default function Home() {
               {/* <img src={line} alt="" /> */}
             </div>
             <div className="DesText">
-              <Carousel className="Homeslider"  interval={3000} slide={true}>
+              <Carousel className="Homeslider"  interval={5000} slide={true}>
                 {slider.map((ayat, index) => (
                   <Carousel.Item key={index}>
                     <h2 className="ayat">{ayat.title}</h2>
