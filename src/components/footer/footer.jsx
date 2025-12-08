@@ -89,7 +89,7 @@ export default function App() {
       color="light"
       floating
       className="m-1"
-      href=""
+      href="https://www.facebook.com/profile.php?id=100064492818281&mibextid=ZbWKwL"
       noRipple
     >
       <MDBIcon fab icon="facebook-f" />
