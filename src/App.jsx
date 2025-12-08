@@ -7,6 +7,7 @@ import "slick-carousel/slick/slick-theme.css";
 import ScrollToTop from "./components/scrolltop";
 // import Quran from "./components/Quran/Quran";
 import TaqrirList from "./components/taqrirList/taqrirList";
+import Comming from "./components/comming_sooon/comming";
 import TaqrirView from "./components/taqrirView/taqrirView";
 import Bookdownload from "./components/bookdownload/bookdownload";
 import Footer from "./components/footer/footer";
@@ -38,6 +39,7 @@ export default function App() {
           <Route path="/values" element={<Values />} />
           <Route path="/invite_to_action" element={<Invite_to_action />} />
           <Route path="/bookdownload" element={<Bookdownload />} />
+          <Route path="/Comming" element={<Comming />} />
         </Routes>
         <Footer/>
       </BrowserRouter>

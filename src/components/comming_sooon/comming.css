@@ -1,4 +1,4 @@
-.taqrirView {
+.Comming {
   width: 100%;
   font-family: "Lalezar";
   height: auto;
@@ -10,7 +10,7 @@
   background-size: contain;
   background-position: top;
 }
-.taqrirView .main {
+.Comming .main {
   margin-bottom: 10px;
   display: flex;
   width: 100%;
@@ -22,11 +22,11 @@
   text-align: center;
   color: var(--gold_light);
 }
-.taqrirView .main .titleOfTaqrir {
+.Comming .main .titleofComming {
   color: var(--primary);
   font-size: 35px;
 }
-.taqrirView .main .content {
+.Comming .main .content {
   margin: 20px;
   margin-top: 10px;
   width: 80%;
@@ -40,11 +40,11 @@
   transition: 0.3s ease-in-out;
   padding: 0 20px;
 }
-.taqrirView .main .content p {
+.Comming .main .content p {
   text-align: justify;
   font-size: 17px;
 }
-.taqrirView .main .content .info {
+.Comming .main .content .info {
   color: white;
   width: 100%;
   background-color: var(--primary);
@@ -55,22 +55,22 @@
   align-items: center;
   flex-direction: row;
 }
-.taqrirView .main .content .info h3 {
+.Comming .main .content .info h3 {
   font-size: 20px;
 }
 
 @media (max-width: 768px) {
-  .taqrirView .main {
+  .Comming .main {
     height: 8vh;
   }
-  .taqrirView .content {
+  .Comming .content {
     width: 100%;
   }
-  .taqrirView .content .info {
+  .Comming .content .info {
     align-items: start;
     flex-wrap: wrap;
   }
-  .taqrirView .content .info h3 {
+  .Comming .content .info h3 {
     font-size: 15px;
   }
 }/*# sourceMappingURL=comming.css.map */

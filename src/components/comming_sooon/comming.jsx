@@ -1,16 +1,14 @@
-import "./about.css";
-export default function pishina_tasis() {
+import "./comming.css";
+export default function Comming() {
   return (
-    <div className="taqrirView">
+    <div className="Comming">
       <div className="main"></div>
-      <h3 className="titleOfTaqrir">
-      پیشینه تأسیس
+      <h3 className="titleofComming">
+ بزودی...
         </h3>
       <div className="content">
         <p>
-        جهان کنونی که به شدت تحت تاثیر سایه مادیات قرار گرفته بتدریج از معنویات (قرآن کریم ) فاصله گرفته و نزدیک است که ساینس و دنیای مادی را به خدایی بگیرد.
-"اعجاز قرآن" وب سایتی که توسط دارالعلوم تعلیم القران و الحدیث سلسله عالیه چشتیه محمدی ص واقع در شهر کابل افغانستان ایجاد گردیده است، می‌خواهد توازن معنویات و مادیات را از طریق بیان ارزش های معنوی بالخصوص اعجاز قرآن ، جوابگو بودن قرآن برای هر عصر، حل معما های لاینحل، برقرار نماید. 
-        </p>
+ بزودی از طریق این وبسایت مطالب  ارائه خواهد شد.        </p>
       </div>
     </div>
   );

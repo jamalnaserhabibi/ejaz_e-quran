@@ -85,7 +85,9 @@ export default function NavBar() {
                 </NavDropdown.Item>
                 <NavDropdown.Item
                   as={Link}
-                  to="/taqrirList?identifier=halmoamaHaiQuran"
+                  to="comming"
+
+                  // to="/taqrirList?identifier=halmoamaHaiQuran"
                   className={isActive("/taqrirList?identifier=halmoamaHaiQuran") ? "active" : ""}
                   onClick={handleNavLinkClick}
                 >
@@ -93,7 +95,8 @@ export default function NavBar() {
                 </NavDropdown.Item>
                 <NavDropdown.Item
                   as={Link}
-                  to="/taqrirList?identifier=mesdaqHadith"
+                  to="comming"
+                  // to="/taqrirList?identifier=mesdaqHadith"
                   className={isActive("/taqrirList?identifier=mesdaqHadith") ? "active" : ""}
                   onClick={handleNavLinkClick}
                 >
@@ -101,7 +104,9 @@ export default function NavBar() {
                 </NavDropdown.Item>
                 <NavDropdown.Item
                   as={Link}
-                  to="/taqrirList?identifier=DrosWaSokhanraniHa"
+                  to="comming"
+
+                  // to="/taqrirList?identifier=DrosWaSokhanraniHa"
                   className={isActive("/taqrirList?identifier=DrosWaSokhanraniHa") ? "active" : ""}
                   onClick={handleNavLinkClick}
                 >
