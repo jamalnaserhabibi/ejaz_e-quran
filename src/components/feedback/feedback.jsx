@@ -1,6 +1,5 @@
 import "./feedback.css";
 import "aos/dist/aos.css";
- 
 import 'react-toastify/ReactToastify.css';
 
 import flower from "../../assets/bgflowe.png";
@@ -117,7 +116,7 @@ export default function Feedback() {
         theme="light"
       />
       
-      <h1 data-aos="fade-up">سوالات و نظریات شما</h1>
+      <h1 data-aos="fade-up" className="feedbacks_questions">سوالات و نظریات شما</h1>
 
       <div className="flowerdiv">
         <img data-aos="fade-right" className="flowerimg" src={flower} alt="bg" />

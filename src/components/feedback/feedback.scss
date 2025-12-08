@@ -7,8 +7,13 @@
     transform: rotate(360deg);
   }
 }
+
+.feedbacks_questions{
+z-index: 1000;
+padding-bottom: 40px;
+}
+
 .mainFeedback {
- 
   width: 100%;
   background: linear-gradient(
     to top,
