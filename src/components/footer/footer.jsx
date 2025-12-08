@@ -140,7 +140,7 @@ export default function App() {
       color="light"
       floating
       className="m-1"
-      href="#!"
+      href="t.me/Shirshahshahed"
       noRipple
     >
       <MDBIcon fab icon="telegram" />
@@ -153,7 +153,7 @@ export default function App() {
       color="light"
       floating
       className="m-1"
-      href="#!"
+      href="https://wa.me/+93786351344"
       noRipple
     >
       <MDBIcon fab icon="whatsapp" />
@@ -245,15 +245,15 @@ export default function App() {
               </p>
               <p>
                 <MDBIcon icon="envelope" className="me-3" />
-               {" "} shaheed@ejaz.com 
+               {" "} info@ejazquran.com 
               </p>
               <p>
                 <MDBIcon icon="phone" className="me-3" />
-             {" "} 9379933333 
+             {" "} +93786351344 
               </p>
               <p>
                 <MDBIcon icon="phone" className="me-3" />
-              {" "}9379933333 
+              {" "}+93793923333 
               </p>
            </div>
             </MDBCol>
