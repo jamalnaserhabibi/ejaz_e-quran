@@ -159,7 +159,7 @@ export default function App() {
               color="light"
               floating
               className="m-1"
-              href="mailto:shirshahshahed@gmail.com"
+              href="mailto:ejazu.alquran@gmail.com"
               noRipple
             >
               <MDBIcon icon="envelope" />
