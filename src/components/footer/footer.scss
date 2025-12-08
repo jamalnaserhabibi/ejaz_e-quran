@@ -5,9 +5,16 @@
     box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 20px;
     font-family: "Amiri";
 }
+.footer_paragraph{
+  color: #222020eb;
+  font-size: 19px;
+}
+.section_titles_footer{
+  color: #4f2a00 !important;
+  
+}
 .footerCards{
   flex-direction: row-reverse;
- 
 }
 .links{
    a{
@@ -37,9 +44,7 @@
     text-align: right;
     color: var(--primary);
     font-weight: bolder;
-     text-shadow:
-        0 0 1px #ffffff,
-        0 0 2px #ffffff,
+    //  text-shadow:        0 0 1px #ffffff,        0 0 2px #ffffff,
         // 0 3px 6px rgba(255, 255, 255, 0.6); /* Strong contrast shadow */
    }
    .first p, .second p, .third p ,.fourth p     {

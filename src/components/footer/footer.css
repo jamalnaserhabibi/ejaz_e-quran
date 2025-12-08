@@ -6,6 +6,15 @@
   font-family: "Amiri";
 }
 
+.footer_paragraph {
+  color: rgba(34, 32, 32, 0.9215686275);
+  font-size: 19px;
+}
+
+.section_titles_footer {
+  color: #4f2a00 !important;
+}
+
 .footerCards {
   flex-direction: row-reverse;
 }
@@ -37,7 +46,6 @@
   text-align: right;
   color: var(--primary);
   font-weight: bolder;
-  text-shadow: 0 0 1px #ffffff, 0 0 2px #ffffff;
 }
 .links .first p, .links .second p, .links .third p, .links .fourth p {
   text-align: right;

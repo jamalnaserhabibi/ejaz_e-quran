@@ -95,7 +95,7 @@ export default function App() {
       <MDBIcon fab icon="facebook-f" />
     </MDBBtn>
   </MDBTooltip>
-  <MDBTooltip tag="span" title="Youtube" placement="top">
+  {/* <MDBTooltip tag="span" title="Youtube" placement="top">
     <MDBBtn
       outline
       color="light"
@@ -106,7 +106,7 @@ export default function App() {
     >
       <MDBIcon fab icon="youtube" />
     </MDBBtn>
-  </MDBTooltip>
+  </MDBTooltip> */}
 
   <MDBTooltip tag="span" title="Twitter" placement="top">
     <MDBBtn
@@ -121,7 +121,7 @@ export default function App() {
     </MDBBtn>
   </MDBTooltip>
 
-  <MDBTooltip tag="span" title="Instagram" placement="top">
+  {/* <MDBTooltip tag="span" title="Instagram" placement="top">
     <MDBBtn
       outline
       color="light"
@@ -132,17 +132,17 @@ export default function App() {
     >
       <MDBIcon fab icon="instagram" />
     </MDBBtn>
-  </MDBTooltip>
+  </MDBTooltip> */}
 
   <MDBTooltip tag="span" title="Telegram" placement="top">
-    <MDBBtn
-      outline
-      color="light"
-      floating
-      className="m-1"
-      href="t.me/Shirshahshahed"
-      noRipple
-    >
+  <MDBBtn
+  outline
+  color="light"
+  floating
+  className="m-1"
+  href="https://t.me/Shirshahshahed"
+  noRipple
+>
       <MDBIcon fab icon="telegram" />
     </MDBBtn>
   </MDBTooltip>
@@ -162,7 +162,7 @@ export default function App() {
 </section>
 
 
-        <section data-aos="fade-up" className="mb-4">
+        <section data-aos="fade-up" className="mb-4 footer_paragraph">
           <p>
           سایت اعجاز القران با راه اندازی مباحث علمی نایاب و بی پیشنه در پرتو تفسير قرآن با قرآن و تفسیر قرآن با حدیث در پی اصلاح عقائد و اعمال، توحید امت و بالا بردن سطح دانش نوع انسان بخصوص امت مسلمه در قرآن و اسلام است. 
 از ویژگی های سایت اعجاز القران است که مسائل را بطور واقع بینانه، بدون تبعیض و با تحقیق و تدقیق بیان می‌کند. 
@@ -174,7 +174,7 @@ export default function App() {
           <MDBRow className="footerCards mobile-two-column">
             <MDBCol lg="3" md="6" sm="6" className="mb-4 mb-md-0">
             <div className="first">
-              <h5 className="text-uppercase">زبان ها</h5>
+              <h5 className="text-uppercase  section_titles_footer">زبان ها</h5>
               <p>
                 <a href="#!" className="text-white">
                   دری
@@ -200,7 +200,7 @@ export default function App() {
             <MDBCol lg="3" md="6" sm="6" className="mb-4 mb-md-0">
 
             <div className="second">
-  <h5 className="text-uppercase">کتاب ها</h5>
+  <h5 className="text-uppercase section_titles_footer">کتاب ها</h5>
   {books.slice(0, 4).map((book) => (
     <p key={book.id}>
       <a
@@ -217,7 +217,7 @@ export default function App() {
             <MDBCol lg="3" md="6" sm="6" className="mb-4 mb-md-0">
            <div className="third">
 
-              <h5 className="text-uppercase">موضوعات</h5>
+              <h5 className="text-uppercase section_titles_footer">موضوعات</h5>
 
                 <p>
                  <Link style={{textDecoration:'none', color:'white'}} to="to=/taqrirList?identifier=tafsirQuranBelQuran">
@@ -231,14 +231,14 @@ export default function App() {
                   <a className="text-white">مصداق احادیث</a>
                 </p>
                 <p>
-                  <a className="text-white">احادیث بی اساس</a>
+                  <a className="text-white">دروس و سخنرانی ها</a>
                 </p>
               </div>
 
             </MDBCol>
             <MDBCol lg="3" md="6" sm="6" className="mb-4 mb-md-0">
            <div className="fourth">
-           <h5 className="text-uppercase">ارتباطات</h5>
+           <h5 className="text-uppercase section_titles_footer">ارتباطات</h5>
               <p>
                 <MDBIcon icon="home" className="me-3" />
                {" "} ناحیه هفتم شهر کابل افغانستان 
