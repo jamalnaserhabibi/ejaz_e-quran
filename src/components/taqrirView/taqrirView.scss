@@ -6,7 +6,6 @@
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  // background-image: url('../../assets/contentbg2.jpg');
   background-repeat: repeat;
   background-size: contain;
   background-position: top;
@@ -17,14 +16,7 @@
     height: 15vh;
     background-size: cover;
     background-position: center;
-    // background-attachment: fixed;
-    // justify-content: center;
-    // background-color: red;
     color: var(--gold_light);
-    // border-radius: 0 0 50px 50px;
-    // box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 20px;
-    // position: sticky;
-    // top: 0;
   }
   .titleOfTaqrir {
     color: var(--primary);
@@ -33,27 +25,19 @@
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
-
-    // width: 77%;
     text-align: right;
   }
   .content {
     margin: 20px;
     margin-top: 10px;
-    // border-radius: 20px;
     width: 80%;
-    // height: 80px;
-    // background-color: var(--primary);
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
     color: rgb(47, 47, 47);
-    // border: 1px solid var(--primary);
-    // border-radius: 100px;
     font-family: "Amiri";
     line-height: 2.5;
-
     transition: 0.3s ease-in-out;
     padding: 0 20px;
     p {
