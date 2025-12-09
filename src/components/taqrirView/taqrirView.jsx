@@ -151,9 +151,7 @@ export default function TaqrirView() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             style={{
-              // width: '100%',
               padding: "10px 20px",
-              // borderRadius: '30px',
               border: "1px solid var(--primary)",
               borderTop: "none",
               borderLeft: "none",

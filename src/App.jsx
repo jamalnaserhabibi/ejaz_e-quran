@@ -5,7 +5,6 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import ScrollToTop from "./components/scrolltop";
-// import Quran from "./components/Quran/Quran";
 import TaqrirList from "./components/taqrirList/taqrirList";
 import Comming from "./components/comming_sooon/comming";
 import TaqrirView from "./components/taqrirView/taqrirView";
