@@ -17,8 +17,8 @@ export default function NavBar() {
   const { t, i18n } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const [hidenav, sethidenav] = useState("navbar");
-  const [dropdownOpen1, setDropdownOpen1] = useState(false); // State for first dropdown
-  const [dropdownOpen2, setDropdownOpen2] = useState(false); // State for second dropdown
+  const [dropdownOpen1, setDropdownOpen1] = useState(false); 
+  const [dropdownOpen2, setDropdownOpen2] = useState(false); 
 
   const scrollTop = () => {
     if (window.scrollY >= 20) {
