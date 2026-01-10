@@ -276,10 +276,10 @@ export default function App() {
                   info@ejazquran.com
                 </p>
                 <p>
-                  <MDBIcon icon="phone" className="me-3" /> +93786351344
+                  <MDBIcon icon="phone" className="me-3" /> 93786351344 <strong>+</strong>
                 </p>
                 <p>
-                  <MDBIcon icon="phone" className="me-3" /> +93793923333
+                  <MDBIcon icon="phone" className="me-3" /> 93793923333 <strong>+</strong>
                 </p>
               </div>
             </MDBCol>
