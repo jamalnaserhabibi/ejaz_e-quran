@@ -276,10 +276,10 @@ export default function App() {
                   info@ejazquran.com
                 </p>
                 <p>
-                  <MDBIcon icon="phone" className="me-3" /> +93786351344
+                  <MDBIcon icon="phone" className="me-3" /> 93786351344+
                 </p>
                 <p>
-                  <MDBIcon icon="phone" className="me-3" /> +93793923333
+                  <MDBIcon icon="phone" className="me-3" /> 93793923333+
                 </p>
               </div>
             </MDBCol>
@@ -293,7 +293,7 @@ export default function App() {
         className="text-center p-3"
         style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}
       >
-        <span>© 2025 Copyright:</span>{" "}
+        <span>© 2026 Copyright:</span>{" "}
         <a style={{ textDecoration: "none" }} className="text-white" href="/">
           Ejaz-e-Quran
         </a>

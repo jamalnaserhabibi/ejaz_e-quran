@@ -8,8 +8,8 @@ import axios from "axios";
 export default function TaqrirView() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
-  const tafsirId = queryParams.get("index"); // The main tafsir ID from URL
-  const itemId = queryParams.get("itemId"); // The specific tafsir item ID
+  const tafsirId = queryParams.get("index"); 
+  const itemId = queryParams.get("itemId"); 
   const itemtitle = queryParams.get("itemtitle") || "عنوان نامشخص";
 
   const wordsPerPage = 500;
@@ -203,8 +203,36 @@ export default function TaqrirView() {
       </div>
 
       <div className="content">
-        <img src={samplepic} style={{width:"100%", height:"50vh", objectFit:'cover', borderRadius:"50px",padding:"10px 0"}} alt="" />
-        <p>{highlightText(textChunks[currentPage] || "", searchQuery)}</p>
+       
+        {/* <img src={samplepic} style={{width:"100%", height:"50vh", objectFit:'cover', borderRadius:"50px",padding:"10px 0"}} alt="" /> */}
+      
+{currentPage === 0 && (
+  <>
+ 
+    <img
+      src={samplepic}
+      style={{
+        width: "100%",
+        height: "50vh",
+        objectFit: "cover",
+        borderRadius: "50px",
+        padding: "20px 0",
+      }}
+      alt=""
+    />
+     <div style={{textAlign:"center"}} className="headofcontent titleOfTaqrir">
+          <h3 >َاعُوذُ بِاللهِ مِنَ الشَّیْطَانِ الرَّجِیْم </h3>
+          <h3 >بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِیمٌ </h3>
+           
+          <h4 className="mt-4">اَللَّهُمَّ صَلِّ وَ سَلِّمْ وَ بَارِكْ عَلَى سَيِّدِنَا مُحَمَّدٍ وَ آلِهِ وَ اَصْحَابِهِ بِعَدَدِ كَلِمَاتِكَ</h4>
+        </div>
+  </>
+)}
+
+<p>{highlightText(textChunks[currentPage] || "", searchQuery)}</p>
+ 
+  {/* <p>{highlightText(textChunks[currentPage] || "", searchQuery)}</p> */}
+      
       </div>
 
       {content && (
@@ -237,20 +265,22 @@ export default function TaqrirView() {
           </select>
 
           <button
-            onClick={() => setCurrentPage(currentPage + 1)}
-            disabled={currentPage === totalPages - 1}
-            style={{
-              padding: "10px 15px",
-              borderRadius: "5px",
-              border: "none",
-              cursor: "pointer",
-              color: "white",
-              appearance: "none",
-              backgroundColor: "#9a6121",
-            }}
-          >
-            بعدی
-          </button>
+onClick={() => setCurrentPage(currentPage + 1)}
+disabled={currentPage === totalPages - 1}
+style={{
+padding: "10px 15px",
+borderRadius: "5px",
+border: "none",
+cursor:
+currentPage === totalPages - 1 ? "not-allowed" : "pointer",
+color: "white",
+backgroundColor:
+currentPage === totalPages - 1 ? "lightgray" : "#9a6121",
+opacity: currentPage === totalPages - 1 ? 0.6 : 1,
+}}
+>
+بعدی
+</button>
         </div>
       )}
     </div>
