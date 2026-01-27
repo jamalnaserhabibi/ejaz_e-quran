@@ -1,7 +1,7 @@
 import NavBar from "./components/NavBar/NavBar";
 import FirstLoad from "./components/firstload";
 import '@fortawesome/fontawesome-free/css/all.min.css';
-
+import GoogleAnalytics from './components/GoogleAnalytics';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import ScrollToTop from "./components/scrolltop";
@@ -27,6 +27,7 @@ export default function App() {
       <ScrollToTop />
         <NavBar />
         <Routes>
+            <GoogleAnalytics />
           <Route path="/" element={<FirstLoad />} />
           {/* <Route path="/quran" element={<Quran />} /> */}
           <Route path="/taqrirList" element={<TaqrirList />} />
