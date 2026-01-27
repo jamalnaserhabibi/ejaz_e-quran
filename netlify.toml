@@ -1,4 +1,16 @@
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+[build]
+  publish = "dist"
+  command = "npm run build"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+[context.production.environment]
+  VITE_RECAPTCHA_SITE_KEY = "6LeqhFcsAAAAALUlkI1tMoIGjNuUmCD0IY7zuwmX"
+  VITE_RECAPTCHA_SECRET_KEY = "6LeqhFcsAAAAAEsndK19afUFMwmyeibY58vH_-tH"
+
+[context.deploy-preview.environment]
+  VITE_RECAPTCHA_SITE_KEY = "6LeqhFcsAAAAALUlkI1tMoIGjNuUmCD0IY7zuwmX"
+
+[context.branch-deploy.environment]
+  VITE_RECAPTCHA_SITE_KEY = "6LeqhFcsAAAAALUlkI1tMoIGjNuUmCD0IY7zuwmX"
