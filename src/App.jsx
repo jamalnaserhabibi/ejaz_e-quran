@@ -24,10 +24,10 @@ export default function App() {
   return (
     <>
       <BrowserRouter>
+            <GoogleAnalytics />
       <ScrollToTop />
         <NavBar />
         <Routes>
-            <GoogleAnalytics />
           <Route path="/" element={<FirstLoad />} />
           {/* <Route path="/quran" element={<Quran />} /> */}
           <Route path="/taqrirList" element={<TaqrirList />} />

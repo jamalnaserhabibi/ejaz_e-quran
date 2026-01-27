@@ -110,7 +110,7 @@ useEffect(() => {
         const response = await fetch('https://ejazquran.space/api/v1/resalla-documents');
         if (!response.ok) throw new Error('Failed to fetch documents');
         const data = await response.json();
-        console.log('datadatadata',data)
+      
         setResalla(data);
         // setFilteredDocs(data);
       } catch (err) {
