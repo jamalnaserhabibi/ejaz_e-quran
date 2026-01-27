@@ -7,81 +7,92 @@
   }
 }
 .feedbacks_questions {
-  z-index: 1000;
-  padding-bottom: 40px;
+  position: relative;
+  z-index: 2;
 }
 
 .mainFeedback {
   width: 100%;
-  background: linear-gradient(to top, --primary, rgba(255, 255, 255, 0.082), rgba(255, 255, 255, 0.068));
-  height: 85vh;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  margin-bottom: -35px;
-  padding: 20px 0px;
-}
-.mainFeedback .flowerdiv {
-  padding-top: 140px;
-  overflow: hidden;
+  padding: 40px 0 120px;
   position: relative;
-  top: -120px;
-  display: flex;
-  justify-content: center;
-  align-items: start;
-  height: 100%;
-}
-.mainFeedback .flowerdiv .flowerimg {
-  animation: flowerrotate 17s infinite ease-in-out;
-  margin-bottom: 250px;
-  width: 550px;
-  height: 550px;
-  z-index: -2;
+  overflow: hidden;
+  /* flower background */
+  /* form container */
 }
 .mainFeedback h1 {
   color: var(--primary);
   font-family: "lateef";
-  margin: 20px;
-  margin-right: 40px;
+  margin: 20px 40px;
   font-size: 50px;
-  position: relative;
   text-align: right;
+  position: relative;
 }
 .mainFeedback h1::after {
   content: "";
   position: absolute;
   height: 4px;
-  border-radius: 30px;
   width: 50px;
   background-color: var(--primary);
   bottom: -5px;
   right: 0;
+  border-radius: 30px;
+}
+.mainFeedback .flowerdiv {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+.mainFeedback .flowerdiv .flowerimg {
+  position: absolute;
+  top: 350px;
+  width: 550px;
+  height: 550px;
+  opacity: 0.2;
+  z-index: 1;
+  animation: flowerrotate 17s linear infinite;
 }
 .mainFeedback .formContainer {
   position: relative;
-  top: -540px;
-  width: 100%;
+  z-index: 2;
   display: flex;
   justify-content: center;
-  align-items: center;
-  background: linear-gradient(white, white, rgba(255, 255, 255, 0));
-  padding: 10px;
+  padding: 20px;
 }
 .mainFeedback .formContainer form {
   width: 80%;
+  max-width: 700px;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
 }
 .mainFeedback .formContainer form button {
-  outline: none;
-  width: 100px;
-  color: white;
-  background-color: var(--primary);
-  border-radius: 20px;
+  width: 200px;
+  margin-top: 20px;
   padding: 10px 20px;
   border: none;
+  border-radius: 25px;
+  background-color: var(--primary);
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.mainFeedback .formContainer form button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }
 
+/* mobile */
 @media (max-width: 768px) {
-  .mainFeedback .formContainer {
-    top: -550px;
+  .mainFeedback h1 {
+    font-size: 38px;
+    margin: 15px 20px;
+  }
+  .mainFeedback .flowerdiv .flowerimg {
+    top: 0;
+  }
+  .mainFeedback .formContainer form {
+    width: 95%;
+    padding: 20px;
   }
 }/*# sourceMappingURL=feedback.css.map */

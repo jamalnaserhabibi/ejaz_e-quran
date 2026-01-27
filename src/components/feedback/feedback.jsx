@@ -235,7 +235,7 @@ export default function Feedback() {
 
           {/* reCAPTCHA v3 is invisible - no UI element needed */}
           <div style={{ margin: "20px 0", textAlign: "center" }}>
-            <div style={{ 
+            {/* <div style={{ 
               color: '#666', 
               fontSize: '0.875rem',
               padding: '10px',
@@ -244,7 +244,7 @@ export default function Feedback() {
             }}>
               <i className="fas fa-shield-alt" style={{ marginLeft: '8px' }}></i>
               این فرم توسط reCAPTCHA محافظت می‌شود
-            </div>
+            </div> */}
             
             {!recaptchaLoaded && (
               <div style={{ color: '#ff9800', fontSize: '0.875rem', marginTop: '8px' }}>
@@ -271,15 +271,16 @@ export default function Feedback() {
             type="submit" 
             disabled={loading}
             style={{ 
-              marginTop: '20px',
-              padding: '12px 40px',
-              backgroundColor: loading ? '#cccccc' : '#1976d2',
+              // marginTop: '20px',
+              // padding: '12px 40px',
+              backgroundColor: loading ? '#cccccc' : '#9a6121',
               color: 'white',
               border: 'none',
               borderRadius: '4px',
               cursor: loading ? 'not-allowed' : 'pointer',
               fontSize: '16px',
-              fontWeight: 'bold'
+              fontWeight: 'bold',
+              width:'200px'
             }}
           >
             {loading ? (
@@ -289,7 +290,7 @@ export default function Feedback() {
               </>
             ) : (
               <>
-                <i className="fas fa-paper-plane" style={{ marginLeft: '8px' }}></i>
+                <i className="" style={{ marginLeft: '8px' }}></i>
                 ارسال پیام
               </>
             )}
