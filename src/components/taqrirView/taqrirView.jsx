@@ -22,6 +22,12 @@ export default function TaqrirView() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const [auzubillah, setAuzubillah] = useState("");
+const [bismillah, setBismillah] = useState("");
+const [duroodSharif, setDuroodSharif] = useState("");
+const [tafsirImage, setTafsirImage] = useState("");
+
+
   // Fetch content based on the IDs
   useEffect(() => {
     const fetchContent = async () => {
@@ -40,9 +46,14 @@ export default function TaqrirView() {
 
         if (response.data.status === "success") {
           const tafsirItem = response.data.data;
-          if (tafsirItem && tafsirItem.content) {
-            setContent(tafsirItem.content);
-          } else {
+              
+         if (tafsirItem) {
+  setContent(tafsirItem.content || "");
+  setAuzubillah(tafsirItem.auzubillah_text || "");
+  setBismillah(tafsirItem.bismillah_text || "");
+  setDuroodSharif(tafsirItem.durood_sharif_text || "");
+  setTafsirImage(tafsirItem.tafir_image || "");
+} else {
             setError("محتوا یافت نشد");
           }
         } else {
@@ -213,29 +224,43 @@ const highlightHtml = (html, query) => {
 {currentPage === 0 && (
   <>
  
-    <img
-      src={samplepic}
-      style={{
-        width: "100%",
-        height: "50vh",
-        objectFit: "cover",
-        borderRadius: "50px",
-        padding: "20px 0",
-      }}
-      alt=""
-    />
+   {/* {tafsirImage && (
+  <img
+    src={tafsirImage}
+    style={{
+      width: "100%",
+      height: "50vh",
+      objectFit: "cover",
+      borderRadius: "50px",
+      padding: "20px 0",
+    }}
+    alt=""
+  />
+)} */}
+<img
+  src={samplepic}
+  style={{
+    width: "100%",
+    height: "50vh",
+    objectFit: "cover",
+    borderRadius: "50px",
+    padding: "20px 0",
+  }}
+  alt=""
+/>
+
      <div style={{textAlign:"center"}} className="headofcontent titleOfTaqrir">
-          <h3 >َاعُوذُ بِاللهِ مِنَ الشَّیْطَانِ الرَّجِیْم </h3>
-          <h3 >بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِیمٌ </h3>
+       {auzubillah && <h3>{auzubillah}</h3>}
+          {bismillah && <h3>{bismillah}</h3>}
            
-          <h4 className="mt-4">اَللَّهُمَّ صَلِّ وَ سَلِّمْ وَ بَارِكْ عَلَى سَيِّدِنَا مُحَمَّدٍ وَ آلِهِ وَ اَصْحَابِهِ بِعَدَدِ كَلِمَاتِكَ</h4>
+          {duroodSharif && <h4 className="mt-4">{duroodSharif}</h4>}
         </div>
   </>
 )}
 
 
 
-// render
+ 
 <div
   dangerouslySetInnerHTML={{
     __html: highlightHtml(textChunks[currentPage] || "", searchQuery),
