@@ -106,7 +106,11 @@ export default function TaqrirView() {
       setCurrentPage(searchResults[index].pageIndex);
     }
   };
-
+const highlightHtml = (html, query) => {
+  if (!query) return html;
+  const regex = new RegExp(`(${query})`, "gi");
+  return html.replace(regex, `<span style="background:yellow">$1</span>`);
+};
   const highlightText = (text, query) => {
     if (!query) return text;
     const regex = new RegExp(`(${query})`, "gi");
@@ -229,8 +233,14 @@ export default function TaqrirView() {
   </>
 )}
 
-<p>{highlightText(textChunks[currentPage] || "", searchQuery)}</p>
- 
+
+
+// render
+<div
+  dangerouslySetInnerHTML={{
+    __html: highlightHtml(textChunks[currentPage] || "", searchQuery),
+  }}
+/>
   {/* <p>{highlightText(textChunks[currentPage] || "", searchQuery)}</p> */}
       
       </div>

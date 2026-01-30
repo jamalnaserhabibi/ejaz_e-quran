@@ -108,7 +108,11 @@ const toggleDropdown = async (id) => {
               >
                 <img src={flowercontent} alt="" />
                 <div className="text">
-                  <h5>{item.title}</h5>
+                  <h5
+  dangerouslySetInnerHTML={{
+    __html: item.title,
+  }}
+/>
                 </div>
                 <img
                   style={{ transform: "rotate(180deg)" }}
@@ -127,7 +131,11 @@ const toggleDropdown = async (id) => {
         className="contentchild childdd"
         data-aos="fade-up"
       >
-        <span>{index + 1}. {child.name}</span>
+      <span
+  dangerouslySetInnerHTML={{
+    __html: `${index + 1}. ${child.name}`,
+  }}
+/>
       </Link>
     ))}
   </div>
