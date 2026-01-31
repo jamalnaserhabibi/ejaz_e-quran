@@ -8,8 +8,8 @@ import axios from "axios";
 export default function TaqrirView() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
-  const tafsirId = queryParams.get("index"); 
-  const itemId = queryParams.get("itemId"); 
+  const tafsirId = queryParams.get("index");
+  const itemId = queryParams.get("itemId");
   const itemtitle = queryParams.get("itemtitle") || "عنوان نامشخص";
 
   const wordsPerPage = 500;
@@ -23,13 +23,16 @@ export default function TaqrirView() {
   const [error, setError] = useState(null);
 
   const [auzubillah, setAuzubillah] = useState("");
-const [bismillah, setBismillah] = useState("");
-const [duroodSharif, setDuroodSharif] = useState("");
-const [tafsirImage, setTafsirImage] = useState("");
+  const [bismillah, setBismillah] = useState("");
+  const [duroodSharif, setDuroodSharif] = useState("");
+  const [tafsirImage, setTafsirImage] = useState("");
 
+  const [categoryTafsirs, setCategoryTafsirs] = useState([]);
+  const [nextTafsir, setNextTafsir] = useState(null);
 
   // Fetch content based on the IDs
   useEffect(() => {
+    window.scrollTo(0, 0);
     const fetchContent = async () => {
       try {
         setLoading(true);
@@ -41,19 +44,19 @@ const [tafsirImage, setTafsirImage] = useState("");
 
         const response = await axios.post(
           `https://ejazquran.space/api/v1/tafsir/${itemId}`,
-          { include_content: true }
+          { include_content: true },
         );
 
         if (response.data.status === "success") {
           const tafsirItem = response.data.data;
-              
-         if (tafsirItem) {
-  setContent(tafsirItem.content || "");
-  setAuzubillah(tafsirItem.auzubillah_text || "");
-  setBismillah(tafsirItem.bismillah_text || "");
-  setDuroodSharif(tafsirItem.durood_sharif_text || "");
-  setTafsirImage(tafsirItem.tafir_image || "");
-} else {
+
+          if (tafsirItem) {
+            setContent(tafsirItem.content || "");
+            setAuzubillah(tafsirItem.auzubillah_text || "");
+            setBismillah(tafsirItem.bismillah_text || "");
+            setDuroodSharif(tafsirItem.durood_sharif_text || "");
+            setTafsirImage(tafsirItem.tafir_image || "");
+          } else {
             setError("محتوا یافت نشد");
           }
         } else {
@@ -75,6 +78,40 @@ const [tafsirImage, setTafsirImage] = useState("");
     }
   }, [itemId]);
 
+  useEffect(() => {
+    const fetchCategoryTafsirs = async () => {
+      if (!tafsirId || !itemId) return;
+
+      try {
+        const res = await axios.get(
+          `https://ejazquran.space/api/v1/category/${tafsirId}`,
+        );
+
+        if (res.data.status === "success") {
+          const tafsirs = res.data.data.tafsirs || [];
+          setCategoryTafsirs(tafsirs);
+
+          const currentIndex = tafsirs.findIndex(
+            (t) => String(t.id) === String(itemId),
+          );
+
+          if (currentIndex !== -1 && currentIndex < tafsirs.length - 1) {
+            setNextTafsir(tafsirs[currentIndex + 1]);
+          } else {
+            setNextTafsir(null);
+          }
+        }
+      } catch (err) {
+        console.error("Failed to fetch category tafsirs", err);
+      }
+    };
+
+    fetchCategoryTafsirs();
+  }, [tafsirId, itemId]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currentPage]);
   // Split content into pages
   const textChunks = content
     ? content
@@ -117,11 +154,11 @@ const [tafsirImage, setTafsirImage] = useState("");
       setCurrentPage(searchResults[index].pageIndex);
     }
   };
-const highlightHtml = (html, query) => {
-  if (!query) return html;
-  const regex = new RegExp(`(${query})`, "gi");
-  return html.replace(regex, `<span style="background:yellow">$1</span>`);
-};
+  const highlightHtml = (html, query) => {
+    if (!query) return html;
+    const regex = new RegExp(`(${query})`, "gi");
+    return html.replace(regex, `<span style="background:yellow">$1</span>`);
+  };
   const highlightText = (text, query) => {
     if (!query) return text;
     const regex = new RegExp(`(${query})`, "gi");
@@ -132,7 +169,7 @@ const highlightHtml = (html, query) => {
         </span>
       ) : (
         part
-      )
+      ),
     );
   };
 
@@ -218,26 +255,24 @@ const highlightHtml = (html, query) => {
       </div>
 
       <div className="content">
-       
         {/* <img src={samplepic} style={{width:"100%", height:"50vh", objectFit:'cover', borderRadius:"50px",padding:"10px 0"}} alt="" /> */}
-      
-{currentPage === 0 && (
-  <>
- 
-   {/* {tafsirImage && (
-  <img
-    src={tafsirImage}
-    style={{
-      width: "100%",
-      height: "50vh",
-      objectFit: "cover",
-      borderRadius: "50px",
-      padding: "20px 0",
-    }}
-    alt=""
-  />
-)} */}
-<img
+
+        {currentPage === 0 && (
+          <>
+            {tafsirImage && (
+              <img
+                src={tafsirImage}
+                style={{
+                  width: "100%",
+                  height: "50vh",
+                  objectFit: "cover",
+                  borderRadius: "50px",
+                  padding: "20px 0",
+                }}
+                alt=""
+              />
+            )}
+            {/* <img
   src={samplepic}
   style={{
     width: "100%",
@@ -247,33 +282,34 @@ const highlightHtml = (html, query) => {
     padding: "20px 0",
   }}
   alt=""
-/>
+/> */}
 
-     <div style={{textAlign:"center"}} className="headofcontent titleOfTaqrir">
-       {auzubillah && <h3>{auzubillah}</h3>}
-          {bismillah && <h3>{bismillah}</h3>}
-           
-          {duroodSharif && <h4 className="mt-4">{duroodSharif}</h4>}
-        </div>
-  </>
-)}
+            <div
+              style={{ textAlign: "center" }}
+              className="headofcontent titleOfTaqrir"
+            >
+              {auzubillah && <h3>{auzubillah}</h3>}
+              {bismillah && <h3>{bismillah}</h3>}
 
+              {duroodSharif && <h4 className="mt-4">{duroodSharif}</h4>}
+            </div>
+          </>
+        )}
 
-
- 
-<div
-  dangerouslySetInnerHTML={{
-    __html: highlightHtml(textChunks[currentPage] || "", searchQuery),
-  }}
-/>
-  {/* <p>{highlightText(textChunks[currentPage] || "", searchQuery)}</p> */}
-      
+        <div
+          dangerouslySetInnerHTML={{
+            __html: highlightHtml(textChunks[currentPage] || "", searchQuery),
+          }}
+        />
+        {/* <p>{highlightText(textChunks[currentPage] || "", searchQuery)}</p> */}
       </div>
 
       {content && (
         <div className="pagination-controls">
           <button
-            onClick={() => setCurrentPage(currentPage - 1)}
+            onClick={() => {
+              setCurrentPage(currentPage - 1);
+            }}
             disabled={currentPage === 0}
             style={{
               padding: "10px 15px",
@@ -300,24 +336,51 @@ const highlightHtml = (html, query) => {
           </select>
 
           <button
-onClick={() => setCurrentPage(currentPage + 1)}
-disabled={currentPage === totalPages - 1}
-style={{
-padding: "10px 15px",
-borderRadius: "5px",
-border: "none",
-cursor:
-currentPage === totalPages - 1 ? "not-allowed" : "pointer",
-color: "white",
-backgroundColor:
-currentPage === totalPages - 1 ? "lightgray" : "#9a6121",
-opacity: currentPage === totalPages - 1 ? 0.6 : 1,
-}}
->
-بعدی
-</button>
+            onClick={() => {
+              setCurrentPage(currentPage + 1);
+            }}
+            disabled={currentPage === totalPages - 1}
+            style={{
+              padding: "10px 15px",
+              borderRadius: "5px",
+              border: "none",
+              cursor:
+                currentPage === totalPages - 1 ? "not-allowed" : "pointer",
+              color: "white",
+              backgroundColor:
+                currentPage === totalPages - 1 ? "lightgray" : "#9a6121",
+              opacity: currentPage === totalPages - 1 ? 0.6 : 1,
+            }}
+          >
+            بعدی
+          </button>
         </div>
+        
       )}
+
+
+      {currentPage === totalPages - 1 && nextTafsir && (
+  <div style={{ textAlign: "center", marginTop: "30px" }}>
+    <button
+      onClick={() =>
+        window.location.href = `/taqrirView?index=${tafsirId}&itemId=${nextTafsir.id}&itemtitle=${nextTafsir.name}`
+      }
+      style={{
+       padding: "10px 15px",
+        backgroundColor: "#9a6121",
+        color: "white",
+        border: "none",
+        borderRadius: "30px",
+        fontSize: "16px",
+        cursor: "pointer",
+        marginBottom: "5px",
+      }}
+    >
+      بخش بعدی 
+    </button>
+  </div>
+)}
+
     </div>
   );
 }
