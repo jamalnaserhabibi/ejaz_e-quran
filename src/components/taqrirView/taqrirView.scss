@@ -22,10 +22,14 @@
     color: var(--primary);
   }
   .titleoftaqrir{
+    width: 100%;
     display: flex;
     flex-direction: row-reverse;
-    justify-content: space-between;
-    text-align: right;
+    justify-content: space-around;
+    text-align: center;
+    gap: 20px;
+    // border: 1px solid red;
+
   }
   .content {
     margin: 20px;
@@ -80,9 +84,12 @@
     }
   }
 }
-@media (min-width: 560px) {
-  .main {
+@media (max-width: 560px) {
+ .taqrirView{
+  .titleoftaqrir{
+    flex-direction: column;
   }
+ }
 }
 
 

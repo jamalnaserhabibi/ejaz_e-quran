@@ -12,8 +12,6 @@ export default function TaqrirView() {
   const itemId = queryParams.get("itemId");
   const itemtitle = queryParams.get("itemtitle") || "عنوان نامشخص";
 
-  const wordsPerPage = 500;
-
   const [currentPage, setCurrentPage] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
@@ -113,18 +111,10 @@ export default function TaqrirView() {
     window.scrollTo(0, 0);
   }, [currentPage]);
   // Split content into pages
+  // Split content by visible wildcard $$$
   const textChunks = content
-    ? content
-        .split(/\s+/)
-        .reduce((acc, word, index) => {
-          const chunkIndex = Math.floor(index / wordsPerPage);
-          if (!acc[chunkIndex]) acc[chunkIndex] = [];
-          acc[chunkIndex].push(word);
-          return acc;
-        }, [])
-        .map((chunk) => chunk.join(" "))
+    ? content.split("$$$").filter((p) => p.trim() !== "")
     : [];
-
   const totalPages = textChunks.length;
 
   // Search functionality
@@ -355,32 +345,29 @@ export default function TaqrirView() {
             بعدی
           </button>
         </div>
-        
       )}
 
-
       {currentPage === totalPages - 1 && nextTafsir && (
-  <div style={{ textAlign: "center", marginTop: "30px" }}>
-    <button
-      onClick={() =>
-        window.location.href = `/taqrirView?index=${tafsirId}&itemId=${nextTafsir.id}&itemtitle=${nextTafsir.name}`
-      }
-      style={{
-       padding: "10px 15px",
-        backgroundColor: "#9a6121",
-        color: "white",
-        border: "none",
-        borderRadius: "30px",
-        fontSize: "16px",
-        cursor: "pointer",
-        marginBottom: "5px",
-      }}
-    >
-      بخش بعدی 
-    </button>
-  </div>
-)}
-
+        <div style={{ textAlign: "center", marginTop: "30px" }}>
+          <button
+            onClick={() =>
+              (window.location.href = `/taqrirView?index=${tafsirId}&itemId=${nextTafsir.id}&itemtitle=${nextTafsir.name}`)
+            }
+            style={{
+              padding: "10px 15px",
+              backgroundColor: "#9a6121",
+              color: "white",
+              border: "none",
+              borderRadius: "30px",
+              fontSize: "16px",
+              cursor: "pointer",
+              marginBottom: "5px",
+            }}
+          >
+            بخش بعدی
+          </button>
+        </div>
+      )}
     </div>
   );
 }
