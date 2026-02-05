@@ -62,6 +62,145 @@
         font-size: 20px;
       }
     }
+  
+      table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-family: 'Segoe UI', 'Tahoma', 'Arial', sans-serif;
+    font-size: 14px;
+    // background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    // min-width: 400px;
+    
+    // Remove old borders
+    border: none !important;
+    
+    // Header styling
+    thead {
+      tr {
+        background: linear-gradient(135deg, #ffe600 0%, #c51906 100%);
+        
+        th {
+          color: white;
+          font-weight: 600;
+          text-align: right;
+          padding: 18px 20px;
+          font-size: 15px;
+          border-bottom: 3px solid #2d4365;
+          position: relative;
+          
+          &:first-child {
+            border-top-right-radius: 10px;
+          }
+          
+          &:last-child {
+            border-top-left-radius: 10px;
+          }
+          
+          // Add subtle shadow to text for better readability
+          text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+      }
+    }
+    
+    // Body styling
+    tbody {
+      tr {
+        transition: all 0.2s ease;
+        
+        &:nth-child(even) {
+          background-color: #f8fafc;
+        }
+        
+        &:nth-child(odd) {
+          background-color: white;
+        }
+        
+        &:hover {
+          background-color: #edf2f7;
+          transform: translateY(-1px);
+          box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        &:last-child {
+          td {
+            &:first-child {
+              border-bottom-right-radius: 10px;
+            }
+            
+            &:last-child {
+              border-bottom-left-radius: 10px;
+            }
+          }
+        }
+        
+        td {
+          padding: 16px 20px;
+          text-align: right;
+          border-bottom: 1px solid #e2e8f0;
+          line-height: 1.6;
+          color: #2d3748;
+          font-size: 14px;
+          
+          // First column (شماره) styling
+          &:first-child {
+            font-weight: 600;
+            color: #4a6fa5;
+            // width: 80px;
+            text-align: center;
+          }
+          
+          // Second column (اسم کتاب) styling
+          &:nth-child(2) {
+            font-weight: 500;
+            color: #2d3748;
+            
+            p {
+              margin: 0;
+              padding: 0;
+            }
+            
+            strong {
+              color: #2d3748;
+              font-weight: 600;
+            }
+          }
+          
+          // Third column (نویسنده) styling
+          &:last-child {
+            color: #4a5568;
+            font-weight: 500;
+            
+            strong {
+              color: #4a5568;
+              font-weight: 600;
+            }
+          }
+        }
+      }
+    }
+    
+    // Remove bottom border from last row
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+    
+    
+    
+    // Responsive adjustments
+    @media (max-width: 768px) {
+      font-size: 13px;
+      
+      thead tr th,
+      tbody tr td {
+        padding: 12px 15px;
+      }
+    }
+  }
+
+
   }
 }
 @media (max-width: 768px) {

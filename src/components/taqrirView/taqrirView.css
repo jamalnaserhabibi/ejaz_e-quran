@@ -62,6 +62,101 @@
 .taqrirView .content .info h3 {
   font-size: 20px;
 }
+.taqrirView .content table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-family: "Segoe UI", "Tahoma", "Arial", sans-serif;
+  font-size: 14px;
+  border-radius: 10px;
+  overflow: hidden;
+  min-width: 400px;
+  border: none !important;
+}
+.taqrirView .content table thead tr {
+  background: linear-gradient(135deg, #ffe600 0%, #c51906 100%);
+}
+.taqrirView .content table thead tr th {
+  color: white;
+  font-weight: 600;
+  text-align: right;
+  padding: 18px 20px;
+  font-size: 15px;
+  border-bottom: 3px solid #2d4365;
+  position: relative;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+.taqrirView .content table thead tr th:first-child {
+  border-top-right-radius: 10px;
+}
+.taqrirView .content table thead tr th:last-child {
+  border-top-left-radius: 10px;
+}
+.taqrirView .content table tbody tr {
+  transition: all 0.2s ease;
+}
+.taqrirView .content table tbody tr:nth-child(even) {
+  background-color: #f8fafc;
+}
+.taqrirView .content table tbody tr:nth-child(odd) {
+  background-color: white;
+}
+.taqrirView .content table tbody tr:hover {
+  background-color: #edf2f7;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+}
+.taqrirView .content table tbody tr:last-child td:first-child {
+  border-bottom-right-radius: 10px;
+}
+.taqrirView .content table tbody tr:last-child td:last-child {
+  border-bottom-left-radius: 10px;
+}
+.taqrirView .content table tbody tr td {
+  padding: 16px 20px;
+  text-align: right;
+  border-bottom: 1px solid #e2e8f0;
+  line-height: 1.6;
+  color: #2d3748;
+  font-size: 14px;
+}
+.taqrirView .content table tbody tr td:first-child {
+  font-weight: 600;
+  color: #4a6fa5;
+  text-align: center;
+}
+.taqrirView .content table tbody tr td:nth-child(2) {
+  font-weight: 500;
+  color: #2d3748;
+}
+.taqrirView .content table tbody tr td:nth-child(2) p {
+  margin: 0;
+  padding: 0;
+}
+.taqrirView .content table tbody tr td:nth-child(2) strong {
+  color: #2d3748;
+  font-weight: 600;
+}
+.taqrirView .content table tbody tr td:last-child {
+  color: #4a5568;
+  font-weight: 500;
+}
+.taqrirView .content table tbody tr td:last-child strong {
+  color: #4a5568;
+  font-weight: 600;
+}
+.taqrirView .content table tbody tr:last-child td {
+  border-bottom: none;
+}
+@media (max-width: 768px) {
+  .taqrirView .content table {
+    font-size: 13px;
+  }
+  .taqrirView .content table thead tr th,
+  .taqrirView .content table tbody tr td {
+    padding: 12px 15px;
+  }
+}
 
 @media (max-width: 768px) {
   .taqrirView .main {
