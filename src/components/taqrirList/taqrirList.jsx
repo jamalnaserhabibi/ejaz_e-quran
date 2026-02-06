@@ -125,18 +125,20 @@ const toggleDropdown = async (id) => {
               {openDropdowns[item.id] && (
   <div className="child-dropdown">
     {childrenData[item.id]?.map((child,index) => (
-      <Link
-        key={child.id}
-        to={`/taqrirView?index=${item.id}&itemId=${child.id}&itemtitle=${child.name}`}
-        className="contentchild childdd"
-        data-aos="fade-up"
-      >
-      <span
-  dangerouslySetInnerHTML={{
-    __html: `${index + 1}. ${child.name}`,
-  }}
-/>
-      </Link>
+ // inside child dropdown map
+<Link
+  to={`/taqrir/${item.id}/${child.id}`}
+  className="contentchild childdd"
+  data-aos="fade-up"
+>
+
+  <span
+    dangerouslySetInnerHTML={{
+      __html: `${child.name}`,
+    }}
+  />
+</Link>
+
     ))}
   </div>
 )}

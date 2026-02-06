@@ -1,3 +1,4 @@
+
 .taqrirView {
   width: 100%;
   font-family: "Lalezar";
@@ -19,6 +20,13 @@
     color: var(--gold_light);
   }
   .titleOfTaqrir {
+     
+    .search-container{
+        border: 1px solid red;
+
+      input{
+      }
+    }
     color: var(--primary);
   }
   .titleoftaqrir{
@@ -229,6 +237,29 @@
     flex-direction: column;
   }
  }
+}
+.pagination-controls {
+
+  button {
+    padding: 10px 15px;
+    background-color: #9a6121;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    font-family: "Lalezar";
+
+    &:disabled {
+      background-color: lightgray;
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+
+    &:hover:not(:disabled) {
+      background-color: #7f4f1b;
+    }
+  }
 }
 
 

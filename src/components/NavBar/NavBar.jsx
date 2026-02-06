@@ -93,7 +93,8 @@ export default function NavBar() {
                 >
                   {t("halmoama")}
                 </NavDropdown.Item>
-                <NavDropdown.Item
+
+                {/* <NavDropdown.Item
                   as={Link}
                   to="comming"
                   // to="/taqrirList?identifier=mesdaqHadith"
@@ -101,7 +102,8 @@ export default function NavBar() {
                   onClick={handleNavLinkClick}
                 >
                   {t("mesdaq")}
-                </NavDropdown.Item>
+                </NavDropdown.Item> */}
+
                 <NavDropdown.Item
                   as={Link}
                   to="comming"
