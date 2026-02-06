@@ -42,7 +42,7 @@
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.05));
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.05));
 }
 .nav_main .navButton {
   display: flex;

@@ -30,8 +30,8 @@ export default function Home() {
     <>
       <div className="mainContainer">
         <div
-         style={{
-  backgroundImage: `
+          style={{
+            backgroundImage: `
     linear-gradient(
       to bottom,
       rgba(0,0,0,0.35),
@@ -39,8 +39,8 @@ export default function Home() {
       rgba(0,0,0,0.05)
     ),
     url(${bg})
-  `
-}}
+  `,
+          }}
           className="main"
         >
           <div className="homeText">
