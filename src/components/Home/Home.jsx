@@ -1,5 +1,5 @@
 import "./Home.css";
-import bg from "../../assets/c.jpg";
+import bg from "../../assets/background.jpg";
 // import besm from "../../assets/besmgreen.png";
 import line from "../../assets/linegreen.png";
 import Carousel from "react-bootstrap/Carousel";

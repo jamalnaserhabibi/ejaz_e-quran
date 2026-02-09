@@ -41,7 +41,7 @@
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  color: rgb(47, 47, 47);
+  color: #ff0303;
   font-family: "Amiri";
   line-height: 1.5;
   transition: 0.3s ease-in-out;
