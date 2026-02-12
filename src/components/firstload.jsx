@@ -10,7 +10,7 @@ export default function FirstLoads() {
     <>
       <Home />
       <Topics_card/>
-      <Hadithroz/>
+      {/* <Hadithroz/> */}
       <Books/>
       <Feedback/>
       {/* <Sampl/> */}

@@ -35,13 +35,12 @@ const [title, setTitle] = useState("");
     const fetchContent = async () => {
       try {
         setLoading(true);
-
         const res = await axios.post(
           `https://ejazquran.space/api/v1/tafsir/${itemId}`,
           { include_content: true }
         );
-
         if (res.data.status === "success") {
+          
           const t = res.data.data;
           setTitle(t.name || t.title || "");
           setContent(t.content || "");
@@ -49,6 +48,7 @@ const [title, setTitle] = useState("");
           setBismillah(t.bismillah_text || "");
           setDuroodSharif(t.durood_sharif_text || "");
           setTafsirImage(t.tafir_image || "");
+          console.log(t);
         } else {
           setError("محتوا یافت نشد");
         }
@@ -133,6 +133,7 @@ useEffect(() => {
         <div className="search-container">
           <input
           style={{
+            
             width: "250px",
         padding: "10px 20px",
         border: "none",

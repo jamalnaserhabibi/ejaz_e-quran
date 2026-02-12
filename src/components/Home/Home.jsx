@@ -1,14 +1,30 @@
 import "./Home.css";
 import bg from "../../assets/background.jpg";
 // import besm from "../../assets/besmgreen.png";
-import line from "../../assets/linegreen.png";
 import Carousel from "react-bootstrap/Carousel";
 import ToTop from "../toTop/toTop";
 import { useState, useEffect } from "react";
 export default function Home() {
   const [slider, setSlider] = useState([]);
+const [background, setBackground] = useState("");
 
   useEffect(() => {
+
+    const fetchBackground = async () => {
+  try {
+    const response = await fetch("https://ejazquran.space/api/v1/backgrounds");
+    if (!response.ok) throw new Error("Failed to fetch background");
+    const data = await response.json();
+
+    
+    setBackground(data.data[0].bg_image_url);
+ 
+  } catch (err) {}
+};
+
+fetchBackground();
+
+
     const fetchSliders = async () => {
       try {
         const response = await fetch("https://ejazquran.space/api/v1/sliders");
@@ -38,7 +54,9 @@ export default function Home() {
       rgba(0,0,0,0.15),
       rgba(0,0,0,0.05)
     ),
-    url(${bg})
+  url(${background || bg})
+
+
   `,
           }}
           className="main"
