@@ -29,6 +29,37 @@ const [title, setTitle] = useState("");
   const [tafsir_image_height, setTafsir_image_height] = useState("");
 
   const [nextTafsir, setNextTafsir] = useState(null);
+const siteUrl = `https://ejazquran.net/taqrir/${categoryId}/${itemId}`;
+
+const getPlainText = () => {
+  return pages[0]
+    ?.replace(/<[^>]+>/g, "") // remove HTML tags
+    .replace(/&[a-z]+;/g, "") // remove HTML entities like &nbsp;, &zwnj;, &laquo;, etc.
+    .replace(/[﴿﴾]/g, "") // remove Quranic bracket characters
+    .trim() // remove extra whitespace
+    .slice(0, 1200);
+};
+const handleNativeShare = async () => {
+  const shareData = {
+    title: title,
+    text: getPlainText(),
+    url: siteUrl,
+  };
+
+  try {
+    if (navigator.share) {
+      await navigator.share(shareData);
+    } else {
+      // fallback if browser doesn't support it
+      await navigator.clipboard.writeText(
+        `${getPlainText()}\n\n${siteUrl}`
+      );
+      alert("لینک و متن کپی شد ✅");
+    }
+  } catch (err) {
+    console.log("Share cancelled");
+  }
+};
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -162,6 +193,12 @@ useEffect(() => {
 
         {currentPage === 0 && (
           <>
+              <div className="socialLinks">
+  <button className="shareBtn" onClick={handleNativeShare}>
+    اشتراک گذاری
+  </button>
+</div>
+
             {tafsirImage && (
               <img
                 src={tafsirImage}

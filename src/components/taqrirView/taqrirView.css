@@ -47,6 +47,29 @@
   transition: 0.3s ease-in-out;
   padding: 0 20px;
 }
+.taqrirView .content .socialLinks {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+.taqrirView .content .shareBtn {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 50px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+.taqrirView .content .shareBtn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
+}
+.taqrirView .content .shareBtn:active {
+  transform: scale(0.98);
+}
 .taqrirView .content p {
   text-align: justify;
 }
