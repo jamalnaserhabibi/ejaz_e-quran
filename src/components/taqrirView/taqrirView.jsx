@@ -3,7 +3,6 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { FaSearch, FaSpinner } from "react-icons/fa";
 import axios from "axios";
-
 export default function TaqrirView() {
 
  
@@ -26,18 +25,27 @@ const [title, setTitle] = useState("");
   const [bismillah, setBismillah] = useState("");
   const [duroodSharif, setDuroodSharif] = useState("");
   const [tafsirImage, setTafsirImage] = useState("");
-  const [tafsir_image_height, setTafsir_image_height] = useState("");
 
   const [nextTafsir, setNextTafsir] = useState(null);
 const siteUrl = `https://ejazquran.net/taqrir/${categoryId}/${itemId}`;
 
 const getPlainText = () => {
-  return pages[0]
-    ?.replace(/<[^>]+>/g, "") // remove HTML tags
-    .replace(/&[a-z]+;/g, "") // remove HTML entities like &nbsp;, &zwnj;, &laquo;, etc.
-    .replace(/[﴿﴾]/g, "") // remove Quranic bracket characters
-    .trim() // remove extra whitespace
-    .slice(0, 1200);
+  if (!pages[0]) return "";
+  let text = pages[0].replace(/<[^>]+>/g, "");
+  const textarea = document.createElement("textarea");
+  textarea.innerHTML = text;
+  text = textarea.value;
+  text = text.replace(/[﴿﴾]/g, "");
+  text = text.replace(/\s+/g, " ").trim();
+  return text.slice(0, 1000);
+};
+const getShareText = () => {
+  const cleanText = getPlainText();
+
+  return `${cleanText}
+
+برای مطالعه بیشتر کلیک کنید 👇
+${siteUrl}`;
 };
 const handleNativeShare = async () => {
   const shareData = {
@@ -80,7 +88,6 @@ const handleNativeShare = async () => {
           setBismillah(t.bismillah_text || "");
           setDuroodSharif(t.durood_sharif_text || "");
           setTafsirImage(t.tafir_image || "");
-          setTafsir_image_height(t.tafsir_image_height || "50");
           
         } else {
           setError("محتوا یافت نشد");
