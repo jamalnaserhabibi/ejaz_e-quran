@@ -26,6 +26,7 @@ const [title, setTitle] = useState("");
   const [bismillah, setBismillah] = useState("");
   const [duroodSharif, setDuroodSharif] = useState("");
   const [tafsirImage, setTafsirImage] = useState("");
+  const [tafsir_image_height, setTafsir_image_height] = useState("");
 
   const [nextTafsir, setNextTafsir] = useState(null);
 
@@ -48,7 +49,8 @@ const [title, setTitle] = useState("");
           setBismillah(t.bismillah_text || "");
           setDuroodSharif(t.durood_sharif_text || "");
           setTafsirImage(t.tafir_image || "");
-          console.log(t);
+          setTafsir_image_height(t.tafsir_image_height || "50");
+          
         } else {
           setError("محتوا یافت نشد");
         }
@@ -165,7 +167,7 @@ useEffect(() => {
                 src={tafsirImage}
                 style={{
                   width: "100%",
-                  height: "50vh",
+                  // height: tafsir_image_height + "vh",
                   objectFit: "cover",
                   borderRadius: "50px",
                   padding: "20px 0",
