@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
@@ -19,6 +19,7 @@ export default function NavBar() {
   const [hidenav, sethidenav] = useState("navbar");
   const [dropdownOpen1, setDropdownOpen1] = useState(false); 
   const [dropdownOpen2, setDropdownOpen2] = useState(false); 
+  const [aboutSections, setAboutSections] = useState([]);
 
   const scrollTop = () => {
     if (window.scrollY >= 20) {
@@ -44,7 +45,16 @@ export default function NavBar() {
   const isActive = (path) => {
     return location.pathname === path || location.search.includes(path.split("?")[1]);
   };
-
+  useEffect(() => {
+    fetch("https://ejazquran.space/api/v1/about/sections")
+      // https://ejazquran.space/api/v1/about/sections   http://127.0.0.1:8000/api/v1/about/sections
+      
+      .then((res) => res.json())
+      .then((data) => {
+        setAboutSections(data.data);
+      });
+  }, []);
+ 
   return (
     <div className={navmainClass}>
       <Navbar expanded={isOpen} expand="lg" className={`${hidenav} ${isOpen ? "navbar-opened" : ""}`} >
@@ -156,63 +166,95 @@ export default function NavBar() {
               </Nav.Link>
               <span className="line">|</span> */}
 
-    <NavDropdown
-                title={t("about")}
-                id="basic-nav-dropdown-2" // Unique ID for the second dropdown
-                show={dropdownOpen2} // Control visibility for the second dropdown
-                onMouseEnter={() => setDropdownOpen2(true)} // Open on hover
-                onMouseLeave={() => setDropdownOpen2(false)} // Close on hover out
-                className="custom-dropdown"
-              >
-                <NavDropdown.Item
-                  as={Link}
-                  to="/who_we_are"
-                  className={isActive("/taqrirList?identifier=tafsirQuranBelQuran") ? "active" : ""}
-                  onClick={handleNavLinkClick}
+              <NavDropdown
+                  title={t("about")}
+                  id="basic-nav-dropdown-2"
+                  className="custom-dropdown"
                 >
-                  {t("whoWeAre")}
-                </NavDropdown.Item>
-                <NavDropdown.Item
-                  as={Link}
-                  to="/pishina_Tasis"
-                  className={isActive("/taqrirList?identifier=halmoamaHaiQuran") ? "active" : ""}
-                  onClick={handleNavLinkClick}
-                >
-                  {t("establish")}
-                </NavDropdown.Item>
-                <NavDropdown.Item
-                  as={Link}
-                  to="/mission_Vission"
-                  className={isActive("/taqrirList?identifier=mesdaqHadith") ? "active" : ""}
-                  onClick={handleNavLinkClick}
-                >
-                  {t("Mission&Vission")}
-                </NavDropdown.Item>
-                <NavDropdown.Item
-                  as={Link}
-                  to="/values"
-                  className={isActive("/taqrirList?identifier=DrosWaSokhanraniHa") ? "active" : ""}
-                  onClick={handleNavLinkClick}
-                >
-                  {t("values")}
-                </NavDropdown.Item>
-                <NavDropdown.Item
-                  as={Link}
-                  to="/Wojoh_emtiyaz"
-                  className={isActive("/taqrirList?identifier=DrosWaSokhanraniHa") ? "active" : ""}
-                  onClick={handleNavLinkClick}
-                >
-                  {t("ozoEmtiyaz")}
-                </NavDropdown.Item>
-                <NavDropdown.Item
-                  as={Link}
-                  to="/invite_to_action"
-                  className={isActive("/taqrirList?identifier=DrosWaSokhanraniHa") ? "active" : ""}
-                  onClick={handleNavLinkClick}
-                >
-                  {t("invite")}
-                </NavDropdown.Item>
+                  {aboutSections.map((item) => (
+                     <NavDropdown.Item
+                      key={item.id}
+                      as={Link}
+                      to={`/about/${item.id}`}
+                      onClick={handleNavLinkClick}
+                    >
+                      <span
+                        dangerouslySetInnerHTML={{
+                          __html: (item.title)
+                        }}
+                      />
+                  </NavDropdown.Item>
+
+                    // <NavDropdown.Item
+                    //   key={item.id}
+                    //   as={Link}
+                    //   to={`/about/${item.id}`}
+                    //   onClick={handleNavLinkClick}
+                    // >
+                    //   {item.title}
+                    // </NavDropdown.Item>
+                  ))}
+
+                     
               </NavDropdown>
+
+                {/* <NavDropdown
+                    title={t("about")}
+                    id="basic-nav-dropdown-2" // Unique ID for the second dropdown
+                    show={dropdownOpen2} // Control visibility for the second dropdown
+                    onMouseEnter={() => setDropdownOpen2(true)} // Open on hover
+                    onMouseLeave={() => setDropdownOpen2(false)} // Close on hover out
+                    className="custom-dropdown"
+                  >
+                    <NavDropdown.Item
+                      as={Link}
+                      to="/who_we_are"
+                      className={isActive("/taqrirList?identifier=tafsirQuranBelQuran") ? "active" : ""}
+                      onClick={handleNavLinkClick}
+                    >
+                      {t("whoWeAre")}
+                    </NavDropdown.Item>
+                    <NavDropdown.Item
+                      as={Link}
+                      to="/pishina_Tasis"
+                      className={isActive("/taqrirList?identifier=halmoamaHaiQuran") ? "active" : ""}
+                      onClick={handleNavLinkClick}
+                    >
+                      {t("establish")}
+                    </NavDropdown.Item>
+                    <NavDropdown.Item
+                      as={Link}
+                      to="/mission_Vission"
+                      className={isActive("/taqrirList?identifier=mesdaqHadith") ? "active" : ""}
+                      onClick={handleNavLinkClick}
+                    >
+                      {t("Mission&Vission")}
+                    </NavDropdown.Item>
+                    <NavDropdown.Item
+                      as={Link}
+                      to="/values"
+                      className={isActive("/taqrirList?identifier=DrosWaSokhanraniHa") ? "active" : ""}
+                      onClick={handleNavLinkClick}
+                    >
+                      {t("values")}
+                    </NavDropdown.Item>
+                    <NavDropdown.Item
+                      as={Link}
+                      to="/Wojoh_emtiyaz"
+                      className={isActive("/taqrirList?identifier=DrosWaSokhanraniHa") ? "active" : ""}
+                      onClick={handleNavLinkClick}
+                    >
+                      {t("ozoEmtiyaz")}
+                    </NavDropdown.Item>
+                    <NavDropdown.Item
+                      as={Link}
+                      to="/invite_to_action"
+                      className={isActive("/taqrirList?identifier=DrosWaSokhanraniHa") ? "active" : ""}
+                      onClick={handleNavLinkClick}
+                    >
+                      {t("invite")}
+                    </NavDropdown.Item>
+                </NavDropdown> */}
               {/* <div className="lang">
                 <GrLanguage style={{ color: "white", fontSize: "20px" }} />
                 <select onChange={(e) => changeLang(e.target.value)} defaultValue="dari">
