@@ -20,6 +20,7 @@ import Invite_to_action from "./components/about_us/invite_to_action";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import AboutSection from "./components/about_us/AboutSection";
 
 export default function App() {
   return (
@@ -31,7 +32,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<FirstLoad />} />
         <Route path="/taqrirList" element={<TaqrirList />} />
-
+      <Route path="/about/:id" element={<AboutSection />} />
         
        <Route path="/taqrir/:categoryId/:itemId" element={<TaqrirView />} />
 
