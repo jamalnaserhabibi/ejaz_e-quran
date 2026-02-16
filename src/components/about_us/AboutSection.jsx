@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { FaCalculator, FaPenFancy, FaBook, FaSun, FaStar } from 'react-icons/fa';
 import { useParams } from "react-router-dom";
+import "./whoweare.css"; 
 
 export default function AboutSection() {
   const { id } = useParams();
@@ -28,12 +30,11 @@ export default function AboutSection() {
       <div className="main">
         <h3 className="titleOfTaqrir">
             {/* {section.title} */}
-
              <span
-                        dangerouslySetInnerHTML={{
-                          __html: (section.title)
-                        }}
-                      />
+                  dangerouslySetInnerHTML={{
+                    __html: (section.title)
+                  }}
+                />
         </h3>
         <p style={{ whiteSpace: "pre-line" }}>
              <span
@@ -43,6 +44,34 @@ export default function AboutSection() {
                       />
           {/* {section.content} */}
         </p>
+        {section?.section_key   == "who_we_are" && 
+   
+        <div className="content">
+          <div className="features">
+            <div className="feature">
+              <FaCalculator className="icon" />
+              <span>اعجاز عددی</span>
+            </div>
+            <div className="feature">
+              <FaPenFancy className="icon" />
+              <span>حروف و نقوش حروف </span>
+            </div>
+            <div className="feature">
+              <FaBook className="icon" />
+              <span>علوم باطنی</span>
+            </div>
+            <div className="feature">
+              <FaSun className="icon" />
+              <span>علوم لدنی</span>
+            </div>
+            <div className="feature">
+              <FaStar className="icon" />
+              <span>   علوم  اشاری قرآن کریم   </span>
+            </div>
+          </div>
+        </div>
+      
+        }
       </div>
     </div>
   );
