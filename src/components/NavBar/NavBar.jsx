@@ -197,6 +197,7 @@ export default function NavBar() {
 
                      
               </NavDropdown>
+              <span style={{ width: "20px" }}></span>
 
                 {/* <NavDropdown
                     title={t("about")}

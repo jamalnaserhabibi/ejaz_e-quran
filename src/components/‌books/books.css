@@ -1,7 +1,6 @@
 .mainBooks {
   width: 100%;
   background: linear-gradient(to top, rgba(255, 255, 255, 0.824), rgba(26, 255, 0, 0.135), rgba(255, 255, 255, 0.824)), url("../../assets//bookbg.jpg");
-  height: 105vh;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -40,9 +39,11 @@
 .mainBooks .bookContainer .slick-slider {
   width: 90%;
 }
+.mainBooks .bookContainer .slick-slider div {
+  height: 500px;
+}
 .mainBooks .bookContainer .book {
   display: flex;
-  margin-bottom: 10px;
   justify-items: center;
   align-content: center;
   width: 200px;
@@ -53,15 +54,14 @@
   color: white;
 }
 .mainBooks .bookContainer .book .bookCover {
-  width: 400px;
+  width: 300px;
   transition: 0.3s ease-in-out;
 }
 .mainBooks .bookContainer .book .bookCover:hover {
-  width: 415px;
+  width: 320px;
   margin-top: -10px;
 }
 .mainBooks .bookContainer .book h3 {
-  margin-top: -45px;
   color: var(--primary);
   font-size: 25px;
   text-align: center;
@@ -76,10 +76,4 @@
 .mainBooks .slick-prev:before,
 .mainBooks .slick-next:before {
   color: var(--primary);
-}
-
-@media (max-width: 768px) {
-  .mainBooks {
-    height: 80vh;
-  }
 }/*# sourceMappingURL=books.css.map */

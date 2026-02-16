@@ -3,24 +3,24 @@ import "./books.css";
 import "aos/dist/aos.css";
 import dalayel from "../../assets//books/dalayel3d.png";
 import ziwar from "../../assets/books/ziwar3d.png";
-import aqida from "../../assets/books/aqida3d.png"; 
-import hazarhadith from "../../assets/books/hazarhadith3d.png"; 
-import tafsir from "../../assets/books/tafsir3d.png"; 
+import aqida from "../../assets/books/aqida3d.png";
+import hazarhadith from "../../assets/books/hazarhadith3d.png";
+import tafsir from "../../assets/books/tafsir3d.png";
 
 // import "../../assets/dalayel.png";
-import { Link } from 'react-router-dom';
-import { useState ,useEffect} from "react";
+import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 import Aos from "aos";
 // import { ParallaxProvider, Parallax } from "react-scroll-parallax";
 Aos.init();
 
 export default function Book() {
-const [resalla, setResalla] = useState([]);
-  // const books = 
+  const [resalla, setResalla] = useState([]);
+  // const books =
   // [
-  //   { 
-  //     id: 1, 
+  //   {
+  //     id: 1,
   //     title: "عقیده طحاوی",
   //     bimage: aqida,
   //     write: "محمد بن حسن طحاوی",
@@ -31,8 +31,8 @@ const [resalla, setResalla] = useState([]);
   //     numberofvol:1,
   //     vol:1,
   //   },
-  //   { 
-  //     id: 2, 
+  //   {
+  //     id: 2,
   //     title: "هزار حدیث",
   //     bimage: hazarhadith,
   //     write: "...",
@@ -43,8 +43,8 @@ const [resalla, setResalla] = useState([]);
   //     numberofvol:1,
   //     vol:1,
   //   },
-  //   { 
-  //     id: 3, 
+  //   {
+  //     id: 3,
   //     title: "دلایل خیرات",
   //     bimage: dalayel,
   //     write: "...",
@@ -55,8 +55,8 @@ const [resalla, setResalla] = useState([]);
   //     numberofvol:1,
   //     vol:1,
   //   },
-  //   { 
-  //     id: 4, 
+  //   {
+  //     id: 4,
   //     title: "تفسیر کابلی",
   //     bimage: tafsir,
   //     write: "...",
@@ -67,8 +67,8 @@ const [resalla, setResalla] = useState([]);
   //     numberofvol:3,
   //     vol:1,
   //   },
-  //   { 
-  //     id: 5, 
+  //   {
+  //     id: 5,
   //     title: "زیور بهشتی",
   //     bimage: ziwar,
   //     write: "...",
@@ -104,39 +104,47 @@ const [resalla, setResalla] = useState([]);
       },
     ],
   };
-useEffect(() => {
+  useEffect(() => {
     const fetchDocuments = async () => {
       try {
-        const response = await fetch('https://ejazquran.space/api/v1/resalla-documents');
-        if (!response.ok) throw new Error('Failed to fetch documents');
-        const data = await response.json();
-      
-        setResalla(data);
-        // setFilteredDocs(data);
+        const response = await fetch(
+          "https://ejazquran.space/api/v1/resealla/list",
+        );
+
+        if (!response.ok) throw new Error("Failed to fetch documents");
+
+        const result = await response.json();
+
+        if (result.success) {
+          setResalla(result.data);
+        }
       } catch (err) {
-        // setError(err.message);
-      } finally {
-        // setLoading(false);
+        console.error(err);
       }
     };
 
     fetchDocuments();
   }, []);
+
   return (
     <div className="mainBooks" id="mainBooks">
-      <h1 data-aos="fade-up">     رساله ها</h1>
+      <h1 data-aos="fade-up"> رساله ها</h1>
       <div data-aos="fade-up" className="bookContainer">
         <Slider {...settings}>
           {resalla.map((book) => (
             <div key={book.id} className="book">
-          <Link
-          to={`/bookdownload?bookid=${book.id}&booktitle=${book.name}&write=${book.author || "..."}&publish=${book.publisher || "..."}&year=${book.published_year || "..."}&size=${book.size || "..."}&content=${book.description || "..."}&numberofvol=${book.volumes_count || 1}&vol=1`}
-          className="booklink"
-        >
-          <img className="bookCover" src={book.cover_url} alt="" />
-          <h3>{book.name}</h3>
-        </Link>
-              </div>
+              <Link
+                to={`/bookdownload?bookid=${book.id}&booktitle=${book.name}`}
+                className="booklink"
+              >
+                <img
+                  className="bookCover"
+                  src={book.cover_url}
+                  alt={book.name}
+                />
+              <h3>{book.name}</h3>
+              </Link>
+            </div>
           ))}
         </Slider>
       </div>
