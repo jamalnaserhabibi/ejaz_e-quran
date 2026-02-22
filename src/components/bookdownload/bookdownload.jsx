@@ -13,7 +13,6 @@ export default function Bookdownload() {
     numberofvol: queryParams.get("numberofvol") || "1",
     write: queryParams.get("write") || "Unknown Author",
     publish: queryParams.get("publish") || "Unknown Publisher",
-    year: queryParams.get("year") || "Unknown Year",
     size: queryParams.get("size") || "Unknown Size",
     content: queryParams.get("content") || "No description available",
   };
@@ -29,7 +28,6 @@ export default function Bookdownload() {
             <h4>جلد: <span>{bookData.vol}</span></h4>
             <h4>نویسنده: <span>{bookData.write}</span></h4>
             <h4>ناشر: <span>{bookData.publish}</span></h4>
-            <h4>سال انتشار: <span>{bookData.year}</span></h4>
             <h4>سایز: <span>{bookData.size}</span></h4>
             <h4>فارمت: <span>pdf</span></h4>
             <h4>محتوا: <span>{bookData.content}</span></h4>
