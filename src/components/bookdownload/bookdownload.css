@@ -56,7 +56,6 @@
   margin: 20px 0;
   text-decoration: none !important;
   cursor: pointer;
-  transition: 0.1s ease-in-out;
 }
 .bookdownload .content .info span {
   text-decoration: none !important;
@@ -64,6 +63,9 @@
 }
 .bookdownload .content .info h3 {
   font-size: 20px;
+}
+.bookdownload .content .info {
+  transition: 0.1s ease-in-out;
 }
 .bookdownload .content .info:hover {
   opacity: 0.8;

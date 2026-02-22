@@ -40,7 +40,10 @@
   width: 90%;
 }
 .mainBooks .bookContainer .slick-slider div {
-  height: 500px;
+  height: 600px;
+}
+.mainBooks .bookContainer .slick-slider div h3 {
+  width: 100%;
 }
 .mainBooks .bookContainer .book {
   display: flex;

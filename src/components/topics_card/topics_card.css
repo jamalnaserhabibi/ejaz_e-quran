@@ -49,14 +49,10 @@
   overflow: hidden;
   cursor: pointer;
   background: rgba(255, 255, 255, 0.1); /* Glass morphism background */
-  -webkit-backdrop-filter: blur(10px);
-          backdrop-filter: blur(10px); /* Glass morphism effect */
+  backdrop-filter: blur(10px); /* Glass morphism effect */
   border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border */
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Soft shadow */
   transition: all 0.5s ease;
-  /* Gradient Overlay on Hover */
-  /* Hover Effects */
-  /* Glowing Border Effect */
 }
 .topics_card .contents .elements .element-card .icon-wrapper {
   margin-bottom: 20px;
@@ -65,6 +61,9 @@
 .topics_card .contents .elements .element-card .text {
   font-weight: bold;
   transition: color 0.5s ease;
+}
+.topics_card .contents .elements .element-card {
+  /* Gradient Overlay on Hover */
 }
 .topics_card .contents .elements .element-card::before {
   content: "";
@@ -77,6 +76,9 @@
   opacity: 0;
   transition: opacity 0.5s ease;
   z-index: -1;
+}
+.topics_card .contents .elements .element-card {
+  /* Hover Effects */
 }
 .topics_card .contents .elements .element-card:hover {
   transform: translateY(-10px);
@@ -93,6 +95,9 @@
 }
 .topics_card .contents .elements .element-card:hover .icon {
   color: white !important;
+}
+.topics_card .contents .elements .element-card {
+  /* Glowing Border Effect */
 }
 .topics_card .contents .elements .element-card::after {
   content: "";
