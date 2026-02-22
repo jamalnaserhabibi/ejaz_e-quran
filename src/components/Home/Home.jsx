@@ -17,8 +17,8 @@ const [background, setBackground] = useState("");
     const data = await response.json();
 
     
-    setBackground(data.data[0].bg_image_url);
- 
+    
+ setBackground(data.data.bg_image_url);
   } catch (err) {}
 };
 
