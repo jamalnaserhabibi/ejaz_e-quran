@@ -43,7 +43,7 @@ export default function App() {
         <Route path="/wojoh_emtiyaz" element={<Wojoh_emtiyaz />} />
         <Route path="/values" element={<Values />} />
         <Route path="/invite_to_action" element={<Invite_to_action />} />
-        <Route path="/bookdownload" element={<Bookdownload />} />
+       <Route path="/book/:id" element={<Bookdownload />} />
         <Route path="/Comming" element={<Comming />} />
       </Routes>
 
