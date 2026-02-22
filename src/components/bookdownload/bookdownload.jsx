@@ -64,14 +64,14 @@ export default function Bookdownload() {
         </div>
 
         {/* Download Button */}
-       <a
+        <a
   className="info"
   href={book.document_url}
   target="_blank"
   rel="noopener noreferrer"
   download
 >
-  دانلود رساله
+  دانلود کتاب
 </a>
       </div>
     </div>
