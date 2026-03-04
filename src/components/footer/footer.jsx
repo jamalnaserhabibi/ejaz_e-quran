@@ -191,100 +191,70 @@ export default function App() {
           </p>
         </section>
 
-        <section data-aos="fade-up" className="links">
-          <MDBRow className="footerCards mobile-two-column">
-            <MDBCol lg="3" md="6" sm="12" className="mb-4 mb-md-0">
-              <div className="first">
-                <h5 className="text-uppercase  section_titles_footer">
-                  زبان ها
-                </h5>
-                <p>
-                  <a href="#!" className="text-white">
-                    دری
-                  </a>
-                </p>
-                <p>
-                  <a href="#!" className="text-white">
-                    العربية
-                  </a>
-                </p>
-                <p>
-                  <a href="#!" className="text-white">
-                    اردو
-                  </a>
-                </p>
-                <p>
-                  <a href="#!" className="text-white">
-                    انگلیسی
-                  </a>
-                </p>
-              </div>
-            </MDBCol>
-            <MDBCol lg="3" md="6" sm="12" className="mb-4 mb-md-0">
-              <div className="second">
-                <h5 className="text-uppercase section_titles_footer">
-                  کتاب ها
-                </h5>
-                {books.slice(0, 4).map((book) => (
-                  <p key={book.id}>
-                    <a
-                      href={`/bookdownload?bookid=${book.id}&booktitle=${book.title}&write=${book.write}&publish=${book.publish}&year=${book.year}&size=${book.size}&content=${book.content}&numberofvol=${book.numberofvol}&vol=${book.vol}`}
-                      className="text-white"
-                    >
-                      {book.title}
-                    </a>
-                  </p>
-                ))}
-              </div>
-            </MDBCol>
-            <MDBCol lg="3" md="6" sm="12" className="mb-4 mb-md-0">
-              <div className="third">
-                <h5 className="text-uppercase section_titles_footer">
-                  موضوعات
-                </h5>
-
-                <p>
-                  <Link
-                    style={{ textDecoration: "none", color: "white" }}
-                    to="to=/taqrirList?identifier=tafsirQuranBelQuran"
-                  >
-                    تفسیرالقرآن بالقرآن والحدیث
-                  </Link>
-                </p>
-                <p>
-                  <a className="text-white">حل معمای قرآن</a>
-                </p>
-                <p>
-                  <a className="text-white">مصداق احادیث</a>
-                </p>
-                <p>
-                  <a className="text-white">دروس و سخنرانی ها</a>
-                </p>
-              </div>
-            </MDBCol>
-            <MDBCol lg="3" md="6" sm="12" className="mb-4 mb-md-0">
-              <div className="fourth">
-                <h5 className="text-uppercase section_titles_footer">
-                  ارتباطات
-                </h5>
-                <p>
-                  <MDBIcon icon="home" className="me-3" /> ناحیه هفتم شهر کابل
-                  افغانستان
-                </p>
-                <p>
-                  <MDBIcon icon="envelope" className="me-3" />{" "}
-                  info@ejazquran.com
-                </p>
-                <p>
-                  <MDBIcon icon="phone" className="me-3" /> 93786351344+
-                </p>
-                <p>
-                  <MDBIcon icon="phone" className="me-3" /> 93793923333+
-                </p>
-              </div>
-            </MDBCol>
-          </MDBRow>
-        </section>
+     <section data-aos="fade-up" className="links">
+  <MDBRow className="footerCards mobile-two-column">
+    <MDBCol lg="6" md="6" sm="12" className="mb-4 mb-md-0">
+      <div className="third">
+        <h5 className="text-uppercase section_titles_footer">
+          موضوعات
+        </h5>
+        <p>
+          <Link
+            style={{ textDecoration: "none", color: "white" }}
+            to="/taqrirList?identifier=tafsirQuranBelQuran"
+           
+          >
+            تفسیرالقرآن بالقرآن والحدیث
+          </Link>
+        </p>
+        <p>
+           <Link
+            style={{ textDecoration: "none", color: "white" }}
+          to="comming"
+          >
+           حل معمای قرآن
+          </Link>
+       
+        </p>
+        <p>
+             <Link
+            style={{ textDecoration: "none", color: "white" }}
+          to="comming"
+          >مصداق احادیث
+          </Link>
+        </p>
+        <p>
+         <Link
+            style={{ textDecoration: "none", color: "white" }}
+          to="comming"
+          >دروس و سخنرانی ها
+          </Link>
+        </p>
+      </div>
+    </MDBCol>
+    <MDBCol lg="6" md="6" sm="12" className="mb-4 mb-md-0">
+      <div className="fourth">
+        <h5 className="text-uppercase section_titles_footer">
+          ارتباطات
+        </h5>
+        <p>
+          <MDBIcon icon="home" className="me-3" /> ناحیه هفتم شهر کابل
+          افغانستان
+        </p>
+        <p>
+          <MDBIcon icon="envelope" className="me-3" />{" "}
+          info@ejazquran.com
+        </p>
+        <p>
+          <MDBIcon icon="phone" className="me-3" /> 93786351344+
+        </p>
+        <p>
+          <MDBIcon icon="phone" className="me-3" /> 93793923333+
+        </p>
+      </div>
+    </MDBCol>
+  </MDBRow>
+</section>
 
         
       </MDBContainer>
