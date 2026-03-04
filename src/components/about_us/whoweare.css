@@ -1,7 +1,7 @@
 .whoweare {
   padding: 2rem;
   border-radius: 10px;
-  font-family: "Lalezar";
+  font-family: "Amiri", serif;
 }
 .whoweare .main {
   max-width: 1000px;
@@ -11,12 +11,12 @@
   margin-top: 65px;
   color: var(--primary);
   text-align: center;
-  font-size: 35px;
+  font-size: 45px;
   margin-bottom: 1.5rem;
 }
 .whoweare .main .content {
   text-align: justify;
-  font-size: 1.1rem;
+  font-size: 1.9rem;
   font-family: "Amiri";
   margin-top: 20px;
 }
@@ -34,7 +34,6 @@
   flex-wrap: wrap;
   gap: 1.5rem;
   justify-content: center;
-  font-family: "Lalezar";
 }
 .whoweare .main .content .features .feature {
   display: flex;

@@ -1,6 +1,5 @@
 .taqrirView {
   width: 100%;
-  font-family: "Lalezar";
   height: auto;
   display: flex;
   justify-content: center;
@@ -35,7 +34,6 @@
   align-items: center;
   flex-direction: column;
   color: rgb(47, 47, 47);
-  font-family: "Amiri";
   line-height: 2.5;
   transition: 0.3s ease-in-out;
   padding: 0 20px;
