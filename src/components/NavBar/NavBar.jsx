@@ -59,7 +59,7 @@ export default function NavBar() {
     <div className={navmainClass}>
       <Navbar expanded={isOpen} expand="lg" className={`${hidenav} ${isOpen ? "navbar-opened" : ""}`} >
         <Container>
-          <Navbar.Brand className="navLogo" href="#home">
+          <Navbar.Brand className="navLogo" href="/">
             <img src={logo} alt="" />
           </Navbar.Brand>
           <Hamburger toggled={isOpen} toggle={setIsOpen} />
@@ -141,7 +141,7 @@ export default function NavBar() {
                 className={`nav-link ${isActive("/taqrirList?identifier=about") ? "active" : ""}`}
               >
 
-                مصداق حدیث شریف
+                مصداق احادیث شریف
               </HashLink>
               <span className="line">|</span>
               <HashLink

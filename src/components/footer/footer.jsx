@@ -15,73 +15,7 @@ import { Link } from "react-router-dom";
 
 AOS.init();
 export default function App() {
-  const books = [
-    {
-      id: 1,
-      title: "عقیده طحاوی",
-      // bimage: aqida,
-      write: "محمد بن حسن طحاوی",
-      publish: "ناشر",
-      year: "سال انتشار",
-      size: "سایز کتاب",
-      content:
-        " محتویات در مورد کتاب عقیده طحاوی محتویات در مورد کتاب عقیده طحاوی محتویات در مورد کتاب عقیده طحاوی محتویات در مورد کتاب عقیده طحاوی",
-      numberofvol: 1,
-      vol: 1,
-    },
-    {
-      id: 2,
-      title: "هزار حدیث",
-      // bimage: hazarhadith,
-      write: "...",
-      publish: "احمد",
-      year: "1401",
-      size: "2.3 MB",
-      content:
-        " محتویات در مورد کتاب هزار حدیث محتویات در مورد کتاب هزار حدیث محتویات در مورد کتاب هزار حدیث محتویات در مورد کتاب هزار حدیث",
-      numberofvol: 1,
-      vol: 1,
-    },
-    {
-      id: 3,
-      title: "دلایل خیرات",
-      // bimage: dalayel,
-      write: "...",
-      publish: "احمد",
-      year: "1401",
-      size: "1.3 MB",
-      content:
-        " محتویات در مورد کتاب دلایل خیرات محتویات در مورد کتاب دلایل خیرات محتویات در مورد کتاب دلایل خیرات محتویات در مورد کتاب دلایل خیرات",
-      numberofvol: 1,
-      vol: 1,
-    },
-    {
-      id: 4,
-      title: "تفسیر کابلی",
-      // bimage: tafsir,
-      write: "...",
-      publish: "احمد",
-      year: "1401",
-      size: "4.3 MB",
-      content:
-        " محتویات در مورد کتابتفسیر کابلی محتویات در مورد کتابتفسیر کابلی محتویات در مورد کتابتفسیر کابلی محتویات در مورد کتاب تفسیر کابلی",
-      numberofvol: 3,
-      vol: 1,
-    },
-    {
-      id: 5,
-      title: "زیور بهشتی",
-      // bimage: ziwar,
-      write: "...",
-      publish: "احمد",
-      year: "1401",
-      size: "5.3 MB",
-      content:
-        " محتویات در مورد کتاب  زیور بهشتی محتویات در مورد کتاب زیور بهشتی محتویات در مورد کتاب زیور بهشتی محتویات در مورد کتاب  زیور بهشتی",
-      numberofvol: 4,
-      vol: 1,
-    },
-  ];
+  
 
   return (
     <MDBFooter className="footerClass text-center">
@@ -212,7 +146,7 @@ export default function App() {
             style={{ textDecoration: "none", color: "white" }}
           to="comming"
           >
-           حل معمای قرآن
+          حل معما های قرآنکریم
           </Link>
        
         </p>
