@@ -172,18 +172,14 @@ export default function NavBar() {
                   className="custom-dropdown"
                 >
                   {aboutSections.map((item) => (
-                     <NavDropdown.Item
+                    <NavDropdown.Item
                       key={item.id}
                       as={Link}
                       to={`/about/${item.id}`}
                       onClick={handleNavLinkClick}
                     >
-                      <span
-                        dangerouslySetInnerHTML={{
-                          __html: (item.title)
-                        }}
-                      />
-                  </NavDropdown.Item>
+                      {item.title.replace(/<\/?[^>]+(>|$)/g, "")}
+                    </NavDropdown.Item>
 
                     // <NavDropdown.Item
                     //   key={item.id}
