@@ -19,19 +19,21 @@ export default function HadithRoz() {
       text:  t("halmoama"),
       effect: "fade-down", 
       icon: <FaSun size={70} className="icon" />, 
-      link: "/taqrirList?identifier=halmoamaHaiQuran" 
+            link: "comming" 
+
     },
     { 
       text:  t("mesdaq"), 
       effect: "fade-up", 
       icon: <FaSearch size={70} className="icon" />, 
-      link: "/taqrirList?identifier=mesdaqHadith" 
+      link: "comming" 
     },
     { 
       text:  t("dros"), 
       effect: "fade-down", 
       icon: <FaMicrophoneAlt size={70} className="icon" />, 
-      link: "/taqrirList?identifier=DrosWaSokhanraniHa" 
+           link: "comming" 
+
     }
   ];
 

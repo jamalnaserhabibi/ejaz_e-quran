@@ -11,7 +11,9 @@ export default function FirstLoads() {
       <Home />
       <Topics_card/>
       {/* <Hadithroz/> */}
-      <Books/>
+        <div id="books-section">
+        <Books/>
+      </div>
       <Feedback/>
       {/* <Sampl/> */}
       {/* <Carts/> */}

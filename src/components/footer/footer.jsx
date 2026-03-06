@@ -154,7 +154,7 @@ export default function App() {
              <Link
             style={{ textDecoration: "none", color: "white" }}
           to="comming"
-          >مصداق احادیث
+          >مصداق احادیث شریف
           </Link>
         </p>
         <p>

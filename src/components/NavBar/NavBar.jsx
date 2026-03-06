@@ -135,7 +135,8 @@ export default function NavBar() {
               <span className="line">|</span>
 
               <HashLink
-                to="/#hadithroz"
+                  as={Link}
+                  to="comming"
                 smooth
                 onClick={handleNavLinkClick}
                 className={`nav-link ${isActive("/taqrirList?identifier=about") ? "active" : ""}`}
@@ -145,7 +146,8 @@ export default function NavBar() {
               </HashLink>
               <span className="line">|</span>
               <HashLink
-                to="/#mainBooks"
+                  as={Link}
+                   to="/#books-section"
                 smooth
                 onClick={handleNavLinkClick}
                 className={`nav-link ${isActive("/taqrirList?identifier=about") ? "active" : ""}`}
