@@ -178,7 +178,7 @@ export default function NavBar() {
                       to={`/about/${item.id}`}
                       onClick={handleNavLinkClick}
                     >
-                      {item.title.replace(/<\/?[^>]+(>|$)/g, "")}
+                      {item.title.replace(/<\/?[^>]+(>|$)/g, "").replace(/&nbsp;/g, ' ')}
                     </NavDropdown.Item>
 
                     // <NavDropdown.Item
