@@ -71,7 +71,7 @@ fetchBackground();
                 {slider.map((ayat, index) => (
                   <Carousel.Item key={index}>
                     <h2 className="ayat">{ayat.title}</h2>
-                    <h2 className="ayat">{ayat.subtitle}</h2>
+                    <h2 className="ayat trans">{ayat.subtitle}</h2>
                     {/* <p>{paragraphTexts[index]}</p> */}
                   </Carousel.Item>
                 ))}

@@ -63,6 +63,10 @@
   line-height: 2;
   font-size: 30px;
 }
+.mainContainer .main .homeText .DesText .trans {
+  padding: 0 90px;
+  border: 1px solid red;
+}
 .mainContainer .main .homeText .DesText p {
   padding: 0 60px;
   margin: 0 60px;
