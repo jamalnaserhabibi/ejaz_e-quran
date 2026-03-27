@@ -1,9 +1,9 @@
 // App.jsx
 import NavBar from "./components/NavBar/NavBar";
 import FirstLoad from "./components/firstload";
-import '@fortawesome/fontawesome-free/css/all.min.css';
-import GoogleAnalytics from './components/GoogleAnalytics';
-import "slick-carousel/slick/slick.css"; 
+import "@fortawesome/fontawesome-free/css/all.min.css";
+import GoogleAnalytics from "./components/GoogleAnalytics";
+import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ScrollToTop from "./components/scrolltop";
 import TaqrirList from "./components/taqrirList/taqrirList";
@@ -32,10 +32,9 @@ export default function App() {
       <Routes>
         <Route path="/" element={<FirstLoad />} />
         <Route path="/taqrirList" element={<TaqrirList />} />
-      <Route path="/about/:id" element={<AboutSection />} />
-        
-       <Route path="/taqrir/:categoryId/:itemId" element={<TaqrirView />} />
+        <Route path="/about" element={<AboutSection />} />
 
+        <Route path="/taqrir/:categoryId/:itemId" element={<TaqrirView />} />
 
         <Route path="/who_we_are" element={<Who_we_are />} />
         <Route path="/pishina_Tasis" element={<Pishina_tasis />} />
@@ -43,7 +42,7 @@ export default function App() {
         <Route path="/wojoh_emtiyaz" element={<Wojoh_emtiyaz />} />
         <Route path="/values" element={<Values />} />
         <Route path="/invite_to_action" element={<Invite_to_action />} />
-       <Route path="/book/:id" element={<Bookdownload />} />
+        <Route path="/book/:id" element={<Bookdownload />} />
         <Route path="/Comming" element={<Comming />} />
       </Routes>
 

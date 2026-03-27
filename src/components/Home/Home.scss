@@ -6,8 +6,9 @@
   justify-content: center;
   flex-direction: column;
   align-items: center;
+
   .main {
-    
+
     width: 100%;
     height: 100vh;
     background-size: cover;
@@ -22,12 +23,13 @@
     color: var(--gold_light);
     border-radius: 0 0 50px 50px;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 20px;
-    div {
-    
-    }
+
+    div {}
+
     .besm {
       width: 200px;
     }
+
     .homeText {
       .hometitle {
         font-family: "Lalezar", serif;
@@ -35,9 +37,9 @@
         font-weight: 400;
         text-align: center;
 
-        color: var(--primary); /* Your gold-orange */
+        color: var(--primary);
         text-shadow:
-        0 0 10px #ffffff,
+          0 0 10px #ffffff,
           0 0 9px #ffffff,
           0 3px 6px rgb(255, 255, 255);
       }
@@ -56,19 +58,23 @@
           margin: 15px 0;
         }
       }
+
       .DesText {
-        
+
         color: #ffffff;
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.804);
+
         .Homeslider {
           margin: 10px 0;
           width: 100%;
           // height: 200px;
           margin: auto;
           padding-bottom: 50px;
-                }
+        }
+
         width: 100%;
         height: 100px;
+
         h2 {
           padding: 15px;
           font-family: "Amiri", serif;
@@ -76,11 +82,13 @@
           line-height: 2;
           font-size: 30px;
         }
-     .trans {
- padding: 0 90px;
-  border: 1px solid red;
 
-}
+        .trans {
+          padding: 0 90px;
+          // border: 1px solid red;
+
+        }
+
         p {
           padding: 0 60px;
           margin: 0 60px;
@@ -144,6 +152,7 @@
     margin-top: 30px;
     transition: 0.2s ease-in-out;
     display: none;
+
     &:hover {
       background-color: var(--primary);
     }
@@ -155,27 +164,33 @@
     .main {
       .homeText {
         margin-top: -150px;
+
         .hometitle {
           font-size: 50px;
           white-space: nowrap;
         }
+
         .mainText0 {
           margin: 1rem 0;
+
           img {
             width: 200px;
           }
         }
+
         .DesText {
           display: flex;
           justify-content: center;
           width: 130%;
-          .Homeslider {
-          }
+
+          .Homeslider {}
+
           h2 {
             margin: 3rem 0;
             // border: 1px solid red;
             font-size: 25px;
           }
+
           p {
             margin: 0 20px;
             padding: 0 20px;
@@ -184,6 +199,7 @@
         }
       }
     }
+
     // .homeBoxes {
     //   gap: 40px;
     //   padding: 30px 0;
@@ -197,7 +213,7 @@
     // }
   }
 }
+
 @media (min-width: 560px) {
-  .main {
-  }
+  .main {}
 }

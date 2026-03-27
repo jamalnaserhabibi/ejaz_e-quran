@@ -1,70 +1,82 @@
-.footerClass{
-    color: white;
-    background:linear-gradient(to right,#936b3e, #b09b83);
-    border-radius: 50px 50px 0 0 ;
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 20px;
-    font-family: "Amiri";
- }
-.footer_paragraph{
-  color: #222020eb;
+.footerClass {
+  color: white;
+  background: linear-gradient(to right, #13474A, #1B7E84);
+  border-radius: 50px 50px 0 0;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 20px;
+  font-family: "Amiri";
+}
+
+.footer_paragraph {
+  color: #ffffffeb;
   font-size: 19px;
 }
-.section_titles_footer{
-  color: #4f2a00 !important;
-  
+
+.section_titles_footer {
+  color: #ffffff !important;
+
 }
-.footerCards{
+
+.footerCards {
   flex-direction: row-reverse;
 }
-.links{
-   a{
+
+.links {
+  a {
     text-decoration: none;
     position: relative;
     display: inline-block;
     text-decoration: none;
     position: relative;
-       }
-       a::before {
-        content: "";
-        position: absolute;
-        bottom: 0; 
-        right: 0;
-        width: 100px; 
-        height: .6px; 
-        background-color: rgba(255, 255, 255, 0.577);
-        transition: 0.3s ease; 
-      }
-      a:hover::before {
-        width: 120px; 
-    }
-    p a:hover{
-        color:rgb(213, 213, 213) !important;
-    }
-   h5{
+  }
+
+  a::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100px;
+    height: .6px;
+    background-color: rgba(255, 255, 255, 0.577);
+    transition: 0.3s ease;
+  }
+
+  a:hover::before {
+    width: 120px;
+  }
+
+  p a:hover {
+    color: rgb(213, 213, 213) !important;
+  }
+
+  h5 {
     text-align: right;
     color: var(--primary);
     font-weight: bolder;
     //  text-shadow:        0 0 1px #ffffff,        0 0 2px #ffffff,
-        // 0 3px 6px rgba(255, 255, 255, 0.6); /* Strong contrast shadow */
-   }
-   .first p, .second p, .third p ,.fourth p     {
+    // 0 3px 6px rgba(255, 255, 255, 0.6); /* Strong contrast shadow */
+  }
+
+  .first p,
+  .second p,
+  .third p,
+  .fourth p {
     text-align: right;
     margin-right: 10px;
     white-space: nowrap;
-   }
-  
+  }
+
 }
 
 @media (max-width: 768px) {
 
-    .mobile-two-column > div {
-      flex: 0 0 50%;
-      max-width: 50%;
-    }
+  .mobile-two-column>div {
+    flex: 0 0 50%;
+    max-width: 50%;
   }
+}
 
 @media (max-width: 500px) {
-  .mobile-two-column > div {
+  .mobile-two-column>div {
     flex: 0 0 100%;
     max-width: 100%;
   }

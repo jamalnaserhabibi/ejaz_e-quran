@@ -1,368 +1,150 @@
-
 .taqrirView {
   width: 100%;
-  font-family: "Lalezar";
-  height: auto;
   display: flex;
-  justify-content: center;
   flex-direction: column;
   align-items: center;
-  background-repeat: repeat;
-  background-size: contain;
-  background-position: top;
-  .main {
-    margin-bottom: 10px;
-    display: flex;
-    width: 100%;
-    height: 15vh;
-    background-size: cover;
-    background-position: center;
-    color: var(--gold_light);
-  }
-
-  .titleoftaqrir{
-    .search-container{
-      display: flex;
-      flex-direction: row;
-      height: 20px;
-     
-
-    }
-    color: var(--primary);
-
-    width: 80%;
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: space-around;
-    text-align: right;
-    gap: 20px;
-    // border: 1px solid red;
-
-  }
-  .content {
-
-      .socialLinks {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 25px;
+  padding: 0 15px;
+  font-family: "Lalezar";
 }
 
-.shareBtn {
+/* HEADER */
+.titleoftaqrir {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-top: 100px;
+}
+
+/* CENTER TITLE */
+.titleOfTaqrir {
+  text-align: center;
+}
+
+/* SEARCH LEFT FIXED */
+.search-container {
+  position: absolute;
+  left: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-container .icon {
+  cursor: pointer;
+  font-size: 18px;
+}
+
+/* INPUT ANIMATION */
+.search-container input {
+  width: 0;
+  opacity: 0;
+  padding: 6px;
+  border: none;
+  border-bottom: 1px solid var(--primary);
+  outline: none;
+  transition: all 0.3s ease;
+  transform: translateX(-10px);
+}
+
+.search-container input.show {
+  width: 200px;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* CONTENT */
+.content {
+  width: 80%;
+  margin-top: 20px;
+  font-family: "Amiri";
+  line-height: 1.8;
+  position: relative;
+}
+
+/* SOCIAL BUTTONS */
+.socialLinks {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.shareBtn,
+.bookmarkBtn {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: none;
   background: var(--primary);
   color: white;
-  border: none;
-  padding: 12px 28px;
-  border-radius: 50px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: 0.3s ease;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-}
-
-.shareBtn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 25px rgba(0,0,0,0.25);
-}
-
-.shareBtn:active {
-  transform: scale(0.98);
-}
-
-
-    margin: 20px;
-    margin-top: 10px;
-    width: 80%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: column;
-    color: #2f2f2f;
-    font-family: "Amiri";
-    line-height: 1.5;
-    transition: 0.3s ease-in-out;
-    padding: 0 20px;
-    p {
-      text-align: justify;
-      // font-size: 74px;
-    }
-    .info {
-      color: white;
-      width: 100%;
-      background-color: var(--primary);
-      border-radius: 20px;
-      padding: 10px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-direction: row;
-      h3 {
-        font-size: 20px;
-      }
-    }
-  
-      table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-    font-family: 'Segoe UI', 'Tahoma', 'Arial', sans-serif;
-    font-size: 14px;
-    // background: white;
-    border-radius: 10px;
-    overflow: hidden;
-    // min-width: 400px;
-    
-    // Remove old borders
-    border: none !important;
-    
-    // Header styling
-    thead {
-      tr {
-        background: linear-gradient(135deg, #ffe600 0%, #c51906 100%);
-        
-        th {
-          color: white;
-          font-weight: 600;
-          text-align: right;
-          padding: 18px 20px;
-          font-size: 15px;
-          border-bottom: 3px solid #2d4365;
-          position: relative;
-          
-          &:first-child {
-            border-top-right-radius: 10px;
-          }
-          
-          &:last-child {
-            border-top-left-radius: 10px;
-          }
-          
-          // Add subtle shadow to text for better readability
-          text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-        }
-      }
-    }
-    
-    // Body styling
-    tbody {
-      tr {
-        transition: all 0.2s ease;
-        
-        &:nth-child(even) {
-          background-color: #f8fafc;
-        }
-        
-        &:nth-child(odd) {
-          background-color: white;
-        }
-        
-        &:hover {
-          background-color: #edf2f7;
-          transform: translateY(-1px);
-          box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
-        }
-        
-        &:last-child {
-          td {
-            &:first-child {
-              border-bottom-right-radius: 10px;
-            }
-            
-            &:last-child {
-              border-bottom-left-radius: 10px;
-            }
-          }
-        }
-        
-        td {
-          padding: 16px 20px;
-          text-align: right;
-          border-bottom: 1px solid #e2e8f0;
-          line-height: 1.6;
-          color: #2d3748;
-          font-size: 14px;
-          
-          // First column (شماره) styling
-          &:first-child {
-            font-weight: 600;
-            color: #4a6fa5;
-            // width: 80px;
-            text-align: center;
-          }
-          
-          // Second column (اسم کتاب) styling
-          &:nth-child(2) {
-            font-weight: 500;
-            color: #2d3748;
-            
-            p {
-              margin: 0;
-              padding: 0;
-            }
-            
-            strong {
-              color: #2d3748;
-              font-weight: 600;
-            }
-          }
-          
-          // Third column (نویسنده) styling
-          &:last-child {
-            color: #4a5568;
-            font-weight: 500;
-            
-            strong {
-              color: #4a5568;
-              font-weight: 600;
-            }
-          }
-        }
-      }
-    }
-    
-    // Remove bottom border from last row
-    tbody tr:last-child td {
-      border-bottom: none;
-    }
-    
-    
-    
-    // Responsive adjustments
-    @media (max-width: 768px) {
-      font-size: 13px;
-      
-      thead tr th,
-      tbody tr td {
-        padding: 12px 15px;
-      }
-    }
-   
-  }
-
-
-  }
-}
-@media (max-width: 768px) {
-  .taqrirView {
-    .main {
-      height: 8vh;
-    }
-    .content {
-      width: 100%;
-      // align-items: start;
-      .info {
-        align-items: start;
-
-        // width: 50%;
-        flex-wrap: wrap;
-        h3 {
-          font-size: 15px;
-        }
-      }
-    }
-  }
-}
-@media (max-width: 560px) {
- .taqrirView{
-  .titleoftaqrir{
-    flex-direction: column;
-    justify-content: center;
-    margin-top: 20px;
-    .search-container{
-      justify-content: center;
-    }
-
-  }
- }
-}
-.pagination-controls {
-
-  button {
-    padding: 10px 15px;
-    background-color: #9a6121;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.3s ease;
-    font-family: "Lalezar";
-
-    &:disabled {
-      background-color: lightgray;
-      cursor: not-allowed;
-      opacity: 0.6;
-    }
-
-    &:hover:not(:disabled) {
-      background-color: #7f4f1b;
-    }
-  }
-}
-
-
-.loading-container {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 50vh;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-.loading-animation {
-  margin-bottom: 1rem;
+.shareBtn:hover,
+.bookmarkBtn:hover {
+  transform: scale(1.1);
+}
+
+/* IMAGE */
+.tafsirImage {
+  width: 100%;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+/* LOADING */
+.loading-container {
+  height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .spinner-icon {
-  font-size: 3rem;
-  color: var(--primary);
+  font-size: 40px;
   animation: spin 1s linear infinite;
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
-.loading-text {
-  font-size: 1.2rem;
-  color: #333;
-}
-
+/* ERROR */
 .error-message {
   text-align: center;
-  padding-top: 3rem;
-  background-color: #f8d7da;
-  border-radius: 5px;
-  color: #592800;
+  padding: 20px;
+  background: #f8d7da;
 }
 
-.error-message h3 {
-  margin-bottom: 1rem;
-}
-.pagination-controls{
-  width: 70%;
-  display: flex;
-  justify-content: space-between;
-  margin: 10px;
-}
-.page-selector{
-  border: none;
-  width: 150px;
-  padding: 5px 10px;
-  border: 1px solid var(--primary);
-  border-radius: 4px;
-
-}
-.retry-button {
-  margin-top: 1rem;
-  padding: 0.5rem 1rem;
-  background-color: var(--primary);
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+/* SEARCH HIGHLIGHT */
+.highlight {
+  background: yellow;
 }
 
-.retry-button:hover {
-  background-color:var(--primary);
+/* MOBILE */
+@media (max-width: 768px) {
+  .titleoftaqrir {
+    width: 100%;
+    flex-direction: column !important;
+  }
+
+  .search-container {
+    top: 50px;
+    left: 40%;
+  }
+
+  .search-container input.show {
+    width: 140px;
+
+
+  }
 }

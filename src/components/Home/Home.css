@@ -27,7 +27,7 @@
   font-size: 80px;
   font-weight: 400;
   text-align: center;
-  color: var(--primary); /* Your gold-orange */
+  color: var(--primary);
   text-shadow: 0 0 10px #ffffff, 0 0 9px #ffffff, 0 3px 6px rgb(255, 255, 255);
 }
 .mainContainer .main .homeText {
@@ -65,7 +65,6 @@
 }
 .mainContainer .main .homeText .DesText .trans {
   padding: 0 90px;
-  border: 1px solid red;
 }
 .mainContainer .main .homeText .DesText p {
   padding: 0 60px;

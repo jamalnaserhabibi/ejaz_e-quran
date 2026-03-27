@@ -1,281 +1,146 @@
-.taqrirList {
+.taqrir-accordion-wrapper {
   width: 100%;
-  font-family: "Lalezar";
-  height: auto;
   display: flex;
-  justify-content: center;
   flex-direction: column;
   align-items: center;
-  // background-image: url('../../assets/contentbg2.jpg');
-  background-repeat: repeat;
-  background-size: contain;
-  background-position: top;
+  /* CENTER FIX */
+  padding: 100px 0;
+  font-family: "Lalezar";
+}
 
-  .main {
-    margin-bottom: 10px;
-    // background-color: #0080000c;
-    display: flex;
-    width: 100%;
-    height: 15vh;
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    justify-content: center;
-    align-items: center;
-    // background-color: red;
-    text-align: center;
-    color: var(--gold_light);
-    // border-radius: 0 0 50px 50px;
-    // box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 20px;
-    // position: sticky;
-    // top: 0;
-  }
+/* SEARCH */
+.taqrir-search-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 20px;
+}
 
-  .search-container {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.taqrir-search-input {
+  width: 50%;
+  height: 50px;
+  padding: 0 45px 0 20px;
+  border-radius: 30px;
+  border: 1px solid var(--primary);
+  outline: none;
+  font-size: 16px;
+  transition: 0.3s ease;
+  background: transparent;
+  color: var(--primary);
+}
 
-    input {
-      width: 50%;
-      padding: 10px;
-      border-radius: 5px;
-      font-size: 16px;
-      margin-bottom: 20px;
-      color: var(--primary);
-      border: 1px solid var(--primary);
-      border-radius: 30px;
-      transition: 0.3s ease-in-out;
-      padding: 0 20px;
-      height: 50px;
-      background-color: transparent;
-      outline: none;
+.taqrir-search-input:focus {
+  width: 55%;
+}
 
-      &:hover {
-        width: 55%;
+.taqrir-search-icon {
+  position: absolute;
+  right: 26%;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--primary);
+}
 
-      }
-    }
+/* LIST */
+.taqrir-accordion-list {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
 
-    .icon {
-      position: relative;
-      left: 35px;
-      bottom: 9px;
-      color: var(--primary);
-    }
-  }
+/* CARD */
+.taqrir-accordion-card {
 
-  .content-list {
 
-    width: 80%;
-    text-decoration: none;
 
-    .child-dropdown {
-      padding: 0 30px;
-      margin-top: 10px;
+  border: 1px solid var(--primary);
+  border-radius: 18px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 
-      .childdd {
-        margin: 5px 0;
-        padding: 10px 20px;
-        // border: 1px dashed var(--primary);
-        border-radius: 20px;
-        color: var(--primary);
-        background-color: #fdfdfd;
-        transition: all 0.3s;
-        text-decoration: none;
-        display: block;
-       
-        &:hover {
-          background-color: var(--primary);
-          color: white;
-        }
-      }
-    }
+}
 
-    .content {
-      margin: 20px;
-      margin-top: 10px;
-      // border-radius: 20px;
-      // width: 80%;
-      // height: 70px;
-      // background-color: var(--primary);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-direction: row;
-      color: var(--primary);
-      border: 1px solid var(--primary);
-      border-radius: 30px;
-      transition: 0.3s ease-in-out;
-      padding: 0 20px;
+/* HEADER */
+.taqrir-accordion-header {
+  width: 100%;
+  padding: 15px 20px;
+  border: none;
+  background: transparent;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
 
-      &:hover {
-        padding: 0 0px;
-        cursor: pointer;
-      }
+.taqrir-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--primary);
 
-      img {
-        width: 50px;
-      }
-    }
-    .contentchild {
-      margin: 20px;
-      margin-top: 10px;
-      // border-radius: 20px;
-      // width: 80%;
-      // height: 70px;
-      // background-color: var(--primary);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-direction: row;
-      color: var(--primary);
-      border: 1px solid var(--primary);
-      border-radius: 30px;
-      transition: 0.3s ease-in-out;
-      padding: 0 20px;
- 
+  justify-self: center;
 
-      img {
-        width: 50px;
-      }
-    }
-
-    .text {
-      text-align: center;
-
-      h5 {
-        margin: 5px;
-      }
-    }
-  }
-
-  .about-us {
-    // border: 1px solid red;
-    padding: 20px;
-
-    h1 {
-      text-align: center;
-      color: var(--primary);
-    }
+  h5 {
+    line-height: 0;
+    margin: 0;
 
     p {
-      text-align: justify;
-      padding: 20px;
-      line-height: 2;
+      margin: 0;
     }
   }
-
 }
 
-@media (max-width: 768px) {
-  .taqrirList {
-    .main {
-      height: 8vh;
-    }
-
-    .content-list {
-      width: 90%;
-
-      .content {
-        margin: 10px;
-        margin-top: 5px;
-        border-radius: 25px;
-
-        // height: 50px;
-        img {
-          width: 40px;
-        }
-      }
-    }
-
-  }
+.taqrir-header-left img {
+  width: 45px;
 }
 
-@media (min-width: 560px) {
-  .main {}
+/* CHEVRON */
+.taqrir-chevron {
+  transition: 0.3s ease;
 }
 
-
-
-
-
-/* Loading styles */
-.loading-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
-  text-align: center;
+.taqrir-chevron.open {
+  transform: rotate(180deg);
 }
 
-.loading-animation {
-  margin-bottom: 1rem;
+/* BODY */
+.taqrir-accordion-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.35s ease;
+  background: #fafafa;
+  padding: 0 20px;
 }
 
-.spinner-icon {
-  font-size: 3rem;
-  color: #4a6f28;
-  /* Green color that matches Islamic themes */
-  animation: spin 1s linear infinite;
+.taqrir-accordion-body.open {
+  max-height: 500px;
+  padding: 15px 20px;
 }
 
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
+/* CHILD */
+.taqrir-child-item {
+  display: block;
+  margin: 8px 0;
+  padding: 10px 15px;
+  border-radius: 12px;
+  background: white;
+  border: 1px solid #eee;
+  text-decoration: none;
+  color: var(--primary);
+  transition: 0.3s;
 }
 
-.loading-text {
-  font-size: 1.2rem;
-  color: #333;
-  margin-bottom: 0.5rem;
-}
-
-.loading-subtext {
-  font-size: 0.9rem;
-  color: #666;
-}
-
-/* Error message styles */
-.error-message {
-  text-align: center;
-  padding: 2rem;
-  background-color: #f8d7da;
-  border-radius: 5px;
-  margin: 1rem;
-  color: #721c24;
-}
-
-.error-message h3 {
-  margin-bottom: 1rem;
-}
-
-.retry-button {
-  margin-top: 1rem;
-  padding: 0.5rem 1rem;
-  background-color: #4a6f28;
+.taqrir-child-item:hover {
+  background: var(--primary);
   color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+  transform: translateX(-5px);
 }
 
-.retry-button:hover {
-  background-color: #3a5a1c;
-}
-
-/* No results styles */
-.no-results {
-  text-align: center;
-  padding: 2rem;
-  font-size: 1.1rem;
-  color: #666;
+/* LOADING */
+.taqrir-loading {
+  padding: 10px;
+  color: #777;
 }

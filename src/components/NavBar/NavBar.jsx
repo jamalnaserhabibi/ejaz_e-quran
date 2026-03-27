@@ -1,4 +1,4 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
@@ -8,17 +8,17 @@ import { useLocation } from "react-router-dom";
 import Navbar from "react-bootstrap/Navbar";
 import { Divide as Hamburger } from "hamburger-react";
 import "./NavBar.css";
-import { HashLink } from 'react-router-hash-link';
+import { HashLink } from "react-router-hash-link";
 import { useTranslation } from "react-i18next";
-import logo from '../../assets/Golden.png';
+import logo from "../../assets/Golden.png";
 
 export default function NavBar() {
   const location = useLocation();
   const { t, i18n } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const [hidenav, sethidenav] = useState("navbar");
-  const [dropdownOpen1, setDropdownOpen1] = useState(false); 
-  const [dropdownOpen2, setDropdownOpen2] = useState(false); 
+  const [dropdownOpen1, setDropdownOpen1] = useState(false);
+  const [dropdownOpen2, setDropdownOpen2] = useState(false);
   const [aboutSections, setAboutSections] = useState([]);
 
   const scrollTop = () => {
@@ -39,25 +39,32 @@ export default function NavBar() {
     setIsOpen(false);
   };
 
-  const navmainClass = location.pathname !== "/" ? "nav_main nav_main_color" : "nav_main";
+  const navmainClass =
+    location.pathname !== "/" ? "nav_main nav_main_color" : "nav_main";
 
   // Function to check if a path is active
   const isActive = (path) => {
-    return location.pathname === path || location.search.includes(path.split("?")[1]);
+    return (
+      location.pathname === path || location.search.includes(path.split("?")[1])
+    );
   };
   useEffect(() => {
     fetch("https://ejazquran.space/api/v1/about/sections")
       // https://ejazquran.space/api/v1/about/sections   http://127.0.0.1:8000/api/v1/about/sections
-      
+
       .then((res) => res.json())
       .then((data) => {
         setAboutSections(data.data);
       });
   }, []);
- 
+
   return (
     <div className={navmainClass}>
-      <Navbar expanded={isOpen} expand="lg" className={`${hidenav} ${isOpen ? "navbar-opened" : ""}`} >
+      <Navbar
+        expanded={isOpen}
+        expand="lg"
+        className={`${hidenav} ${isOpen ? "navbar-opened" : ""}`}
+      >
         <Container>
           <Navbar.Brand className="navLogo" href="/">
             <img src={logo} alt="" />
@@ -88,7 +95,11 @@ export default function NavBar() {
                 <NavDropdown.Item
                   as={Link}
                   to="/taqrirList?identifier=tafsirQuranBelQuran"
-                  className={isActive("/taqrirList?identifier=tafsirQuranBelQuran") ? "active" : ""}
+                  className={
+                    isActive("/taqrirList?identifier=tafsirQuranBelQuran")
+                      ? "active"
+                      : ""
+                  }
                   onClick={handleNavLinkClick}
                 >
                   {t("tafsirquran")}
@@ -96,9 +107,12 @@ export default function NavBar() {
                 <NavDropdown.Item
                   as={Link}
                   to="comming"
-
                   // to="/taqrirList?identifier=halmoamaHaiQuran"
-                  className={isActive("/taqrirList?identifier=halmoamaHaiQuran") ? "active" : ""}
+                  className={
+                    isActive("/taqrirList?identifier=halmoamaHaiQuran")
+                      ? "active"
+                      : ""
+                  }
                   onClick={handleNavLinkClick}
                 >
                   {t("halmoama")}
@@ -117,37 +131,35 @@ export default function NavBar() {
                 <NavDropdown.Item
                   as={Link}
                   to="comming"
-
                   // to="/taqrirList?identifier=DrosWaSokhanraniHa"
-                  className={isActive("/taqrirList?identifier=DrosWaSokhanraniHa") ? "active" : ""}
+                  className={
+                    isActive("/taqrirList?identifier=DrosWaSokhanraniHa")
+                      ? "active"
+                      : ""
+                  }
                   onClick={handleNavLinkClick}
                 >
                   {t("dros")}
                 </NavDropdown.Item>
               </NavDropdown>
 
-   
-
               {/* Second NavDropdown for "topics" */}
-          
-
 
               <span className="line">|</span>
 
               <HashLink
-                  as={Link}
-                  to="comming"
+                as={Link}
+                to="comming"
                 smooth
                 onClick={handleNavLinkClick}
                 className={`nav-link ${isActive("/taqrirList?identifier=about") ? "active" : ""}`}
               >
-
                 مصداق احادیث شریف
               </HashLink>
               <span className="line">|</span>
               <HashLink
-                  as={Link}
-                   to="/#books-section"
+                as={Link}
+                to="/#books-section"
                 smooth
                 onClick={handleNavLinkClick}
                 className={`nav-link ${isActive("/taqrirList?identifier=about") ? "active" : ""}`}
@@ -168,36 +180,17 @@ export default function NavBar() {
               </Nav.Link>
               <span className="line">|</span> */}
 
-              <NavDropdown
-                  title={t("about")}
-                  id="basic-nav-dropdown-2"
-                  className="custom-dropdown"
-                >
-                  {aboutSections.map((item) => (
-                    <NavDropdown.Item
-                      key={item.id}
-                      as={Link}
-                      to={`/about/${item.id}`}
-                      onClick={handleNavLinkClick}
-                    >
-                      {item.title.replace(/<\/?[^>]+(>|$)/g, "").replace(/&nbsp;/g, ' ')}
-                    </NavDropdown.Item>
-
-                    // <NavDropdown.Item
-                    //   key={item.id}
-                    //   as={Link}
-                    //   to={`/about/${item.id}`}
-                    //   onClick={handleNavLinkClick}
-                    // >
-                    //   {item.title}
-                    // </NavDropdown.Item>
-                  ))}
-
-                     
-              </NavDropdown>
+              <Nav.Link
+                as={Link}
+                to="/about"
+                onClick={handleNavLinkClick}
+                className={isActive("/about") ? "active" : ""}
+              >
+                {t("about")}
+              </Nav.Link>
               <span style={{ width: "20px" }}></span>
 
-                {/* <NavDropdown
+              {/* <NavDropdown
                     title={t("about")}
                     id="basic-nav-dropdown-2" // Unique ID for the second dropdown
                     show={dropdownOpen2} // Control visibility for the second dropdown

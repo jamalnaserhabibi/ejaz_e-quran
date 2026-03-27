@@ -2,6 +2,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -20,7 +21,7 @@
   position: relative;
   overflow: hidden;
 
- 
+
 
   h1 {
     color: var(--primary);
@@ -50,13 +51,14 @@
     // margin-top: 40px;
 
     .flowerimg {
+      // display: none;
       position: absolute;
       top: 350px;
       width: 550px;
       height: 550px;
       opacity: 0.2;
       z-index: 1;
-      animation: flowerrotate 17s linear infinite;
+      animation: flowerrotate 35s linear infinite;
       // filter: blur(2px);
     }
   }
@@ -70,7 +72,7 @@
     justify-content: center;
     padding: 20px;
 
-     form {
+    form {
       width: 80%;
       max-width: 700px;
       // background: white;
@@ -102,18 +104,19 @@
 /* mobile */
 @media (max-width: 768px) {
   .mainFeedback {
-    
+
     h1 {
       font-size: 38px;
       margin: 15px 20px;
     }
 
     .flowerdiv {
+
       // margin-top: -300px;
       .flowerimg {
-          top:0;
-      // width: 150px;
-      // height: 150px;
+        top: 0;
+        // width: 150px;
+        // height: 150px;
       }
     }
 

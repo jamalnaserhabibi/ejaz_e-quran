@@ -1,86 +1,69 @@
 import "./taqrirView.css";
-import { useParams, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { FaSearch, FaSpinner } from "react-icons/fa";
+import { useParams } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
+import { FaSearch, FaSpinner, FaShareAlt, FaBookmark } from "react-icons/fa";
 import axios from "axios";
+
 export default function TaqrirView() {
+  const { categoryId, itemId } = useParams();
 
- 
-
-  const navigate = useNavigate();
-
- const { categoryId, itemId } = useParams();
-const [title, setTitle] = useState("");
-
-
-  const [currentPage, setCurrentPage] = useState(0);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
-  const [currentMatchIndex, setCurrentMatchIndex] = useState(0);
+  const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const [currentPage, setCurrentPage] = useState(0);
+
+  const [searchQuery, setSearchQuery] = useState("");
+  const [showSearch, setShowSearch] = useState(false);
 
   const [auzubillah, setAuzubillah] = useState("");
   const [bismillah, setBismillah] = useState("");
   const [duroodSharif, setDuroodSharif] = useState("");
   const [tafsirImage, setTafsirImage] = useState("");
 
-  const [nextTafsir, setNextTafsir] = useState(null);
-const siteUrl = `https://ejazquran.net/taqrir/${categoryId}/${itemId}`;
+  const contentRef = useRef(null);
 
-const getPlainText = () => {
-  if (!pages[0]) return "";
-  let text = pages[0].replace(/<[^>]+>/g, "");
-  const textarea = document.createElement("textarea");
-  textarea.innerHTML = text;
-  text = textarea.value;
-  text = text.replace(/[﴿﴾]/g, "");
-  text = text.replace(/\s+/g, " ").trim();
-  return text.slice(0, 1000);
-};
-const getShareText = () => {
-  const cleanText = getPlainText();
+  const siteUrl = `https://ejazquran.net/taqrir/${categoryId}/${itemId}`;
+  const BOOKMARK_KEY = `taqrir-bookmark-${itemId}`;
 
-  return `${cleanText}
+  const pages = content ? content.split("$$$").filter((p) => p.trim()) : [];
 
-برای مطالعه بیشتر کلیک کنید 👇
-${siteUrl}`;
-};
-const handleNativeShare = async () => {
-  const shareData = {
-    title: title,
-    text: getPlainText(),
-    url: siteUrl,
-  };
+  // LOAD BOOKMARK (PAGE + SCROLL)
+  useEffect(() => {
+    const savedPage = localStorage.getItem(BOOKMARK_KEY);
+    if (savedPage !== null) setCurrentPage(Number(savedPage));
+  }, [itemId]);
 
-  try {
-    if (navigator.share) {
-      await navigator.share(shareData);
-    } else {
-      // fallback if browser doesn't support it
-      await navigator.clipboard.writeText(
-        `${getPlainText()}\n\n${siteUrl}`
-      );
-      alert("لینک و متن کپی شد ✅");
+  // RESTORE SCROLL AFTER LOAD
+  useEffect(() => {
+    if (!loading) {
+      const savedScroll = localStorage.getItem(`${BOOKMARK_KEY}-scroll`);
+      if (savedScroll) {
+        window.scrollTo(0, Number(savedScroll));
+      }
     }
-  } catch (err) {
-    console.log("Share cancelled");
-  }
-};
+  }, [loading, currentPage]);
 
+  // SAVE PAGE
+  useEffect(() => {
+    localStorage.setItem(BOOKMARK_KEY, currentPage);
+  }, [currentPage]);
+
+  // FETCH DATA
   useEffect(() => {
     window.scrollTo(0, 0);
 
     const fetchContent = async () => {
       try {
         setLoading(true);
+
         const res = await axios.post(
           `https://ejazquran.space/api/v1/tafsir/${itemId}`,
-          { include_content: true }
+          { include_content: true },
         );
+
         if (res.data.status === "success") {
-          
           const t = res.data.data;
           setTitle(t.name || t.title || "");
           setContent(t.content || "");
@@ -88,7 +71,6 @@ const handleNativeShare = async () => {
           setBismillah(t.bismillah_text || "");
           setDuroodSharif(t.durood_sharif_text || "");
           setTafsirImage(t.tafir_image || "");
-          
         } else {
           setError("محتوا یافت نشد");
         }
@@ -102,48 +84,39 @@ const handleNativeShare = async () => {
     fetchContent();
   }, [itemId]);
 
-  const pages = content
-    ? content.split("$$$").filter(p => p.trim())
-    : [];
-// SEARCH EFFECT (RESTORED)
-useEffect(() => {
-  if (!searchQuery || !content) {
-    setSearchResults([]);
-    return;
-  }
+  // SHARE TEXT
+  const getPlainText = () => {
+    if (!pages[0]) return "";
+    let text = pages[currentPage].replace(/<[^>]+>/g, "");
+    const textarea = document.createElement("textarea");
+    textarea.innerHTML = text;
+    text = textarea.value;
+    return text.replace(/\s+/g, " ").trim().slice(0, 1000);
+  };
 
-  const regex = new RegExp(searchQuery, "gi");
-  const matches = [];
+  const handleShare = async () => {
+    const shareData = {
+      title,
+      text: getPlainText(),
+      url: siteUrl,
+    };
 
-  pages.forEach((page, pageIndex) => {
-    const found = [...page.matchAll(regex)];
-    found.forEach(match => {
-      matches.push({ pageIndex, match });
-    });
-  });
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData);
+      } else {
+        await navigator.clipboard.writeText(`${getPlainText()}\n\n${siteUrl}`);
+        alert("کپی شد  ");
+      }
+    } catch {}
+  };
 
-  setSearchResults(matches);
-
-  if (matches.length > 0) {
-    setCurrentMatchIndex(0);
-    setCurrentPage(matches[0].pageIndex);
-  }
-}, [searchQuery, content]);
-const highlightHtml = (html, query) => {
-  if (!query) return html;
-  const regex = new RegExp(`(${query})`, "gi");
-  return html.replace(
-    regex,
-    `<span style="background:yellow">$1</span>`
-  );
-};
-// AUTO SCROLL ON PAGE CHANGE OR SEARCH
-useEffect(() => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth",
-  });
-}, [currentPage, searchQuery]);
+  // HIGHLIGHT SEARCH
+  const highlightHtml = (html, query) => {
+    if (!query) return html;
+    const regex = new RegExp(`(${query})`, "gi");
+    return html.replace(regex, `<span class="highlight">$1</span>`);
+  };
 
   if (loading) {
     return (
@@ -164,122 +137,70 @@ useEffect(() => {
 
   return (
     <div className="taqrirView">
-
-     
-      <div className="main"></div>
-
-      
+      {/* HEADER */}
       <div className="titleoftaqrir">
+        {/* SEARCH LEFT */}
         <div className="search-container">
+          <FaSearch
+            className="icon"
+            onClick={() => setShowSearch((prev) => !prev)}
+          />
+
           <input
-          style={{
-            
-            width: "250px",
-        padding: "10px 20px",
-        border: "none",
-        borderBottom: "1px solid var(--primary)",
-        backgroundColor: "transparent",
-        outline: "none",
-        // font-size: 16px;
-          }}
-          id="input"
+            className={showSearch ? "show" : ""}
             type="text"
             placeholder="جستجو..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
-          <FaSearch className="icon" />
         </div>
-<h3 className="titleOfTaqrir">{title}</h3>
 
-        {/* <h3 className="titleOfTaqrir">{itemtitle}</h3> */}
+        {/* TITLE CENTER */}
+        <h3 className="titleOfTaqrir">{title}</h3>
       </div>
 
       {/* CONTENT */}
-      <div className="content">
+      <div className="content" ref={contentRef}>
+        {/* SOCIAL */}
+        <div className="socialLinks">
+          <button className="shareBtn" onClick={handleShare}>
+            <FaShareAlt />
+          </button>
 
+          <button
+            className="bookmarkBtn"
+            onClick={() => {
+              localStorage.setItem(BOOKMARK_KEY, currentPage);
+              localStorage.setItem(`${BOOKMARK_KEY}-scroll`, window.scrollY);
+              alert("نشانی ذخیره شد");
+            }}
+          >
+            <FaBookmark />
+          </button>
+        </div>
+
+        {/* HEADER CONTENT */}
         {currentPage === 0 && (
           <>
-              <div className="socialLinks">
-  <button className="shareBtn" onClick={handleNativeShare}>
-    اشتراک گذاری
-  </button>
-</div>
-
             {tafsirImage && (
-              <img
-                src={tafsirImage}
-                style={{
-                  width: "100%",
-                  // height: tafsir_image_height + "vh",
-                  objectFit: "cover",
-                  borderRadius: "50px",
-                  padding: "20px 0",
-                }}
-                alt=""
-              />
+              <img src={tafsirImage} alt="" className="tafsirImage" />
             )}
 
-            <div style={{ textAlign: "center" }} className="headofcontent titleOfTaqrir">
+            <div className="headofcontent">
               {auzubillah && <h3>{auzubillah}</h3>}
               {bismillah && <h3>{bismillah}</h3>}
-              {duroodSharif && <h4 className="mt-4">{duroodSharif}</h4>}
+              {duroodSharif && <h4>{duroodSharif}</h4>}
             </div>
           </>
         )}
 
-    <div
-  dangerouslySetInnerHTML={{
-    __html: highlightHtml(pages[currentPage] || "", searchQuery),
-  }}
-/>
-
+        {/* PAGE CONTENT */}
+        <div
+          dangerouslySetInnerHTML={{
+            __html: highlightHtml(pages[currentPage] || "", searchQuery),
+          }}
+        />
       </div>
-
-      {/* PAGINATION */}
-      {content && (
-        <div className="pagination-controls">
-          <button
-            disabled={currentPage === 0}
-            onClick={() => setCurrentPage(p => p - 1)}
-          >
-            قبلی
-          </button>
-
-          <select
-            className="page-selector"
-            value={currentPage}
-            onChange={(e) => setCurrentPage(Number(e.target.value))}
-          >
-            {pages.map((_, i) => (
-              <option key={i} value={i}>
-                صفحه {i + 1}
-              </option>
-            ))}
-          </select>
-
-          <button
-            disabled={currentPage === pages.length - 1}
-            onClick={() => setCurrentPage(p => p + 1)}
-          >
-            بعدی
-          </button>
-        </div>
-      )}
-
-      {/* NEXT TAFSIR */}
-      {currentPage === pages.length - 1 && nextTafsir && (
-        <div style={{ textAlign: "center", marginTop: "30px" }}>
-          <button
-            onClick={() =>
-              navigate(`/taqrir/${categoryId}/${nextTafsir.id}`)
-
-            }
-          >
-            بخش بعدی
-          </button>
-        </div>
-      )}
     </div>
   );
 }

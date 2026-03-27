@@ -1,24 +1,29 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Lateef:wght@200;300;400;500;600;700;800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@200;300;400;500;600;700;800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Lateef:wght@200;300;400;500;600;700;800&display=swap');
-#root{
+@import url("https://fonts.googleapis.com/css2?family=Lateef:wght@200;300;400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Amiri:wght@200;300;400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Lateef:wght@200;300;400;500;600;700;800&display=swap");
+#root {
   /* background-color: var(--gold_white); */
 }
-.taqrirList, .taqrirView, .hadithroz, .mainBooks ,.mainFeedbac, .bookdownload,.topics_card, .whoweare{
-  background:linear-gradient(
-   #ec810600,
-   
-   #ec81061d,
-   #ec81061d,
-  
-   #ec810600
-   );
+.taqrirList,
+.taqrirView,
+.hadithroz,
+.mainBooks,
+.mainFeedbac,
+.bookdownload,
+.topics_card,
+.whoweare {
+  background: linear-gradient(
+    #13474a00,
+    #13474a08,
+    #13474a1d,
+    rgba(236, 129, 6, 0)
+  );
 }
 :root {
   --blue_dark: #125488;
@@ -26,19 +31,19 @@
   --blue_med: #20c8ee;
   --blue_white: #d1ebff;
 
-  --primary: #9a6121;
+  --primary: #13474a;
   --gold_dark: #c6c6c6;
   --gold_white: #c4c4c4;
   --gold_light: #ffffff;
-  --gold_med: #cfcfcf;
+  --gold_med: #9b9b9b;
 }
 
-::-webkit-scrollbar{
+::-webkit-scrollbar {
   background-color: #ebecf1;
   width: 0.4vw;
   height: 0.4vw;
 }
-::-webkit-scrollbar-thumb{
+::-webkit-scrollbar-thumb {
   background: rgba(0, 0, 0, 0.42);
   border-radius: 10px;
 }

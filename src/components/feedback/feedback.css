@@ -50,7 +50,7 @@
   height: 550px;
   opacity: 0.2;
   z-index: 1;
-  animation: flowerrotate 17s linear infinite;
+  animation: flowerrotate 35s linear infinite;
 }
 .mainFeedback {
   /* form container */

@@ -28,7 +28,7 @@ export default function Book() {
     const fetchBooks = async () => {
       try {
         const response = await fetch(
-          "https://ejazquran.space/api/v1/resealla/list"
+          "https://ejazquran.space/api/v1/resealla/list",
         );
 
         if (!response.ok) throw new Error("Failed to fetch");
@@ -50,7 +50,7 @@ export default function Book() {
     fetchBooks();
   }, []);
 
-  if (loading) return <p className="center">Loading books...</p>;
+  if (loading) return <p className="center"> </p>;
   if (error) return <p className="center error">{error}</p>;
 
   return (

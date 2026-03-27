@@ -18,12 +18,11 @@
   background-position: center;
   justify-content: center;
   align-items: center;
-  text-align: center;
   color: var(--gold_light);
 }
 .taqrirView .main .titleOfTaqrir {
   color: var(--primary);
-  font-size: 35px;
+  text-align: right;
 }
 .taqrirView .main .content {
   margin: 20px;
@@ -55,6 +54,10 @@
 }
 .taqrirView .main .content .info h3 {
   font-size: 20px;
+}
+
+.about-block h3 {
+  text-align: right;
 }
 
 @media (max-width: 768px) {
