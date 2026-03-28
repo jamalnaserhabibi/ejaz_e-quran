@@ -54,8 +54,6 @@ export default function Home() {
     ),
   url(${background})
  
-
-
   `,
           }}
           className="main"
