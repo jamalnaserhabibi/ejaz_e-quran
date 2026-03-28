@@ -17,7 +17,7 @@ export default function TaqrirList() {
   const [searchQuery, setSearchQuery] = useState("");
   const [contentData, setContentData] = useState([]);
   const [filteredContent, setFilteredContent] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [openDropdowns, setOpenDropdowns] = useState({});
   const [childrenData, setChildrenData] = useState({});

@@ -31,7 +31,7 @@ export default function AboutSection() {
   }, []);
 
   if (loading) return <p style={{ padding: "50px" }}>Loading...</p>;
-  if (!sections.length) return <p style={{ padding: "50px" }}>No Data Found</p>;
+  if (!sections.length) return <p style={{ padding: "50px" }}></p>;
 
   return (
     <div className="whoweare">

@@ -15,8 +15,6 @@ import { Link } from "react-router-dom";
 
 AOS.init();
 export default function App() {
-  
-
   return (
     <MDBFooter className="footerClass text-center">
       <MDBContainer className="p-4">
@@ -47,20 +45,19 @@ export default function App() {
   </MDBTooltip> */}
 
           <MDBTooltip tag="span" title="X (Twitter)" placement="top">
-  <MDBBtn
-    outline
-    color="light"
-    floating
-    className="m-1"
-    href="https://twitter.com/@ejazulquran"
-    target="_blank"
-    rel="noopener noreferrer"
-    noRipple
-  >
-    <MDBIcon fab icon="x" />
-  </MDBBtn>
-</MDBTooltip>
-
+            <MDBBtn
+              outline
+              color="light"
+              floating
+              className="m-1"
+              href="https://twitter.com/@ejazulquran"
+              target="_blank"
+              rel="noopener noreferrer"
+              noRipple
+            >
+              <MDBIcon fab icon="x" />
+            </MDBBtn>
+          </MDBTooltip>
 
           {/* <MDBTooltip tag="span" title="Instagram" placement="top">
     <MDBBtn
@@ -120,77 +117,74 @@ export default function App() {
             توحید امت و بالا بردن سطح دانش نوع انسان بخصوص امت مسلمه در قرآن و
             اسلام است. از ویژگی های سایت اعجاز القران است که مسائل را بطور واقع
             بینانه، بدون تبعیض و با تحقیق و تدقیق بیان می‌کند. وب سایت اعجاز
-            القرآن به اضافه به بیان عبارات قرآنی به توضیح عجائب آن نیز می‌کوشد تا
-           پرده از رموز، اسرار و علوم لدنی آیات، کلمات و حروف آن بردارد.
+            القرآن به اضافه به بیان عبارات قرآنی به توضیح عجائب آن نیز می‌کوشد
+            تا پرده از رموز، اسرار و علوم لدنی آیات، کلمات و حروف آن بردارد.
           </p>
         </section>
 
-     <section data-aos="fade-up" className="links">
-  <MDBRow className="footerCards mobile-two-column">
-    <MDBCol lg="6" md="6" sm="12" className="mb-4 mb-md-0">
-      <div className="third">
-        <h5 className="text-uppercase section_titles_footer">
-          موضوعات
-        </h5>
-        <p>
-          <Link
-            style={{ textDecoration: "none", color: "white" }}
-            to="/taqrirList?identifier=tafsirQuranBelQuran"
-           
-          >
-            تفسیرالقرآن بالقرآن والحدیث
-          </Link>
-        </p>
-        <p>
-           <Link
-            style={{ textDecoration: "none", color: "white" }}
-          to="comming"
-          >
-          حل معما های قرآنکریم
-          </Link>
-       
-        </p>
-        <p>
-             <Link
-            style={{ textDecoration: "none", color: "white" }}
-          to="comming"
-          >مصداق احادیث شریف
-          </Link>
-        </p>
-        <p>
-         <Link
-            style={{ textDecoration: "none", color: "white" }}
-          to="comming"
-          >دروس و سخنرانی ها
-          </Link>
-        </p>
-      </div>
-    </MDBCol>
-    <MDBCol lg="6" md="6" sm="12" className="mb-4 mb-md-0">
-      <div className="fourth">
-        <h5 className="text-uppercase section_titles_footer">
-          ارتباطات
-        </h5>
-        <p>
-          <MDBIcon icon="home" className="me-3" /> ناحیه هفتم شهر کابل
-          افغانستان
-        </p>
-        <p>
-          <MDBIcon icon="envelope" className="me-3" />{" "}
-          info@ejazquran.com
-        </p>
-        <p>
-          <MDBIcon icon="phone" className="me-3" /> 93786351344+
-        </p>
-        <p>
-          <MDBIcon icon="phone" className="me-3" /> 93793923333+
-        </p>
-      </div>
-    </MDBCol>
-  </MDBRow>
-</section>
-
-        
+        <section data-aos="fade-up" className="links">
+          <MDBRow className="footerCards mobile-two-column">
+            <MDBCol lg="6" md="6" sm="12" className="mb-4 mb-md-0">
+              <div className="third">
+                <h5 className="text-uppercase section_titles_footer">
+                  موضوعات
+                </h5>
+                <p>
+                  <Link
+                    style={{ textDecoration: "none", color: "white" }}
+                    to="/taqrirList?identifier=tafsirQuranBelQuran"
+                  >
+                    تفسیرالقرآن بالقرآن والحدیث
+                  </Link>
+                </p>
+                <p>
+                  <Link
+                    style={{ textDecoration: "none", color: "white" }}
+                    to="comming"
+                  >
+                    حل معما های قرآنکریم
+                  </Link>
+                </p>
+                <p>
+                  <Link
+                    style={{ textDecoration: "none", color: "white" }}
+                    to="comming"
+                  >
+                    مصداق احادیث شریف
+                  </Link>
+                </p>
+                <p>
+                  <Link
+                    style={{ textDecoration: "none", color: "white" }}
+                    to="comming"
+                  >
+                    دروس و سخنرانی ها
+                  </Link>
+                </p>
+              </div>
+            </MDBCol>
+            <MDBCol lg="6" md="6" sm="12" className="mb-4 mb-md-0">
+              <div className="fourth">
+                <h5 className="text-uppercase section_titles_footer">
+                  ارتباطات
+                </h5>
+                <p>
+                  <MDBIcon icon="home" className="me-3" /> کابل | افغانستان
+                </p>
+                <p>
+                  <MDBIcon icon="envelope" className="me-3" />{" "}
+                  info@ejazquran.com
+                </p>
+                <p>
+                  <MDBIcon icon="phone" className="me-3" /> 93786351344+
+                </p>
+                <p>
+                  <MDBIcon icon="phone" className="me-3" /> 93793923333+
+                </p>
+              </div>
+            </MDBCol>
+          </MDBRow>
+        </section>
       </MDBContainer>
 
       <div
